@@ -3,12 +3,12 @@
     id="app"
     :class="[
       `theme-${ theme.toLowerCase() }`,
-      $route.name === 'CFP' ? 'cfp' : 'main',
+      'main',
       isInApp() ? 'in-app' : '',
       isPopup ? 'popuped' : ''
     ]"
   >
-    <Navbar v-if="$route.name !== 'CFP' && !isInApp()"/>
+    <Navbar v-if="!isInApp()"/>
     <Popup
       :isOpen="isPopup"
       :content="popupContent"
