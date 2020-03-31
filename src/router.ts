@@ -6,11 +6,9 @@ import Agenda from './pages/Agenda.vue';
 import Activity from './pages/Activity.vue';
 import Traffic from './pages/Traffic.vue';
 import Venue from './pages/Venue.vue';
-import Team from './pages/Team.vue';
 import CFP from './pages/CFP.vue';
-import Sponsor from '@/components/Team/Sponsor.vue';
-import Staff from '@/components/Team/Staff.vue';
-import You from '@/components/Team/You.vue';
+import Sponsor from '@/pages/Sponsor.vue';
+import Staff from '@/pages/Staff.vue';
 
 import { Route } from 'vue-router';
 
@@ -84,50 +82,21 @@ export const routes = [
     }
   },
   {
-    path: '/team',
-    name: 'Team',
-    component: Team,
-    redirect: '/team/staff',
+    path: '/staff',
+    name: 'Staff',
+    component: Staff,
     meta: {
       index: 5,
-      label: 'SITCON 團隊',
+      label: '工作人員',
       menuItem: true
-    },
-    children: [
-      {
-        path: '/team/staff',
-        name: 'Team/Staff',
-        component: Staff,
-        meta: {
-          index: 10,
-          label: ['工作人員', 'Staff']
-        }
-      },
-      {
-        path: '/team/sponsor',
-        name: 'Team/Sponsor',
-        component: Sponsor,
-        meta: {
-          index: 11,
-          label: ['贊助', 'Sponsor']
-        }
-      },
-      {
-        path: '/team/you',
-        name: 'Team/You',
-        component: You,
-        meta: {
-          index: 12,
-          label: ['來參加的你！', 'You']
-        }
-      }
-    ]
+    }
   },
   {
     path: '/sponsor',
     name: 'SponsorRedirect',
-    redirect: '/team/sponsor',
+    component: Sponsor,
     meta: {
+      index: 6,
       label: '贊助',
       menuItem: true
     }
