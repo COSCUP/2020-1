@@ -38,10 +38,10 @@
 
   a {
     img {
-      max-width: 230px;
+      max-width: 180px;
 
       @media screen and (max-width: 1280px) {
-        max-width: 200px;
+        max-width: 150px;
       }
 
       @media screen and (max-width: 675px) {
