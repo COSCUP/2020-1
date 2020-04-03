@@ -1,16 +1,9 @@
 <template>
   <footer class="footer-container">
-    <hr class="footer-line">
     <div id="brand" class="footer">
       <p>
-        <span class="font-bold">學生計算機年會</span>
-        <span class="font-bold">Students' Information Technology Conference</span>
-      </p>
-    </div>
-    <div id="contact" class="footer">
-      <p>
-        <span class="font-bold">聯絡我們</span>
-        <span class="font-bold"><a href="mailto:contact@sitcon.org" class="font-bold">contact@sitcon.org</a></span>
+        <span class="font-bold">COSCUP</span>
+        <span class="font-bold">Conference for Open Source Coders, Users, and Promoters</span>
       </p>
     </div>
     <div id="past" class="footer">
@@ -18,13 +11,13 @@
         <span class="font-bold">歷年網站</span>
         <span class="font-bold">
           <a
-            v-for="i in 7"
-            :key="`website-${2012 + i}`"
-            :href="`https://sitcon.org/${ 2012 + i }/`"
+            v-for="i in numOfPast"
+            :key="`website-${2006 + i}`"
+            :href="`https://coscup.org/${ 2006 + i }/`"
             target="_blank"
             rel="noopener"
             class="font-bold"
-          >{{ 2012 + i }}</a>
+          >{{ 2006 + i }}</a>
         </span>
       </p>
     </div>
@@ -53,26 +46,42 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Footer extends Vue {
 
+  private get numOfPast () {
+    return new Date().getFullYear() - 2006;
+  }
+
   private communityMedia = [
     {
-      icon: [ 'fab', 'youtube' ],
-      link: 'https://sitcon.org/youtube'
+      icon: ['fab', 'blogger'],
+      link: 'http://blog.coscup.org/'
     },
     {
-      icon: [ 'fab', 'facebook-f' ],
-      link: 'https://sitcon.org/facebook'
+      icon: ['fab', 'facebook'],
+      link: 'https://www.facebook.com/coscup/'
     },
     {
-      icon: [ 'fab', 'twitter' ],
-      link: 'https://sitcon.org/twitter'
+      icon: ['fab', 'flickr'],
+      link: 'https://www.flickr.com/photos/coscup/'
     },
     {
-      icon: [ 'fab', 'telegram-plane' ],
-      link: 'https://sitcon.org/telegram'
+      icon: ['ext', 'plurk'],
+      link: 'https://www.plurk.com/coscup'
     },
     {
-      icon: [ 'fab', 'flickr' ],
-      link: 'https://sitcon.org/flickr'
+      icon: ['fab', 'twitter'],
+      link: 'https://twitter.com/coscup'
+    },
+    {
+      icon: ['fab', 'youtube'],
+      link: 'https://www.youtube.com/user/thecoscup'
+    },
+    {
+      icon: ['fab', 'telegram'],
+      link: 'https://t.me/coscupchat'
+    },
+    {
+      icon: 'bullhorn',
+      link: 'https://t.me/coscup'
     }
   ];
 }

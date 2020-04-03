@@ -10,10 +10,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { ext } from '@/util/fonticons/index';
 
 library.add(fab);
 library.add(fas);
 library.add(far);
+library.add(ext);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(VueCookies);
