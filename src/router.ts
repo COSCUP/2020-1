@@ -20,7 +20,7 @@ export const routes = [
     component: Home,
     meta: {
       index: 0,
-      label: 'SITCON 2020',
+      label: 'COSCUP 2020',
       menuItem: true
     }
   },

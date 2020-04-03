@@ -5,10 +5,10 @@
         class="logo"
         @click="$router.push({ name: 'Home' })"
       >
-        <img class="logo-icon__normal" src="@/assets/images/logo-dark.svg" />
-        <img class="logo-icon__mobile" src="@/assets/images/favicon.png" />
+        <img class="logo-icon__normal" src="@/assets/images/logo-200.png" />
+        <img class="logo-icon__mobile" src="@/assets/images/logo-200.png" />
         <div class="logo-text">
-          <div class="logo-text__sitcon font-bold"><span class="font-black">SITCON</span></div>
+          <div class="logo-text__sitcon font-bold"><span class="font-black">COSCUP</span></div>
           <div class="logo-text__2020 font-bold"><span>2020</span></div>
         </div>
       </div>
@@ -17,11 +17,10 @@
         <div class="menu-container">
           <header>
             <div class="define-logo">
-              <img class="define-icon" src="@/assets/images/favicon.png" />
+              <img class="define-icon" src="@/assets/images/logo-200.png" />
               <div class="define-text">
-                <img src="@/assets/images/define-dark.svg" />
                 <div class="logo-text-container">
-                  <span class="logo-text__sitcon">SITCON</span>
+                  <span class="logo-text__sitcon">COSCUP</span>
                   <span class="logo-text__2020">2020</span>
                 </div>
               </div>

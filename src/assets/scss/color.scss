@@ -19,3 +19,13 @@ $dark-green: #5C794C;
 $light-tone: $light-green;
 $tone: $green;
 $dark-tone: $dark-green;
+
+$coscup-green-1: rgb(56, 152, 55);
+$coscup-green-1-lighten: lighten($coscup-green-1, 10%);
+$coscup-green-1-darken: darken($coscup-green-1, 10%);
+
+$coscup-green-2: rgb(1, 154, 121);
+$coscup-green-2-lighten: lighten($coscup-green-2, 10%);
+$coscup-green-2-darken: darken($coscup-green-2, 10%);
+
+$coscup-secondary: rgb(177, 215, 191);

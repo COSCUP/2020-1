@@ -12,10 +12,10 @@ const headPayload = {
 };
 
 const defaultValue = {
-  title: `SITCON 2020 學生計算機年會 | Students' Information Technology Conference`,
-  description: 'SITCON 2020 邀請身為學生的你，向大家分享您的經驗與技術，期待您能在演講桌前，與我們一起 #define student。',
-  url: 'https://sitcon.org/2020',
-  image: 'https://sitcon.org/2020/img/og.png',
+  title: `COSCUP 2020 | Conference for Open Source Coders, Users, and Promoters`,
+  description: `Conference for Open Source Coders, Users, and Promoters is a free annual conference providing a platform to connect FLOSS folks across Asia since 2006. It's a major force of free software movement advocacy in Taiwan.`,
+  url: 'https://coscup.org/2020',
+  image: 'https://coscup.org/2020/img/og.png',
   type: 'website'
 };
 

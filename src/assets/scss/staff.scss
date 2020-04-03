@@ -14,21 +14,18 @@
 
       @media screen and (max-width: 960px) {
         padding: 2rem;
-        padding-left: calc(2rem + 84px);
       }
 
       @media screen and (max-width: 675px) {
         padding: 2rem;
-        padding-left: calc(2rem + 84px);
       }
 
       @media screen and (max-width: 475px) {
         padding: 1.5rem 1rem;
-        padding-left: calc(1rem + 84px);
       }
 
       &:nth-child(odd) {
-        background-color: $white;
+        background-color: transparent;
 
         .staff img {
           border-color: $dark-2;
@@ -36,7 +33,8 @@
       }
 
       &:nth-child(even) {
-        background-color: $dark-3;
+        background-color: $coscup-secondary;
+        color: $dark-1;
 
         .staff img {
           border-color: $dark-1;

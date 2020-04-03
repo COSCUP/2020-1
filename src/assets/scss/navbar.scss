@@ -175,14 +175,10 @@
                 .define-text {
                   transform: scale(0.8);
   
-                  img {
-                    height: 22px;
-                  }
-  
                   .logo-text {
                     &__sitcon,
                     &__2020 {
-                      font-size: 12px;
+                      font-size: 18px;
                     }
                   }
                 }
@@ -248,9 +244,9 @@
 }
 
 @mixin navbarDarkIcon {
-  .logo-icon__normal,
-  .logo-icon__mobile,
-  .define-icon,
+  // .logo-icon__normal,
+  // .logo-icon__mobile,
+  // .define-icon,
   .define-text > img,
   .toggle-button {
     filter: invert(100%) grayscale(1);

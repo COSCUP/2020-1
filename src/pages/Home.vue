@@ -1,39 +1,25 @@
 <template>
   <div id="home" class="main-container">
-    <header class="header">
-      <div class="inner-container">
-        <h1 class="title font-black">SITCON 2020</h1>
-        <h2 class="subtitle font-black">學生計算機年會</h2>
-        <h3 class="keywords"><a class="font-black" href="#call-for-define">#define student</a></h3>
-      </div>
-    </header>
     <div class="info">
-      <div class="left-container">
-        <div>
-          <div>
-            <p class="date font-bold">8/8</p>
-            <p class="location font-bold">中央研究院 — 人文社會科學館</p>
-          </div>
-        </div>
+      <div class="logo-container">
+        <img src="@/assets/images/logo.png">
       </div>
-      <div class="right-container">
-        <p class="kktix">
-          <a @click="$router.push({ name: 'Home', query: { popUp: 'announcement' } })">
-            <span>大會公告</span>
-          </a>
-          <a href="https://sitcon.kktix.cc/events/sitcon2020" target="_blank" rel="noopener">
-            <span>免費報名</span>
-          </a>
-          <a href="https://bit.ly/donatesitcon2020" target="_blank" rel="noopener">
-            <span>贊助取票</span>
-          </a>
-        </p>
+      <div class="tabs-container">
+        <a class="tab" @click="$router.push({ name: 'Home', query: { popUp: 'announcement' } })">
+          <span>大會公告</span>
+        </a>
+        <a class="tab" href="https://sitcon.kktix.cc/events/sitcon2020" target="_blank" rel="noopener">
+          <span>免費報名</span>
+        </a>
+        <a class="tab" href="https://bit.ly/donatesitcon2020" target="_blank" rel="noopener">
+          <span>贊助取票</span>
+        </a>
       </div>
     </div>
     <div class="spotlight-container">
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/sharp-white.svg" />
+          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
           <span class="inner font-black">什麼是 SITCON</span>
           <span class="inner font-black">About SITCON</span>
         </h1>
@@ -43,7 +29,7 @@
       </div>
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/sharp-white.svg" />
+          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
           <span class="inner font-black">活動</span>
           <span class="inner font-black">Activity</span>
         </h1>
@@ -92,7 +78,7 @@
       </div>
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/sharp-white.svg" />
+          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
           <span class="inner font-black">問答</span>
           <span class="inner font-black">Q &amp; A</span>
         </h1>
@@ -115,7 +101,7 @@
       </div>
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/sharp-white.svg" />
+          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
           <span class="inner font-black">行為準則</span>
           <span class="inner font-black">Code of Conduct</span>
         </h1>
