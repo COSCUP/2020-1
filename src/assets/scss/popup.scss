@@ -87,8 +87,22 @@
         }
       }
 
+      width: calc(100% - #{$main-padding} * 2);
+      display: flex;
+      flex-direction: column;
+      padding: $main-padding;
+      margin-bottom: $main-padding;
+      position: relative;
+      background-color: $white;
+      box-shadow: 0 2px 26px rgba($black, 0.35);
+      z-index: 9999;
+      animation: popupJumpOut 0.3s cubic-bezier(0.8, -0.9, 0.2, 1.2);
+      animation-fill-mode: forwards;
+
       @media screen and (max-width: 1024px) {
-        padding: 32px;
+        width: calc(100% - #{$m-i8-banner-gap} * 2);
+        margin: 0;
+        padding: $m-i8-banner-gap * 2 $m-i8-banner-gap;
         min-height: calc(100vh - 32px * 2);
 
         @media not all and (min-resolution: 0.001dpcm) {
@@ -107,7 +121,7 @@
       h1.title,
       p.paragraph,
       h1,
-      p{
+      p {
         white-space: pre-wrap;
         margin: 0;
       }
