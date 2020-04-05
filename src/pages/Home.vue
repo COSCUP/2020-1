@@ -2,7 +2,7 @@
   <div id="home" class="main-container">
     <div class="info">
       <div class="logo-container">
-        <img src="@/assets/images/logo.png">
+        <img src="/2020/img/logo.png">
       </div>
       <div class="tabs-container">
         <a class="tab" @click="$router.push({ name: 'Home', query: { popUp: 'announcement' } })">
@@ -19,7 +19,7 @@
     <div class="spotlight-container">
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
+          <img class="prefix-icon" src="/2020/img/logo-200.png" />
           <span class="inner font-black">什麼是 SITCON</span>
           <span class="inner font-black">About SITCON</span>
         </h1>
@@ -29,7 +29,7 @@
       </div>
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
+          <img class="prefix-icon" src="/2020/img/logo-200.png" />
           <span class="inner font-black">活動</span>
           <span class="inner font-black">Activity</span>
         </h1>
@@ -78,7 +78,7 @@
       </div>
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
+          <img class="prefix-icon" src="/2020/img/logo-200.png" />
           <span class="inner font-black">問答</span>
           <span class="inner font-black">Q &amp; A</span>
         </h1>
@@ -101,7 +101,7 @@
       </div>
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="@/assets/images/logo-200.png" />
+          <img class="prefix-icon" src="/2020/img/logo-200.png" />
           <span class="inner font-black">行為準則</span>
           <span class="inner font-black">Code of Conduct</span>
         </h1>

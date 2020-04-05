@@ -33,7 +33,7 @@ export default class SponsorFooter extends Vue {
       .map((sponsor) => {
         return {
           ...sponsor,
-          image: `https://sitcon.org/2020/img/sponsors/${sponsor.image}`
+          image: `${process.env.BASE_URL}/img/sponsors/${sponsor.image}`
         };
       });
   }

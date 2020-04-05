@@ -40,15 +40,15 @@
       &:before {
         position: absolute;
         content: "";
-        right: -96px;
-        bottom: 32px;
-        height: 100%;
-        width: 100%;
-        background-image: url("/2020/img/icons/sharp-back-taton.png");
-        background-size: 40%;
-        background-position: 100% 100%;
+        bottom: -6rem;
+        right: 2rem;
+        width: 60%;
+        padding-top: 60%;
+        background-image: url("/2020/img/logo-200.png");
+        background-position: 100% 0%;
         background-repeat: no-repeat;
         opacity: 0.24;
+        filter: brightness(1000%) blur(5px);
         pointer-events: none;
         z-index: 0;
 
