@@ -92,7 +92,7 @@ export const routes = [
   },
   {
     path: '/sponsor',
-    name: 'SponsorRedirect',
+    name: 'Sponsor',
     component: Sponsor,
     meta: {
       index: 6,
