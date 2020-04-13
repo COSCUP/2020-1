@@ -21,9 +21,6 @@ const renderRoutes = (() => {
   const languages = fs.readdirSync(path.join(__dirname, 'languages'))
     .filter((filename) => filename !== 'index.ts').map((filename) => filename.replace('.ts', ''))
   originalRoutes.forEach((originalRoute) => {
-    const route = path.join(publicPath, originalRoute).toString()
-    routes.push(route)
-    routes.push(path.join(route, '/'))
     languages.forEach((language) => {
       const route = path.join(publicPath, language, originalRoute).toString()
       routes.push(route)
