@@ -3,7 +3,7 @@
     <div class="navbar-container">
       <router-link
         class="logo"
-        :to="{ name: 'Home' }"
+        :to="{ name: 'Home', params: { language } }"
       >
         <img class="logo-icon__normal" src="/2020/img/logo-200.png" />
         <img class="logo-icon__mobile" src="/2020/img/logo-200.png" />
@@ -32,11 +32,11 @@
           <router-link
             v-for="item in menu"
             :key="item.name"
-            :to="item.path"
+            :to="{ name: item.name, params: { language } }"
             class="menu-item font-bold"
             :class="{ active: $route.name.includes(item.name) }"
           >
-            <span>{{ item.meta.label }}</span>
+            <span>{{ languagePack.routesLabel[item.meta.label] }}</span>
           </router-link>
         </div>
       </div>
@@ -53,6 +53,7 @@
 import { Component, Watch, Vue } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import { MenuItem } from '../store/types/menu';
+import { Language } from '../../languages';
 
 @Component
 export default class Navbar extends Vue {
@@ -61,6 +62,8 @@ export default class Navbar extends Vue {
   ) => void;
   @Getter('menu', { namespace: 'menu' }) private menu!: MenuItem[];
   @Getter('toggle', { namespace: 'menu' }) private isMenuToggled!: boolean;
+  @Getter('language', { namespace: 'app' }) private language!: string;
+  @Getter('languagePack', { namespace: 'app' }) private languagePack!: Language;
 
   @Watch('$route')
   public onChangeRoute () {
