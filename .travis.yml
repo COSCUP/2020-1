@@ -1,6 +1,9 @@
-language: minimal
+language: node_js
+node_js:
+- '12'
 deploy:
   provider: script
-  script: bash update-main-repo.sh
+  script: bash update-main-repo.sh && npm run build
+  skip_cleanup: true
   on:
     branch: master
