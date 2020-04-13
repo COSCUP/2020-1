@@ -1,29 +1,6 @@
-sudo: false
-git:
-  depth: 1
-  submodules: false
-language: node_js
-node_js:
-- '12'
-branches:
-  only:
-  - master
-before_deploy:
-  - git clone https://github.com/COSCUP/2020.git coscup --depth 1
-  - cd coscup
-  - sh build.sh
+language: minimal
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: coscup/dist/
+  provider: script
+  script: bash update-main-repo.sh
   on:
     branch: master
-after_deploy:
-  - cd coscup/
-  - git remote set-url origin https://$GITHUB_TOKEN@github.com/COSCUP/2020.git
-  - git config --global user.name "Deployment Bot (from Travis CI)"
-  - git config --global user.email "deploy@travis-ci.org"
-  - git add .
-  - git commit -m 'Update submodules'
-  - git push
