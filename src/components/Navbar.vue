@@ -1,9 +1,9 @@
 <template>
   <nav id="nav" class="navbar">
     <div class="navbar-container">
-      <div
+      <router-link
         class="logo"
-        @click="$router.push({ name: 'Home' })"
+        :to="{ name: 'Home' }"
       >
         <img class="logo-icon__normal" src="/2020/img/logo-200.png" />
         <img class="logo-icon__mobile" src="/2020/img/logo-200.png" />
@@ -11,7 +11,7 @@
           <div class="logo-text__sitcon font-bold"><span class="font-black">COSCUP</span></div>
           <div class="logo-text__2020 font-bold"><span>2020</span></div>
         </div>
-      </div>
+      </router-link>
       <div class="menu" :class="{ toggled: isMenuToggled }">
         <div class="menu-mask" @click.self="toggleMenu(false)"></div>
         <div class="menu-container">
