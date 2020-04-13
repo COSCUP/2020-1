@@ -1,8 +1,10 @@
 import { ActionTree, GetterTree, MutationTree, Module } from 'vuex';
 
-import { AppState, ThemeType, DeviceType, AppMode } from '../types/app';
+import { AppState, ThemeType, DeviceType, AppMode, LanguageType } from '../types/app';
 import { RootState } from '../types/root';
 import * as mutationTypes from '../mutation-types';
+
+import { languages } from '@/../languages'
 
 const namespaced: boolean = true;
 
@@ -23,7 +25,8 @@ const state: AppState = {
   isPopup: false,
   popupContent: '',
   popupOffsetTop: 0,
-  validPopupTypes: ['SUBMIT_INFO', 'OPEN_SUBMIT', 'LOUDLY']
+  validPopupTypes: ['SUBMIT_INFO', 'OPEN_SUBMIT', 'LOUDLY'],
+  language: LanguageType['default']
 };
 
 const getters: GetterTree<AppState, RootState> = {
@@ -34,7 +37,14 @@ const getters: GetterTree<AppState, RootState> = {
   isPopup: (state): AppState['isPopup'] => state.isPopup,
   popupContent: (state): AppState['popupContent'] => state.popupContent,
   popupOffsetTop: (state): AppState['popupOffsetTop'] => state.popupOffsetTop,
-  validPopupTypes: (state): AppState['validPopupTypes'] => state.validPopupTypes
+  validPopupTypes: (state): AppState['validPopupTypes'] => state.validPopupTypes,
+  language: (state): AppState['language'] => state.language,
+  languagePack: (state): AppState['languagePack'] => {
+    if (state.language in LanguageType) {
+      return languages[state.language];
+    }
+    return languages[LanguageType.default];
+  }
 };
 
 const actions: ActionTree<AppState, RootState> = {
@@ -64,6 +74,13 @@ const actions: ActionTree<AppState, RootState> = {
 
   setSightMeasure ({ commit }, sight: AppState['sight']): void {
     commit(mutationTypes.APP_SIGHT, sight);
+  },
+
+  setLanguage ({ commit }, language: AppState['language']): void {
+    if (!(language in LanguageType)) {
+      language = LanguageType['default'];
+    }
+    commit(mutationTypes.APP_LANGUAGE, language);
   }
 };
 
@@ -94,6 +111,10 @@ const mutations: MutationTree<AppState> = {
 
   [mutationTypes.APP_SIGHT] (state, sight: AppState['sight']) {
     state.sight = sight;
+  },
+
+  [mutationTypes.APP_LANGUAGE] (state, language: AppState['language']) {
+    state.language = language;
   }
 };
 

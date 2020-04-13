@@ -6,6 +6,8 @@ export const APP_THEME = 'APP_THEME';
 
 export const APP_SIGHT = 'APP_SIGHT';
 
+export const APP_LANGUAGE = 'APP_LANGUAGE';
+
 export const APP_POPUP = 'APP_POPUP';
 
 export const APP_POPUP_CONTENT = 'APP_POPUP_CONTENT';

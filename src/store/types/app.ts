@@ -1,5 +1,5 @@
 import { SightState } from './sight';
-
+import { LanguageType, Language } from '@/../languages';
 export interface AppState {
   mode: AppMode;
   device: DeviceType;
@@ -9,6 +9,8 @@ export interface AppState {
   popupContent: string;
   popupOffsetTop: number;
   validPopupTypes: Array<keyof typeof PopupType>;
+  language: string;
+  languagePack: Language;
 }
 
 export enum AppMode {
@@ -34,3 +36,5 @@ export enum PopupType {
   OPEN_SUBMIT = 'openSubmit',
   LOUDLY = 'loudly'
 }
+
+export { LanguageType } from '@/../languages';

@@ -5,28 +5,40 @@ const gaTempHTML = fs.readFileSync(path.join(__dirname, './template/ga.html'));
 
 const sessionData = require(path.join(__dirname, './public/json/session.json'));
 
+const publicPath = process.env.NODE_ENV === 'production' ? '/2020/' : '/2020/'
+
+const renderRoutes = (() => {
+  const originalRoutes = [
+    '',
+    '/agenda',
+    ...sessionData.sessions.filter((session) => '載入中…' !== session.id).map(session => (`/agenda/${session.id}`)),
+    '/venue',
+    '/traffic',
+    '/staff',
+    '/sponsor'
+  ]
+  const routes = []
+  const languages = fs.readdirSync(path.join(__dirname, 'languages'))
+    .filter((filename) => filename !== 'index.ts').map((filename) => filename.replace('.ts', ''))
+  originalRoutes.forEach((originalRoute) => {
+    const route = path.join(publicPath,originalRoute).toString()
+    routes.push(route)
+    routes.push(path.join(route, '/'))
+    languages.forEach((language) => {
+      const route = path.join(publicPath, language,originalRoute).toString()
+      routes.push(route)
+      routes.push(path.join(route, '/'))
+    })
+  })
+  return routes
+})()
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/2020/'
-    : '/2020',
+  publicPath,
   pluginOptions: {
     prerenderSpa: {
       registry: undefined,
-      renderRoutes: [
-        '/2020/',
-        '/2020/agenda',
-        '/2020/agenda/',
-        ...sessionData.sessions.map(session => (`/2020/agenda/${session.id}`)),
-        ...sessionData.sessions.map(session => (`/2020/agenda/${session.id}/`)),
-        '/2020/venue',
-        '/2020/venue/',
-        '/2020/traffic',
-        '/2020/traffic/',
-        '/2020/staff',
-        '/2020/staff/',
-        '/2020/sponsor',
-        '/2020/sponsor/',
-      ],
+      renderRoutes,
       useRenderEvent: true,
       headless: true,
       onlyProduction: true,

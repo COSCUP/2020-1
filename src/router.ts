@@ -11,6 +11,9 @@ import Staff from '@/pages/Staff.vue';
 
 import { Route } from 'vue-router';
 
+import { LanguageType } from '@/../languages';
+
+
 Vue.use(Router);
 
 export const routes = [
@@ -20,7 +23,7 @@ export const routes = [
     component: Home,
     meta: {
       index: 0,
-      label: 'COSCUP 2020',
+      label: 'home',
       menuItem: true
     }
   },
@@ -30,7 +33,7 @@ export const routes = [
     component: Agenda,
     meta: {
       index: 1,
-      label: '議程資訊',
+      label: 'agenda',
       menuItem: true
     }
   },
@@ -48,7 +51,7 @@ export const routes = [
     component: Activity,
     meta: {
       index: 2,
-      label: '活動',
+      label: 'activity',
       menuItem: false
     }
   },
@@ -66,7 +69,7 @@ export const routes = [
     component: Venue,
     meta: {
       index: 3,
-      label: '會場地圖',
+      label: 'venue',
       menuItem: true
     }
   },
@@ -76,7 +79,7 @@ export const routes = [
     component: Traffic,
     meta: {
       index: 4,
-      label: '交通方式',
+      label: 'traffic',
       menuItem: true
     }
   },
@@ -86,7 +89,7 @@ export const routes = [
     component: Staff,
     meta: {
       index: 5,
-      label: '工作人員',
+      label: 'staff',
       menuItem: true
     }
   },
@@ -96,16 +99,30 @@ export const routes = [
     component: Sponsor,
     meta: {
       index: 6,
-      label: '贊助',
+      label: 'sponsor',
       menuItem: true
     }
   }
 ];
 
+const expandedRoutes = [
+  ...routes.map((route) => {
+    return {
+      path: route.path,
+      redirect: `/${LanguageType.default}${route.path}`
+    };
+  }),
+  ...routes.map((route) => {
+    route = { ...route };
+    route.path = `/:language${route.path}`;
+    return route;
+  })
+];
+
 const router = new Router({
   mode: 'history',
   base: '/2020/',
-  routes,
+  routes: expandedRoutes,
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
       const target = document.querySelector(to.hash) as HTMLElement;

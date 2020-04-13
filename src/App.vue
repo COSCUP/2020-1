@@ -32,7 +32,7 @@ import Footer from '@/components/Footer.vue';
 import SponsorFooter from '@/components/SponsorFooter.vue';
 
 import { TemplateState } from '@/store/types/template';
-import { DeviceType, AppMode, ThemeType } from '@/store/types/app';
+import { DeviceType, AppMode, ThemeType, LanguageType } from '@/store/types/app';
 
 import head from '@/util/head';
 
@@ -64,11 +64,14 @@ export default class App extends Vue {
   ) => void;
   @Action('togglePopupContent', { namespace: 'app' })
   private togglePopupContent!: (content: string) => void;
+  @Action('setLanguage', { namespace: 'app' })
+  private setLanguage!: (language: string) => void;
   @Action('getSunRiseSunSetData', { namespace: 'sunRiseSunSet' })
   private getSunRiseSunSetData!: () => Promise<void>;
   @Getter('device', { namespace: 'app' }) private device!: DeviceType;
   @Getter('mode', { namespace: 'app' }) private mode!: AppMode;
   @Getter('theme', { namespace: 'app' }) private theme!: ThemeType;
+  @Getter('language', { namespace: 'app' }) private language!: string;
   @Getter('isPopup', { namespace: 'app' }) private isPopup!: boolean;
   @Getter('popupContent', { namespace: 'app' }) private popupContent!: string;
   @Getter('sunrise', { namespace: 'sunRiseSunSet' }) private sunrise!: Date;
@@ -87,6 +90,7 @@ export default class App extends Vue {
     this.assignThemePrefixToBody(this.theme);
     this.detectAppMode();
     this.detectDeviceType();
+    this.detectLanguage();
     window.addEventListener('resize', this.detectDeviceType);
 
     await this.detectSystemPrefersColorSchema();
@@ -103,6 +107,7 @@ export default class App extends Vue {
     this.autoDetectMetaOg();
     this.detectPopupFromLoadURL();
     this.detectTransitionDirect(to, from);
+    this.detectLanguage();
   }
 
   @Watch('isPopup')
@@ -115,12 +120,23 @@ export default class App extends Vue {
     this.assignThemePrefixToBody(theme);
   }
 
+  @Watch('language')
+  public onLanguageChange (language: string) {
+    document.documentElement.setAttribute('lang', language);
+  }
+
   public destroyed () {
     window.removeEventListener('resize', this.detectDeviceType);
   }
 
   private isInApp (): boolean {
     return this.mode === AppMode.APP;
+  }
+
+  private detectLanguage (): void {
+    const language = this.$route.params.language;
+    this.setLanguage(language);
+    document.documentElement.setAttribute('lang', this.language);
   }
 
   private detectedEgg (): boolean {
