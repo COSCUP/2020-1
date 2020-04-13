@@ -12,6 +12,6 @@ const content = `
 }
 </script>
 <h1 class="title font-black">籌備中，敬請期待</h1>
-`;
+`
 
-export default content;
+export default content

@@ -64,14 +64,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
-import _ from 'lodash';
-import { markdown } from 'markdown';
+import { Component, Vue } from 'vue-property-decorator'
+import _ from 'lodash'
+import { markdown } from 'markdown'
 
-import { DeviceType } from '@/store/types/app';
-
-import sponsorData from '@/../public/json/sponsor.json';
+import sponsorData from '@/../public/json/sponsor.json'
 
 interface SponsorData {
   name: string;
@@ -85,28 +82,28 @@ interface SponsorData {
 @Component
 export default class Sponsor extends Vue {
   private sponsorLevelText = {
-    'holder': '主辦單位',
+    holder: '主辦單位',
     'co-holder': '共同主辦',
     'co-organizer': '協辦單位',
     'level-1': '深耕級',
     'level-2': '前瞻級',
     'level-3': '新芽級',
-    'thank': '特別感謝',
-    'media': '媒體夥伴'
+    thank: '特別感謝',
+    media: '媒體夥伴'
   };
 
   private sponsorList: object = {};
 
   public mounted () {
-    this.processSponsor();
+    this.processSponsor()
   }
 
   private processSponsor (): void {
-    this.sponsorList = _.groupBy(sponsorData, 'level');
+    this.sponsorList = _.groupBy(sponsorData, 'level')
   }
 
   private markdownParser (rawContent: string): string {
-    return markdown.toHTML(rawContent);
+    return markdown.toHTML(rawContent)
   }
 }
 </script>

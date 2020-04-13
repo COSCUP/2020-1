@@ -1,12 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import { app } from './modules/app';
-import { menu } from './modules/menu';
-import { sunRiseSunSet } from './modules/sunRiseSunSet';
-import { template } from './modules/template';
+import { app } from './modules/app'
+import { menu } from './modules/menu'
+import { sunRiseSunSet } from './modules/sunRiseSunSet'
+import { template } from './modules/template'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
@@ -18,4 +18,4 @@ export default new Vuex.Store({
     template,
     sunRiseSunSet
   }
-});
+})

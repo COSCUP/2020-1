@@ -1,18 +1,19 @@
-const { extractSheets } = require("spreadsheet-to-json");
-const config = require("./config");
+/* eslint-disable @typescript-eslint/camelcase */
+const { extractSheets } = require('spreadsheet-to-json')
+const config = require('./config')
 
-function nullCoalesce(value) {
-  return value == null ? '' : value;
+function nullCoalesce (value) {
+  return value == null ? '' : value
 }
 
 extractSheets(
   {
     spreadsheetKey: config.spreadsheetKey
   },
-  function(err, data) {
-    if (err) { console.log(err); }
-    data.Session.shift();
-    data.Speaker.shift();
+  function (err, data) {
+    if (err) { console.log(err) }
+    data.Session.shift()
+    data.Speaker.shift()
 
     data.Session.forEach((session) => {
       // title & description
@@ -32,7 +33,7 @@ extractSheets(
       // speaker
       session.speakers = []
 
-      for (i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 5; i++) {
         if (session['speaker' + i + 'id'] != null) {
           session.speakers.push(session['speaker' + i + 'id'])
         }
@@ -49,17 +50,17 @@ extractSheets(
       // tag
       session.tags = []
 
-      for (i = 1; i <= 3; i++) {
+      for (let i = 1; i <= 3; i++) {
         if (session['tag' + i] != null) {
           session.tags.push(session['tag' + i])
         }
 
         delete session['tag' + i]
       }
-    });
+    })
 
     data.Speaker.forEach((speaker) => {
-      speaker.avatar = speaker.avatar == undefined ? config.default_avatar : config.avatar_base_url + speaker.avatar
+      speaker.avatar = speaker.avatar === undefined ? config.default_avatar : config.avatar_base_url + speaker.avatar
 
       speaker.zh = {}
       speaker.zh.name = nullCoalesce(speaker.name_zh)
@@ -73,7 +74,7 @@ extractSheets(
       delete speaker.bio_zh
       delete speaker.name_en
       delete speaker.bio_en
-    });
+    })
 
     data.SessionType.forEach((type) => {
       type.zh = {}
@@ -88,7 +89,7 @@ extractSheets(
       delete type.name_en
       delete type.description_zh
       delete type.description_en
-    });
+    })
 
     data.Room.forEach((room) => {
       room.zh = {}
@@ -103,7 +104,7 @@ extractSheets(
       delete room.name_en
       delete room.description_zh
       delete room.description_en
-    });
+    })
 
     data.Tag.forEach((tag) => {
       tag.zh = {}
@@ -118,14 +119,14 @@ extractSheets(
       delete tag.name_en
       delete tag.description_zh
       delete tag.description_en
-    });
+    })
 
     console.log(JSON.stringify({
       sessions: data.Session,
       speakers: data.Speaker,
       session_types: data.SessionType,
       rooms: data.Room,
-      tags: data.Tag,
-    }));
+      tags: data.Tag
+    }))
   }
-);
+)

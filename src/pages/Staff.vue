@@ -37,9 +37,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 
-import staffData from '@/../public/json/staff.json';
+import staffData from '@/../public/json/staff.json'
 
 @Component
 export default class Staff extends Vue {

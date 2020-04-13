@@ -6,23 +6,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import Map from 'ol/Map';
-import Feature from 'ol/Feature';
-import View from 'ol/View';
-import Point from 'ol/geom/Point';
-import Style from 'ol/style/Style';
-import Icon from 'ol/style/Icon';
-import Tile from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import LayerVector from 'ol/layer/Vector';
-import SourceVector from 'ol/source/Vector';
-import IconAnchorUnits from 'ol/style/IconAnchorUnits';
-import * as Proj from 'ol/proj';
-import * as Interaction from 'ol/interaction';
-import { Coordinate } from 'ol/coordinate';
-import 'ol/ol.css';
+import Map from 'ol/Map'
+import Feature from 'ol/Feature'
+import View from 'ol/View'
+import Point from 'ol/geom/Point'
+import Style from 'ol/style/Style'
+import Icon from 'ol/style/Icon'
+import Tile from 'ol/layer/Tile'
+import OSM from 'ol/source/OSM'
+import LayerVector from 'ol/layer/Vector'
+import SourceVector from 'ol/source/Vector'
+import IconAnchorUnits from 'ol/style/IconAnchorUnits'
+import * as Proj from 'ol/proj'
+import * as Interaction from 'ol/interaction'
+import { Coordinate } from 'ol/coordinate'
+import 'ol/ol.css'
 
 @Component
 export default class SitconMap extends Vue {
@@ -41,14 +41,14 @@ export default class SitconMap extends Vue {
   private osmMap!: Map;
 
   public mounted () {
-    this.osmMap = this.makeMap();
+    this.osmMap = this.makeMap()
   }
 
   private mapMarkerLayer (name: string, imgSrc: string, pos: Coordinate) {
     const icon = new Feature({
       name,
       geometry: new Point(Proj.fromLonLat(pos))
-    });
+    })
     const iconStyle = new Style({
       image: new Icon({
         scale: 0.5,
@@ -57,19 +57,19 @@ export default class SitconMap extends Vue {
         anchorYUnits: IconAnchorUnits.FRACTION,
         src: imgSrc
       })
-    });
-    icon.setStyle(iconStyle);
+    })
+    icon.setStyle(iconStyle)
     return new LayerVector({
       source: new SourceVector({ features: [icon] }),
       style: iconStyle
-    });
-    }
+    })
+  }
 
   private makeMap () {
-    const iconMain = this.mapMarkerLayer('main', '/2020/img/sitcon-logo.png', [121.6116, 25.0410]);
+    const iconMain = this.mapMarkerLayer('main', '/2020/img/sitcon-logo.png', [121.6116, 25.0410])
     const osmMap = new Map({
       target: this.$el.firstChild as HTMLElement,
-      interactions: Interaction.defaults({mouseWheelZoom: false}),
+      interactions: Interaction.defaults({ mouseWheelZoom: false }),
       layers: [
         new Tile({
           source: new OSM(),
@@ -81,8 +81,8 @@ export default class SitconMap extends Vue {
         center: Proj.fromLonLat([121.6116, 25.0410]),
         zoom: 15
       })
-    });
-    return osmMap;
+    })
+    return osmMap
   }
 }
 </script>

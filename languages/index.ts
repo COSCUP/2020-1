@@ -21,5 +21,5 @@ export enum LanguageType {
 
 export const languages: { [key: string]: Language } = {
   en,
-  ["zh-TW"]: zhTW
+  'zh-TW': zhTW
 }

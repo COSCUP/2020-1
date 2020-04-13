@@ -1,6 +1,6 @@
 <template>
   <section id="sponsor" class="sponsor-footer-container">
-    <div 
+    <div
       v-for="sponsor in sponsors"
       :key="`sponsor-${sponsor.slug}`"
       class="sponsor"
@@ -15,16 +15,16 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator'
 
-import sponsorData from '@/../public/json/sponsor.json';
+import sponsorData from '@/../public/json/sponsor.json'
 
 @Component
 export default class SponsorFooter extends Vue {
   private sponsors: any = {};
 
   public mounted () {
-    this.getSponsor();
+    this.getSponsor()
   }
 
   private getSponsor (): void {
@@ -34,8 +34,8 @@ export default class SponsorFooter extends Vue {
         return {
           ...sponsor,
           image: `${process.env.BASE_URL}/img/sponsors/${sponsor.image}`
-        };
-      });
+        }
+      })
   }
 }
 </script>

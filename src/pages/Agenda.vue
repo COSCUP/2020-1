@@ -12,17 +12,17 @@
 </template>
 
 <script lang="ts">
-import { Route } from 'vue-router';
+import { Route } from 'vue-router'
 
-import { Component, Watch, Vue } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
+import { Component, Watch, Vue } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class'
 
-import CCIPSessionTable from '@ccip-app/session-table';
+import CCIPSessionTable from '@ccip-app/session-table'
 
-import sessionData from '@/../public/json/session.json';
-import sessionDOMString from '@/../template/session.mod';
+import sessionData from '@/../public/json/session.json'
+import sessionDOMString from '@/../template/session.mod'
 
-import { DeviceType } from '@/store/types/app';
+import { DeviceType } from '@/store/types/app'
 
 @Component({
   components: {
@@ -45,62 +45,62 @@ export default class Agenda extends Vue {
   @Watch('popUp')
   public async onChangeInnerPopup (popuped: boolean) {
     if (popuped) {
-      await this.setPopupOffsetTop(document.documentElement.offsetTop);
-      this.$router.push({ name: 'AgendaView', params: { sid: (this.popUpSession as any).id }});
+      await this.setPopupOffsetTop(document.documentElement.offsetTop)
+      this.$router.push({ name: 'AgendaView', params: { sid: (this.popUpSession as any).id } })
     }
   }
 
   @Watch('isPopup')
   public async onChangePopup (isPopup: boolean) {
     if (isPopup && this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'AgendaView', params: { sid: (this.popUpSession as any).id }});
+      this.$router.push({ name: 'AgendaView', params: { sid: (this.popUpSession as any).id } })
     } else if (this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'Agenda' });
+      this.$router.push({ name: 'Agenda' })
     }
   }
 
   @Watch('$route')
   public onChangeRoute (route: Route) {
     if (route.name === 'AgendaView') {
-      this.processPopup();
-      this.togglePopup(true);
+      this.processPopup()
+      this.togglePopup(true)
     } else if (route.name === 'Agenda') {
-      this.popUp = false;
-      this.togglePopup(false);
-      this.togglePopupContent('');
+      this.popUp = false
+      this.togglePopup(false)
+      this.togglePopupContent('')
     }
   }
 
   public mounted () {
-    this.handleSessionPopup();
+    this.handleSessionPopup()
   }
 
   private isMobile (): boolean {
-    return this.device === DeviceType.MOBILE;
+    return this.device === DeviceType.MOBILE
   }
 
   private processPopup (): void {
-    const targetSessionId = this.$route.params.sid as string;
-    const targetSession = sessionData.sessions.filter((session) => session.id === targetSessionId)[0];
-    const result = this.deepCopy(targetSession);
-    result.speakers = result.speakers.map((id: string) => this.deepCopy(this.getSpeaker(id)));
-    this.togglePopupContent(sessionDOMString(result));
-    this.togglePopup(true);
+    const targetSessionId = this.$route.params.sid as string
+    const targetSession = sessionData.sessions.filter((session) => session.id === targetSessionId)[0]
+    const result = this.deepCopy(targetSession)
+    result.speakers = result.speakers.map((id: string) => this.deepCopy(this.getSpeaker(id)))
+    this.togglePopupContent(sessionDOMString(result))
+    this.togglePopup(true)
   }
 
   private getSpeaker (id: string): any {
-    return this.sessionData.speakers.find((speaker) => (speaker.id === id));
+    return this.sessionData.speakers.find((speaker) => (speaker.id === id))
   }
 
   private handleSessionPopup (): void {
     if (this.$route.params.sid) {
-      this.popUpSession = this.sessionData.sessions.filter((session) => (session.id === this.$route.params.sid))[0];
-      this.processPopup();
+      this.popUpSession = this.sessionData.sessions.filter((session) => (session.id === this.$route.params.sid))[0]
+      this.processPopup()
     }
   }
 
   private deepCopy (obj: any): any {
-    return JSON.parse(JSON.stringify(obj));
+    return JSON.parse(JSON.stringify(obj))
   }
 }
 </script>

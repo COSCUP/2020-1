@@ -136,15 +136,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from 'vue-property-decorator';
-import axios from 'axios';
+import { Component, Vue } from 'vue-property-decorator'
 
-import head from '@/util/head';
+import head from '@/util/head'
 
 @Component
 export default class Home extends Vue {
   public mounted () {
-    head.reset();
+    head.reset()
   }
 }
 </script>

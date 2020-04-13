@@ -158,6 +158,6 @@ const content = `
 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuKARckZoYPw5RdagVQk9IBrASuS3TA-rS8LUzaCBB79955A/viewform" class="submission button font-black" target="_blank" rel="noopener noreferrer">
   <p>我要投稿</p>
 </a>
-`;
+`
 
-export default content;
+export default content

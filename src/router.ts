@@ -1,20 +1,17 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router, { Route } from 'vue-router'
 
-import Home from './pages/Home.vue';
-import Agenda from './pages/Agenda.vue';
-import Activity from './pages/Activity.vue';
-import Traffic from './pages/Traffic.vue';
-import Venue from './pages/Venue.vue';
-import Sponsor from '@/pages/Sponsor.vue';
-import Staff from '@/pages/Staff.vue';
+import Home from './pages/Home.vue'
+import Agenda from './pages/Agenda.vue'
+import Activity from './pages/Activity.vue'
+import Traffic from './pages/Traffic.vue'
+import Venue from './pages/Venue.vue'
+import Sponsor from '@/pages/Sponsor.vue'
+import Staff from '@/pages/Staff.vue'
 
-import { Route } from 'vue-router';
+import { LanguageType } from '@/../languages'
 
-import { LanguageType } from '@/../languages';
-
-
-Vue.use(Router);
+Vue.use(Router)
 
 export const routes = [
   {
@@ -103,49 +100,49 @@ export const routes = [
       menuItem: true
     }
   }
-];
+]
 
 const expandedRoutes = [
   ...routes.map((route) => {
     return {
       path: route.path,
       redirect: `/${LanguageType.default}${route.path}`
-    };
+    }
   }),
   ...routes.map((route) => {
-    route = { ...route };
-    route.path = `/:language${route.path}`;
-    return route;
+    route = { ...route }
+    route.path = `/:language${route.path}`
+    return route
   })
-];
+]
 
 const router = new Router({
   mode: 'history',
   base: '/2020/',
   routes: expandedRoutes,
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior (to, from) {
     if (to.hash) {
-      const target = document.querySelector(to.hash) as HTMLElement;
+      const target = document.querySelector(to.hash) as HTMLElement
 
       return window.scrollTo({
         top: target.offsetTop,
         behavior: 'smooth'
-      });
+      })
     } else if (!(to.name === 'Agenda' && from.name === 'AgendaView') && !(to.name === 'AgendaView' && from.name === 'Agenda')) {
       return {
         x: 0,
         y: 0
-      };
+      }
     }
   }
-});
+})
 
 router.beforeEach((to: Route, from: Route, next: (...args: any[]) => any) => {
   if (from.path.startsWith('/activity') && to.path === '/activity') {
-    next(false);
+    next(false)
   } else {
-    next();
+    next()
   }
-});
+})
 
-export default router;
+export default router

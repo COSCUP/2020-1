@@ -1,17 +1,5 @@
-import { SightState } from './sight';
-import { LanguageType, Language } from '@/../languages';
-export interface AppState {
-  mode: AppMode;
-  device: DeviceType;
-  sight: SightState;
-  theme: ThemeType;
-  isPopup: boolean;
-  popupContent: string;
-  popupOffsetTop: number;
-  validPopupTypes: Array<keyof typeof PopupType>;
-  language: string;
-  languagePack: Language;
-}
+import { SightState } from './sight'
+import { Language } from '@/../languages'
 
 export enum AppMode {
   WEB = 'web',
@@ -37,4 +25,17 @@ export enum PopupType {
   LOUDLY = 'loudly'
 }
 
-export { LanguageType } from '@/../languages';
+export { LanguageType } from '@/../languages'
+
+export interface AppState {
+  mode: AppMode;
+  device: DeviceType;
+  sight: SightState;
+  theme: ThemeType;
+  isPopup: boolean;
+  popupContent: string;
+  popupOffsetTop: number;
+  validPopupTypes: Array<keyof typeof PopupType>;
+  language: string;
+  languagePack: Language;
+}

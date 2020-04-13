@@ -45,8 +45,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import activityData from '@/../public/json/activity.json';
+import { Component, Vue } from 'vue-property-decorator'
+import activityData from '@/../public/json/activity.json'
 
 interface ActivityPayload {
   name: string;
@@ -60,18 +60,18 @@ export default class Activity extends Vue {
   private activities: ActivityPayload[] = activityData;
 
   public mounted () {
-    this.autoAttachFirstTab();
+    this.autoAttachFirstTab()
   }
 
   private autoAttachFirstTab (): void {
     if (this.$route.name === 'Activity') {
-      this.$router.push({ name: 'ActivityView', params: { aid: activityData[0].name } });
+      this.$router.push({ name: 'ActivityView', params: { aid: activityData[0].name } })
     }
   }
 
   private switchTab (destId: string): void {
     if (this.$route.params.aid !== destId) {
-      this.$router.push({ name: 'ActivityView', params: { aid: destId } });
+      this.$router.push({ name: 'ActivityView', params: { aid: destId } })
     }
   }
 }

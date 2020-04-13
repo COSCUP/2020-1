@@ -20,9 +20,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 
-import SitconMap from '@/components/SitconMap.vue';
+import SitconMap from '@/components/SitconMap.vue'
 
 @Component({
   components: {

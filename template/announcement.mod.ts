@@ -3,7 +3,7 @@
 // !WARNING! DO NOT EDIT THIS TEMPLATE EXCEPT YOU UNDERSTAND WHAT ARE YOU ACTUALLY DO.
 // This is a announcement template block, edit this and it will auto inject contents as popup-ready DOMElement.
 
-import { markdown } from 'markdown';
+import { markdown } from 'markdown'
 
 const RAWContent = `
 # SITCON 2020 籌備團隊公告
@@ -37,9 +37,9 @@ SITCON 籌備團隊上
 ---
 
 參考資料：[疾管署－避免集會群聚感染，指揮中心公布「公眾集會因應指引」](https://www.cdc.gov.tw/Bulletin/Detail/vyRZfHHe_ZR9nMJxN8Nvrg)
-`;
+`
 
-const content: string = `
+const content = `
 <script id="meta-content" type="application/json">
 {
   "title": "SITCON 2020 籌備團隊公告",
@@ -49,6 +49,6 @@ const content: string = `
 }
 </script>
 ${markdown.toHTML(RAWContent)}
-`;
+`
 
-export default content;
+export default content

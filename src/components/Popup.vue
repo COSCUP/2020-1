@@ -5,7 +5,7 @@
   >
     <main class="popup-placeholder">
       <div
-        class="popup-close" 
+        class="popup-close"
         @click="closePopup()"
       />
       <div
@@ -25,10 +25,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class'
 
-import head from '@/util/head';
+import head from '@/util/head'
 
 @Component
 export default class Popup extends Vue {
@@ -44,49 +44,49 @@ export default class Popup extends Vue {
   @Watch('isPopup')
   public onChangePopup (newVal: boolean) {
     if (newVal) {
-      this.detectMetaContent();
+      this.detectMetaContent()
     }
   }
 
   public mounted () {
-    this.detectMetaContent();
+    this.detectMetaContent()
 
-    window.addEventListener('keyup', this.escHandler);
+    window.addEventListener('keyup', this.escHandler)
   }
 
   private closePopup (): void {
-    this.togglePopupContent('');
+    this.togglePopupContent('')
 
     if (this.$route.query.popUp) {
-      this.$router.push({ name: this.$route.name, query: {} });
+      this.$router.push({ name: this.$route.name, query: {} })
     } else if (this.$route.name === 'AgendaView') {
-      this.$router.push({ name: 'Agenda' });
+      this.$router.push({ name: 'Agenda' })
     }
 
-    this.togglePopup(false);
+    this.togglePopup(false)
   }
 
   private detectMetaContent (): void {
-    const virtualElement: HTMLElement = document.createElement('pre');
-    virtualElement.innerHTML = this.content;
+    const virtualElement: HTMLElement = document.createElement('pre')
+    virtualElement.innerHTML = this.content
 
-    const metaContentElement = virtualElement.querySelector('#meta-content') as HTMLElement;
+    const metaContentElement = virtualElement.querySelector('#meta-content') as HTMLElement
     if (metaContentElement) {
-      const metaContent = JSON.parse(metaContentElement.innerText);
+      const metaContent = JSON.parse(metaContentElement.innerText)
 
       if (metaContent && metaContent.title) {
-        head.title(metaContent.title);
-        head.ogTitle(metaContent.title);
-        if (metaContent.description) { head.ogDescription(metaContent.description); }
-        if (metaContent.image) { head.ogImage(metaContent.image); }
-        if (metaContent.url) { head.ogUrl(metaContent.url); }
+        head.title(metaContent.title)
+        head.ogTitle(metaContent.title)
+        if (metaContent.description) { head.ogDescription(metaContent.description) }
+        if (metaContent.image) { head.ogImage(metaContent.image) }
+        if (metaContent.url) { head.ogUrl(metaContent.url) }
       }
     }
   }
 
-    private escHandler (event: any): void {
+  private escHandler (event: any): void {
     if (event.keyCode === 27 && this.isPopup) {
-      this.closePopup();
+      this.closePopup()
     }
   }
 }

@@ -105,6 +105,6 @@ const content = `
 <a href="https://forms.gle/VeSHAk1pohNi9bZb7" class="submission button font-black" target="_blank" rel="noopener noreferrer">
   <p>我要投稿</p>
 </a>
-`;
+`
 
-export default content;
+export default content

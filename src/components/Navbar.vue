@@ -50,16 +50,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from 'vue-property-decorator';
-import { Action, Getter } from 'vuex-class';
-import { MenuItem } from '../store/types/menu';
-import { Language } from '../../languages';
+import { Component, Watch, Vue } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class'
+import { MenuItem } from '../store/types/menu'
+import { Language } from '../../languages'
 
 @Component
 export default class Navbar extends Vue {
   @Action('toggleMenu', { namespace: 'menu' }) private toggleMenu!: (
     status: boolean
   ) => void;
+
   @Getter('menu', { namespace: 'menu' }) private menu!: MenuItem[];
   @Getter('toggle', { namespace: 'menu' }) private isMenuToggled!: boolean;
   @Getter('language', { namespace: 'app' }) private language!: string;
@@ -67,7 +68,7 @@ export default class Navbar extends Vue {
 
   @Watch('$route')
   public onChangeRoute () {
-    this.toggleMenu(false);
+    this.toggleMenu(false)
   }
 }
 </script>
