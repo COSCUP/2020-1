@@ -10,6 +10,10 @@ const language: Language = {
     traffic: 'Traffic',
     staff: 'Staff',
     sponsor: 'Sponsor'
+  },
+  footer: {
+    websites: 'Websites',
+    social: 'Social Media'
   }
 }
 

@@ -8,7 +8,7 @@
     </div>
     <div id="past" class="footer">
       <p>
-        <span class="font-bold">歷年網站</span>
+        <span class="font-bold">{{ languagePack.footer.websites }}</span>
         <span class="font-bold">
           <a
             v-for="i in numOfPast"
@@ -23,7 +23,7 @@
     </div>
     <div id="media" class="footer">
       <p>
-        <span class="font-bold">社群媒體</span>
+        <span class="font-bold">{{ languagePack.footer.social }}</span>
         <span class="font-bold">
           <a
             v-for="media in communityMedia"
@@ -42,9 +42,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
+import { Language } from '../../languages'
 
 @Component
 export default class Footer extends Vue {
+  @Getter('languagePack', { namespace: 'app' }) private languagePack!: Language;
+
   private get numOfPast () {
     return new Date().getFullYear() - 2006
   }

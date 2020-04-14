@@ -12,6 +12,10 @@ export interface Language {
     'staff': string;
     'sponsor': string;
   };
+  footer: {
+    websites: string;
+    social: string;
+  };
 }
 
 export enum LanguageType {

@@ -10,6 +10,10 @@ const language: Language = {
     traffic: '交通方式',
     staff: '工作人員',
     sponsor: '贊助'
+  },
+  footer: {
+    websites: '歷年網站',
+    social: '社群媒體'
   }
 }
 
