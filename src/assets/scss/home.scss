@@ -62,12 +62,10 @@
           margin-left: 0;
           text-align: center;
           padding: 32px 3rem;
-        }
-      }
 
-      @media screen and (max-width: 475px) {
-        .logo-container img {
-          width: 300px;
+          .tab {
+            padding: 1rem;
+          }
         }
       }
     }

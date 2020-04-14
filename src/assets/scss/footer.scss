@@ -88,8 +88,9 @@
         line-height: 1.6;
 
         &:nth-child(2) > a {
+          display: inline-block;
+          margin: 1rem;
           font-size: 2rem;
-          margin-right: 2rem;
         }
       }
     }
