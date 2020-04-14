@@ -1,14 +1,13 @@
 <template>
   <nav id="nav" class="navbar">
     <div class="navbar-container">
-      <router-link
-        class="logo"
-        :to="{ name: 'Home', params: { language } }"
-      >
+      <router-link class="logo" :to="{ name: 'Home', params: { language } }">
         <img class="logo-icon__normal" src="/2020/img/logo-200.png" />
         <img class="logo-icon__mobile" src="/2020/img/logo-200.png" />
         <div class="logo-text">
-          <div class="logo-text__sitcon font-bold"><span class="font-black">COSCUP</span></div>
+          <div class="logo-text__sitcon font-bold">
+            <span class="font-black">COSCUP</span>
+          </div>
           <div class="logo-text__2020 font-bold"><span>2020</span></div>
         </div>
       </router-link>
@@ -26,7 +25,9 @@
               </div>
             </div>
             <div class="close-button-container">
-              <span class="close-button" @click.self="toggleMenu(false)">+</span>
+              <span class="close-button" @click.self="toggleMenu(false)"
+                >+</span
+              >
             </div>
           </header>
           <router-link
@@ -38,6 +39,14 @@
           >
             <span>{{ languagePack.routesLabel[item.meta.label] }}</span>
           </router-link>
+          <a
+            class="language-switch menu-item font-bold"
+            @click="switchLanguage"
+          >
+            <span>
+              {{ languagePack.languageSwitch }}
+            </span>
+          </a>
         </div>
       </div>
       <img
@@ -53,13 +62,15 @@
 import { Component, Watch, Vue } from 'vue-property-decorator'
 import { Action, Getter } from 'vuex-class'
 import { MenuItem } from '../store/types/menu'
-import { Language } from '../../languages'
+import { Language, LanguageType } from '../../languages'
 
 @Component
 export default class Navbar extends Vue {
   @Action('toggleMenu', { namespace: 'menu' }) private toggleMenu!: (
     status: boolean
   ) => void;
+
+  @Action('setLanguage', { namespace: 'app' }) private setLanguage!: (language: string) => void
 
   @Getter('menu', { namespace: 'menu' }) private menu!: MenuItem[];
   @Getter('toggle', { namespace: 'menu' }) private isMenuToggled!: boolean;
@@ -69,6 +80,14 @@ export default class Navbar extends Vue {
   @Watch('$route')
   public onChangeRoute () {
     this.toggleMenu(false)
+  }
+
+  private switchLanguage () {
+    if (this.language === LanguageType.en) {
+      this.setLanguage(LanguageType['zh-TW'])
+    } else {
+      this.setLanguage(LanguageType.en)
+    }
   }
 }
 </script>

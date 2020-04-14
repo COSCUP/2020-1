@@ -1,6 +1,7 @@
 import { Language } from './index'
 
 const language: Language = {
+  languageSwitch: 'En',
   routesLabel: {
     home: 'COSCUP 2020',
     agenda: '議程資訊',

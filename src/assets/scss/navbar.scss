@@ -83,6 +83,9 @@
   
         @media screen and (max-width: $navbar-mobile-max-width) {
           display: inline-block;
+          cursor: pointer;
+          user-select: none;
+          transform: scale(0.8);
         }
       }
   
@@ -104,6 +107,13 @@
             min-width: 100px;
             height: 100%;
             padding: 0 12px;
+
+            &.language-switch {
+              margin-left: 2rem;
+              min-width: 30px;
+              cursor: pointer;
+              user-select: none;
+            }
   
             span {
               position: relative;
@@ -197,6 +207,8 @@
                   height: 48px;
                   font-size: 56px;
                   transform: rotate(45deg) translate(12px, -6px);
+                  cursor: pointer;
+                  user-select: none;
                 }
               }
             }
@@ -223,6 +235,10 @@
             border-radius: 10px;
             transform: skewX(-10deg) translateX(32px);
             margin-bottom: 0.5em;
+
+            &.language-switch {
+              margin-top: auto;
+            }
   
             span {
               margin-left: auto;

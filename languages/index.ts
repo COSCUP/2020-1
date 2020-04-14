@@ -2,6 +2,7 @@ import en from './en'
 import zhTW from './zh-TW'
 
 export interface Language {
+  languageSwitch: string;
   routesLabel: {
     'home': string;
     'agenda': string;

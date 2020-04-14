@@ -130,6 +130,12 @@ export default class App extends Vue {
   @Watch('language')
   public onLanguageChange (language: string) {
     document.documentElement.setAttribute('lang', language)
+    this.$router.replace({
+      name: this.$route.name,
+      params: {
+        language
+      }
+    }).catch()
   }
 
   public destroyed () {
