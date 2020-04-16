@@ -32,34 +32,21 @@
         display: flex;
         align-items: center;
   
-        &-icon__normal {
+        &-icon {
+          display: inline-block;
           width: 48px;
           height: 48px;
   
           @media screen and (max-width: $navbar-mobile-max-width) {
-            display: none;
-          }
-        }
-  
-        &-icon__mobile {
-          display: none;
           width: 32px;
           height: 32px;
-  
-          @media screen and (max-width: $navbar-mobile-max-width) {
-            display: inline-block;
           }
         }
   
         &-text {
-          display: none;
           margin-left: 8px;
   
-          @media screen and (max-width: $navbar-mobile-max-width) {
-            display: block;
-          }
-  
-          &__sitcon {
+          &__conf {
             font-weight: 700;
             color: $fontColor;
           }
@@ -72,7 +59,6 @@
         }
       }
   
-      .toggle-button,
       .menu {
         margin-left: auto;
         color: $fontColor;
@@ -104,35 +90,46 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 100px;
+            min-width: 60px;
             height: 100%;
             padding: 0 12px;
 
             &.language-switch {
-              margin-left: 2rem;
+              margin-left: auto;
               min-width: 30px;
               cursor: pointer;
               user-select: none;
+              color: $fontColor;
             }
   
             span {
               position: relative;
-              display: block;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              width: 100%;
+              height: 100%;
+
+              & .svg-inline--fa {
+                margin-left: 4px;
+                transform: scale(0.7) translateY(-1rem);
+              }
   
               &:before {
                 content: "";
                 position: absolute;
                 left: 50%;
-                bottom: -28px;
+                bottom: 0;
                 transform: translateX(-50%);
                 border-bottom: 4px solid $fontColor;
-                min-width: 0;
-                transition: min-width cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.3s;
+                width: 0;
+                transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.3s;
               }
             }
   
             &.active span:before {
-              min-width: 100px;
+              width: calc(100% + 24px);
             }
   
             &:hover {
@@ -187,7 +184,7 @@
                   transform: scale(0.8);
   
                   .logo-text {
-                    &__sitcon,
+                    &__conf,
                     &__2020 {
                       font-size: 18px;
                     }
@@ -229,7 +226,7 @@
           &-item {
             display: flex;
             align-items: center;
-            width: 60%;
+            min-width: 70%;
             margin-left: auto;
             padding: 16px;
             border-radius: 10px;
@@ -238,6 +235,22 @@
 
             &.language-switch {
               margin-top: auto;
+              transform: none;
+              min-width: unset;
+              color: $fontColor;
+              cursor: pointer;
+
+              span {
+                margin-left: auto;
+                transform: none;
+              }
+  
+              &:hover {
+
+                span {
+                  margin-left: 0;
+                }
+              }
             }
   
             span {
@@ -245,13 +258,25 @@
               transform: skewX(10deg) translateX(-40px);
             }
   
-            &:hover {
+            &:hover:not(.active) {
+              color: $fontColor;
               background-color: $backgroundColorHover;
+              transition: all 0.3s;
+              &.language-switch {
+                background-color: $backgroundColor;
+              }
             }
-  
+
+            &:hover,
             &.active {
-              background: $fontColor;
+              background-color: $fontColor;
               color: $backgroundColor;
+  
+              span {
+                font-weight: 900;
+                margin-left: 30%;
+                transition: all 0.3s;
+              }
             }
           }
         }
@@ -261,9 +286,6 @@
 }
 
 @mixin navbarDarkIcon {
-  // .logo-icon__normal,
-  // .logo-icon__mobile,
-  // .define-icon,
   .define-text > img,
   .toggle-button {
     filter: invert(100%) grayscale(1);

@@ -32,7 +32,7 @@
           padding: 20px 45px;
           font-size: 1.2rem;
           color: $white;
-          background-color: $coscup-green-1;
+          background-color: $coscup-green;
           border-top-left-radius: 20px;
           margin: 16px 0;
           cursor: pointer;
@@ -45,7 +45,7 @@
           }
 
           &:hover {
-            background-color: $coscup-green-1-lighten;
+            background-color: $coscup-green-lighten;
             transition: all 0.1s;
           }
         }
@@ -71,7 +71,7 @@
     }
 
     .spotlight {
-      background-color: $coscup-green-1;
+      background-color: $coscup-green;
 
       .prefix-icon {
         filter: brightness(1000%);

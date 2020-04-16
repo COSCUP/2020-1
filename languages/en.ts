@@ -2,14 +2,16 @@ import { Language } from './index'
 
 const language: Language = {
   languageSwitch: '繁',
-  routesLabel: {
+  menu: {
     home: 'COSCUP 2020',
     agenda: 'Agenda',
-    activity: 'Activity',
+    map: 'Map',
     venue: 'Venue',
-    traffic: 'Traffic',
+    sponsor: 'Sponsor',
     staff: 'Staff',
-    sponsor: 'Sponsor'
+    blog: 'Blog',
+    'press-release': 'Press Release',
+    coc: 'CoC'
   },
   footer: {
     websites: 'Websites',

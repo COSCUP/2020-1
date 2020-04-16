@@ -1,10 +1,9 @@
 import Vue from 'vue'
-import Router, { Route } from 'vue-router'
+import Router from 'vue-router'
 
 import Home from './pages/Home.vue'
 import Agenda from './pages/Agenda.vue'
-import Activity from './pages/Activity.vue'
-import Traffic from './pages/Traffic.vue'
+import Map from './pages/Map.vue'
 import Venue from './pages/Venue.vue'
 import Sponsor from '@/pages/Sponsor.vue'
 import Staff from '@/pages/Staff.vue'
@@ -19,9 +18,7 @@ export const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      index: 0,
-      label: 'home',
-      menuItem: true
+      index: 0
     }
   },
   {
@@ -29,35 +26,20 @@ export const routes = [
     name: 'Agenda',
     component: Agenda,
     meta: {
-      index: 1,
-      label: 'agenda',
-      menuItem: true
+      index: 1
     }
   },
   {
     path: '/agenda/:sid',
     name: 'AgendaView',
-    component: Agenda,
-    meta: {
-      menuItem: false
-    }
+    component: Agenda
   },
   {
-    path: '/activity',
-    name: 'Activity',
-    component: Activity,
+    path: '/map',
+    name: 'Map',
+    component: Map,
     meta: {
-      index: 2,
-      label: 'activity',
-      menuItem: false
-    }
-  },
-  {
-    path: '/activity/:aid',
-    name: 'ActivityView',
-    component: Activity,
-    meta: {
-      menuItem: false
+      index: 2
     }
   },
   {
@@ -65,29 +47,7 @@ export const routes = [
     name: 'Venue',
     component: Venue,
     meta: {
-      index: 3,
-      label: 'venue',
-      menuItem: true
-    }
-  },
-  {
-    path: '/traffic',
-    name: 'Traffic',
-    component: Traffic,
-    meta: {
-      index: 4,
-      label: 'traffic',
-      menuItem: true
-    }
-  },
-  {
-    path: '/staff',
-    name: 'Staff',
-    component: Staff,
-    meta: {
-      index: 5,
-      label: 'staff',
-      menuItem: true
+      index: 3
     }
   },
   {
@@ -95,9 +55,15 @@ export const routes = [
     name: 'Sponsor',
     component: Sponsor,
     meta: {
-      index: 6,
-      label: 'sponsor',
-      menuItem: true
+      index: 4
+    }
+  },
+  {
+    path: '/staff',
+    name: 'Staff',
+    component: Staff,
+    meta: {
+      index: 5
     }
   }
 ]
@@ -134,14 +100,6 @@ const router = new Router({
         y: 0
       }
     }
-  }
-})
-
-router.beforeEach((to: Route, from: Route, next: (...args: any[]) => any) => {
-  if (from.path.startsWith('/activity') && to.path === '/activity') {
-    next(false)
-  } else {
-    next()
   }
 })
 

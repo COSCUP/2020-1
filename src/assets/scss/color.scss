@@ -1,4 +1,4 @@
-$black: #000000;
+$black: #1c1c1c;
 $dark-1: #3F3F3F;
 $dark-2: #B5B5B5;
 $dark-3: #D8D8D8;
@@ -20,12 +20,8 @@ $light-tone: $light-green;
 $tone: $green;
 $dark-tone: $dark-green;
 
-$coscup-green-1: rgb(56, 152, 55);
-$coscup-green-1-lighten: lighten($coscup-green-1, 10%);
-$coscup-green-1-darken: darken($coscup-green-1, 10%);
-
-$coscup-green-2: rgb(1, 154, 121);
-$coscup-green-2-lighten: lighten($coscup-green-2, 10%);
-$coscup-green-2-darken: darken($coscup-green-2, 10%);
+$coscup-green: rgb(56, 152, 55);
+$coscup-green-lighten: lighten($coscup-green, 10%);
+$coscup-green-darken: darken($coscup-green, 10%);
 
 $coscup-secondary: rgb(177, 215, 191);

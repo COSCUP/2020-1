@@ -3,14 +3,17 @@ import zhTW from './zh-TW'
 
 export interface Language {
   languageSwitch: string;
-  routesLabel: {
-    'home': string;
-    'agenda': string;
-    'activity': string;
-    'traffic': string;
-    'venue': string;
-    'staff': string;
-    'sponsor': string;
+
+  menu: {
+    home: string;
+    agenda: string;
+    map: string;
+    venue: string;
+    sponsor: string;
+    staff: string;
+    blog: string;
+    'press-release': string;
+    coc: string;
   };
   footer: {
     websites: string;
