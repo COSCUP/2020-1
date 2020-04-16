@@ -11,9 +11,9 @@ const renderRoutes = (() => {
   const originalRoutes = [
     '',
     '/agenda',
-    ...sessionData.sessions.filter((session) => session.id !== '載入中…').map(session => (`/agenda/${session.id}`)),
+    // ...sessionData.sessions.filter((session) => session.id !== '載入中…').map(session => (`/agenda/${session.id}`)),
     '/venue',
-    '/traffic',
+    '/map',
     '/staff',
     '/sponsor'
   ]
