@@ -1,0 +1,159 @@
+@mixin agenda(
+  $backgroundColor,
+  $backgroundColorHover,
+  $fontColor,
+  $fontColorLevel2,
+  $scheduleCellBackgroundColor
+) {
+  #agenda {
+    &.main-container {
+      padding-top: 0;
+      padding-left: 0;
+      padding-right: 0;
+      background-color: $backgroundColor;
+    }
+
+    .days {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background-color: $backgroundColor;
+
+      .day {
+        font-size: 2rem;
+        padding: 1rem 2rem;
+        border-bottom: 4px solid;
+        border-color: transparent;
+        cursor: pointer;
+        transition: all 0.1s;
+
+        &.active {
+          border-color: $fontColor;
+          transition: all 0.1s;
+        }
+
+        &.active,
+        &:hover {
+          color: $fontColor;
+          transition: all 0.1s;
+        }
+      }
+
+      @include mobile {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        justify-content: space-around;
+        z-index: 999;
+
+        .day {
+          width: 100%;
+          text-align: center;
+          font-size: 1rem;
+          padding: 1rem 0.5rem;
+        }
+      }
+    }
+
+    .schedule {
+      $schedule-width: calc(var(--length) * var(--cell-width));
+      width: 100%;
+
+      .rooms-container,
+      .schedule-body-container {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .rooms {
+        &-container {
+          position: sticky;
+          top: $navbar-height;
+          max-width: 100%;
+          overflow-x: auto;
+          background-color: rgba($backgroundColor, 0.7);
+          backdrop-filter: blur(20px);
+          z-index: 9;
+
+          @include mobile {
+            display: none;
+          }
+        }
+
+        display: flex;
+        width: $schedule-width;
+
+        .room {
+          display: inline-flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: var(--cell-width);
+          height: 100px;
+
+          div:nth-child(1) {
+            padding: 4px;
+          }
+
+          div:nth-child(2) {
+            padding: 8px;
+            font-size: 20px;
+          }
+        }
+      }
+
+      &-body {
+        &-container {
+          margin-top: 1rem;
+          max-width: 100%;
+          overflow-x: auto;
+        }
+
+        width: $schedule-width;
+        display: grid;
+
+        @include mobile {
+          &-container {
+            margin-top: 0;
+            overflow-x: visible;
+          }
+
+          width: 100%;
+        }
+
+        .time-cell {
+          display: none;
+          padding: 1rem;
+          background-color: rgba($backgroundColor, 0.7);
+          backdrop-filter: blur(20px);
+          position: sticky;
+          top: $navbar-height-mobile;
+
+          @include mobile {
+            display: block;
+            grid-column: 1/span 2;
+          }
+        }
+      }
+
+      &-cell {
+        padding: 2px;
+
+        &-content {
+          background-color: $scheduleCellBackgroundColor;
+          height: calc(100% - 2rem);
+          padding: 1rem;
+          border-radius: 5px;
+        }
+
+        @include mobile {
+          grid-column: 1/span 2;
+        }
+      }
+    }
+  }
+}
