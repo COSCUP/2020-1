@@ -62,13 +62,6 @@
       $schedule-width: calc(var(--length) * var(--cell-width));
       width: 100%;
 
-      .rooms-container,
-      .schedule-body-container {
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
-
       .rooms {
         &-container {
           position: sticky;
@@ -78,6 +71,10 @@
           background-color: rgba($backgroundColor, 0.7);
           backdrop-filter: blur(20px);
           z-index: 9;
+          
+          &::-webkit-scrollbar {
+            display: none;
+          }
 
           @include mobile {
             display: none;
