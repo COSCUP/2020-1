@@ -42,7 +42,7 @@
       cursor: pointer;
       z-index: 9999;
 
-      @media screen and (max-width: 1024px) {
+      @include mobile {
         top: 0;
         right: 0;
       }
@@ -79,7 +79,7 @@
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
 
-        @media screen and (max-width: 1024px) {
+        @include mobile {
           width: 100%;
           margin: 0;
           padding: 0;
@@ -99,7 +99,7 @@
       animation: popupJumpOut 0.3s cubic-bezier(0.8, -0.9, 0.2, 1.2);
       animation-fill-mode: forwards;
 
-      @media screen and (max-width: 1024px) {
+      @include mobile {
         width: calc(100% - #{$m-i8-banner-gap} * 2);
         margin: 0;
         padding: $m-i8-banner-gap * 2 $m-i8-banner-gap;
@@ -145,7 +145,7 @@
         margin: 36px 0;
         font-weight: 700;
 
-        @media screen and (max-width: 1024px) {
+        @include mobile {
           font-size: 36px * $zoom-general-mobile-font;
         }
       }
@@ -155,7 +155,7 @@
         font-size: 24px;
         font-weight: 500;
 
-        @media screen and (max-width: 1024px) {
+        @include mobile {
           font-size: 24px * $zoom-general-mobile-font;
         }
       }
@@ -166,7 +166,7 @@
         line-height: 1.4;
         margin-bottom: 1rem;
 
-        @media screen and (max-width: 1024px) {
+        @include mobile {
           font-size: 18px * $zoom-general-mobile-font;
         }
 
@@ -229,7 +229,7 @@
           line-height: 1.4;
           font-size: 18px;
 
-          @media screen and (max-width: 1024px) {
+          @include mobile {
             font-size: 18px * $zoom-general-mobile-font;
           }
 
@@ -246,7 +246,7 @@
           li {
             margin-left: 18px;
 
-            @media screen and (max-width: 1024px) {
+            @include mobile {
               font-size: 18px * $zoom-general-mobile-font;
             }
           }

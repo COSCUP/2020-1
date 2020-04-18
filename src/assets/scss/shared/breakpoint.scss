@@ -1,0 +1,11 @@
+$mobile-max-width: 960px;
+
+:root {
+  --mobile-max-width: #{$mobile-max-width};
+}
+
+@mixin mobile {
+  @media screen and (max-width: $mobile-max-width) {
+    @content
+  }
+}

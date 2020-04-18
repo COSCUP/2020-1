@@ -16,7 +16,7 @@
         background-color: $backgroundColor;
       }
 
-      @media screen and (max-width: 1024px) {
+      @include mobile {
         position: relative;
         padding: 64px $m-i8-banner-inner-gap;
         width: calc(100% - #{$m-i8-banner-inner-gap * 2});
@@ -29,7 +29,7 @@
       flex-direction: column;
       color: $fontColor;
 
-      @media screen and (max-width: 1024px) {
+      @include mobile {
         word-break: break-word;
         font-size: 18px;
       }
@@ -37,12 +37,12 @@
       span {
         line-height: 1.4;
 
-        @media screen and (max-width: 1024px) {
+        @include mobile {
           margin-bottom: 5px;
         }
 
         &:nth-child(1) {
-          @media screen and (max-width: 1024px) {
+          @include mobile {
             margin-bottom: 16px;
           }
         }
@@ -73,7 +73,7 @@
         display: inline-block;
         margin: 1rem;
 
-        @media screen and (max-width: 1024px) {
+        @include mobile {
           font-size: 16px;
         }
 
