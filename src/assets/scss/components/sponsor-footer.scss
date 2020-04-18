@@ -1,0 +1,64 @@
+.sponsor {
+  &-footer-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 80px 140px;
+    margin-bottom: 32px;
+    z-index: 10;
+    background-color: transparent;
+
+    .sponsor img {
+      background: rgba($white, 0.8);
+      border-radius: 10px;
+      transition: all 0.1s;
+
+      &:hover {
+        background: $white;
+        transform: scale(1.05);
+        transition: all 0.1s;
+      }
+    }
+
+    @media screen and (max-width: 1280px) {
+      padding: 4em 2em;
+    }
+
+    @media screen and (max-width: 900px) {
+      padding: 4em 1em;
+    }
+
+    @media screen and (max-width: 675px) {
+      padding: 0;
+    }
+  }
+
+  margin: 1rem;
+
+  @media screen and (max-width: 475px) {
+    margin: 0.5rem;
+  }
+
+  a {
+    img {
+      max-width: 180px;
+
+      @media screen and (max-width: 1280px) {
+        max-width: 150px;
+      }
+
+      @media screen and (max-width: 675px) {
+        max-width: 100px;
+      }
+
+      @media screen and (max-width: 475px) {
+        max-width: 80px;
+      }
+    }
+  }
+}

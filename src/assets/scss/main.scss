@@ -1,25 +1,23 @@
-@import 'reset';
-@import 'color';
-@import 'font';
-@import 'variables';
-@import 'mixin';
-@import 'animate';
+@import 'shared/reset';
+@import 'shared/color';
+@import 'shared/font';
+@import 'shared/variables';
+@import 'shared/mixin';
+@import 'shared/animate';
+@import 'shared/container';
+@import 'shared/spotlight';
 
-@import 'container';
-@import 'popup';
-@import 'navbar';
-@import 'footer';
-@import 'spotlight';
-@import 'tab';
+@import 'components/popup';
+@import 'components/navbar';
+@import 'components/footer';
+@import 'components/sponsor-footer';
 
-@import 'staff';
-@import 'sponsor';
-
-@import 'home';
-@import 'agenda';
-@import 'venue';
-@import 'map';
-@import 'team';
+@import 'pages/home';
+@import 'pages/agenda';
+@import 'pages/venue';
+@import 'pages/map';
+@import 'pages/staff';
+@import 'pages/sponsor';
 
 @import 'theme/index';
 

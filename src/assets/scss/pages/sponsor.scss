@@ -1,69 +1,20 @@
-.sponsor {
-  &-footer-container {
-    position: relative;
+#sponsor {
+  &.main-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
     box-sizing: border-box;
-    padding: 80px 140px;
-    margin-bottom: 32px;
-    z-index: 10;
-    background-color: transparent;
-
-    .sponsor img {
-      background: rgba($white, 0.8);
-      border-radius: 10px;
-      transition: all 0.1s;
-
-      &:hover {
-        background: $white;
-        transform: scale(1.05);
-        transition: all 0.1s;
-      }
-    }
+    // background-color: $white !important;
+    // color: $black !important;
 
     @media screen and (max-width: 1280px) {
-      padding: 4em 2em;
+      padding: 100px 0;
     }
 
-    @media screen and (max-width: 900px) {
-      padding: 4em 1em;
-    }
-
-    @media screen and (max-width: 675px) {
+    @media screen and (max-width: 960px) {
       padding: 0;
     }
   }
-
-  margin: 1rem;
-
-  @media screen and (max-width: 475px) {
-    margin: 0.5rem;
-  }
-
-  a {
-    img {
-      max-width: 180px;
-
-      @media screen and (max-width: 1280px) {
-        max-width: 150px;
-      }
-
-      @media screen and (max-width: 675px) {
-        max-width: 100px;
-      }
-
-      @media screen and (max-width: 475px) {
-        max-width: 80px;
-      }
-    }
-  }
-}
-
-@mixin Sponsor {
   .sponsor {
     &-container {
       padding: 0 200px;

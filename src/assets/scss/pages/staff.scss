@@ -1,9 +1,13 @@
-@mixin Staff {
-  .staff {
-    &-container {
-      width: 100%;
-    }
+#staff {
+  &.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+  }
 
+  .staff {
     &-spotlight {
       position: relative;
       width: 100%;
@@ -114,7 +118,7 @@
       object-fit: contain;
       width: 100px;
       height: 100px;
-      
+
       @media screen and (max-width: 960px) {
         width: 90px;
         height: 90px;
@@ -124,7 +128,7 @@
         width: 80px;
         height: 80px;
       }
-      
+
       @media screen and (max-width: 475px) {
         width: 70px;
         height: 70px;
