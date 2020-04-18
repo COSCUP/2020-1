@@ -1,6 +1,5 @@
 #app.main {
   #home.main-container {
-    // background-color: $white;
     overflow: hidden;
 
     @media screen and (max-width: 475px) {
@@ -73,12 +72,24 @@
     .spotlight {
       background-color: $coscup-green;
 
+      h1.title {
+        display: flex;
+        align-items: center;
+        text-align: start;
+        
+        .prefix-icon {
+          margin-right: 1rem;
+          display: inline-block;
+          width: 128px;
+          height: auto;
+        }
+      }
+
       .prefix-icon {
         filter: brightness(1000%);
       }
 
-      p,
-      p.content {
+      p {
         text-align: left;
       }
 

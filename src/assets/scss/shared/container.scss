@@ -18,12 +18,13 @@
     padding-top: 84px;
     margin-top: $navbar-height;
 
-    @media screen and (max-width: 1024px) {
+    @include mobile {
       margin-top: $navbar-height-mobile;
-    }
 
-    h1.title {
-      margin-bottom: 32px;
+      h1.title {
+        font-size: 1.5rem;
+        flex-direction: column;
+      }
     }
 
     h1.title,

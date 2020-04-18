@@ -15,6 +15,12 @@ export interface Language {
     'press-release': string;
     coc: string;
   };
+
+  about: {
+    title: string;
+    content: string;
+  };
+
   footer: {
     websites: string;
     social: string;
