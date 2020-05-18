@@ -3,18 +3,17 @@
     overflow: hidden;
     padding-top: 0;
 
-    .info-container {
+    .banner-container {
       position: relative;
       display: flex;
       justify-content: center;
       width: 100%;
-      min-height: 400px;
+      min-height: 500px;
       background-color: $dark-1;
       background-image: url("/2020/img/banner.svg");
       background-repeat: repeat;
-      background-position: top -2px right -2px;
-      background-size: 605px 405px;
-      margin-bottom: 5rem;
+      background-position: top -5px right -5px;
+      background-size: 760px 510px;
 
       .logo-wrapper {
         position: absolute;
@@ -94,57 +93,130 @@
           }
         }
       }
+    }
+
+    .info-container {
+      display: flex;
+      width: calc(100% - 200px * 2);
+      margin-top: 5rem;
+      margin-bottom: 2rem;
+
+      .info {
+        display: flex;
+        align-items: center;
+        color: $coscup-green;
+        font-size: 2.5rem;
+
+        span {
+          margin: 0 3px;
+        }
+      }
 
       .tabs-wrapper {
-        max-width: 700px;
-        width: calc(100% - 42px * 2);
         display: flex;
+        margin-left: auto;
 
         .tabs-container {
-          margin-top: auto;
-          margin-bottom: auto;
-          margin-left: auto;
           display: flex;
-          flex-direction: column;
 
           .tab {
             display: block;
-            padding: 20px 45px;
-            font-size: 1.2rem;
-            color: $white;
-            background-color: $coscup-green;
-            border-top-left-radius: 20px;
-            margin: 16px 0;
+            padding: 1rem 0;
+            color: $coscup-green;
+            margin-left: 1rem;
             cursor: pointer;
-            transform: skewX(-10deg);
             transition: all 0.1s;
+            font-size: 2rem;
 
             span {
-              display: inline-block;
-              transform: skewX(10deg);
+              position: relative;
+              padding: 0 0.25rem;
+
+              &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -5px;
+                width: 100%;
+                height: 3px;
+                background-color: $coscup-green-darken;
+                transition: all 0.1s;
+              }
+
+              &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -5px;
+                width: 0;
+                height: 3px;
+                background-color: currentColor;
+                transition: all 0.1s;
+              }
             }
 
             &:hover {
-              background-color: $coscup-green-lighten;
-              transition: all 0.1s;
+              span {
+                color: $coscup-green-lighten;
+                transition: all 0.1s;
+                &::after {
+                  width: 100%;
+                  transition: all 0.1s;
+                }
+              }
             }
           }
         }
+      }
 
-        @media screen and (max-width: 675px) {
+      @media screen and (max-width: 1280px) {
+        flex-direction: column;
+        width: calc(100% - 100px * 2);
+
+        .tabs-wrapper {
+          margin-top: 3rem;
+        }
+      }
+
+      @include mobile {
+        align-items: center;
+
+        .info {
+          font-size: 1.75rem;
+        }
+
+        .tabs-wrapper {
+          margin-top: 2rem;
+          margin-left: 0;
+          .tabs-container {
+            .tab {
+              margin-left: 0;
+              padding: 1rem 2rem;
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 675px) {
+        width: calc(100% - 32px * 2);
+        margin: 3rem 0;
+      }
+
+      @media screen and (max-width: 550px) {
+        .info {
           flex-direction: column;
 
-          .logo-container img {
-            width: 100%;
+          span {
+            margin: 3px 0;
           }
+        }
 
+        .tabs-wrapper {
           .tabs-container {
-            margin-left: 0;
-            text-align: center;
-            padding: 32px 3rem;
-
             .tab {
-              padding: 1rem;
+              font-size: 1.2rem;
+              padding: 0.5rem 0.5rem;
             }
           }
         }

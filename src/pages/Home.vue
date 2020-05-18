@@ -1,6 +1,6 @@
 <template>
   <div id="home" class="main-container">
-    <div class="info-container">
+    <div class="banner-container">
       <div class="logo-wrapper">
         <div class="logo-container">
           <h2>#COSCUP 2020</h2>
@@ -10,7 +10,13 @@
           </div>
         </div>
       </div>
-      <!-- <div class="tabs-wrapper">
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <span>8／1 ~ 8／2</span>
+        <span>國立臺灣科技大學</span>
+      </div>
+      <div class="tabs-wrapper">
         <div class="tabs-container">
           <a
             class="tab"
@@ -18,7 +24,7 @@
               $router.push({ name: 'Home', query: { popUp: 'announcement' } })
             "
           >
-            <span>大會公告</span>
+            <span>公告</span>
           </a>
           <a
             class="tab"
@@ -26,7 +32,7 @@
             target="_blank"
             rel="noopener"
           >
-            <span>免費報名</span>
+            <span>報名</span>
           </a>
           <a
             class="tab"
@@ -37,7 +43,7 @@
             <span>贊助取票</span>
           </a>
         </div>
-      </div> -->
+      </div>
     </div>
     <div class="spotlight-container">
       <div class="spotlight sharp-back-taton">
