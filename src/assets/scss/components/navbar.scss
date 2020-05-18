@@ -263,7 +263,10 @@
               background-color: $backgroundColorHover;
               transition: all 0.3s;
               &.language-switch {
-                background-color: $backgroundColor;
+                background-color: transparent;
+                span {
+                  font-weight: 400;
+                }
               }
             }
 
