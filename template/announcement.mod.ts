@@ -6,33 +6,7 @@
 import { markdown } from 'markdown'
 
 const RAWContent = `
-# SITCON 2020 籌備團隊公告
-
-## 年會活動延期至 8 月 8 日舉辦
-
-各位關注 SITCON 的朋友大家好：
-
-SITCON 2020 活動確定**延期至 8 月 8 日（六）舉辦**，地點**維持在中研院人文社會科學館**。
-
-因應嚴重特殊傳染性肺炎（COVID-19）疫情，雖然 SITCON 籌備團隊已經針對現場消毒、參與者健康管理等項目有相關配套，但因
-
-- SITCON 規模達 1,000 人屬於大型活動
-- 大多數與會者及工作人員為學生
-- 具有較長的時間（長達 8 小時）
-- 活動參與者彼此距離多小於一公尺且為不固定座位
-
-基於參與者之健康安全考量及以下政府單位相關指引
-
-- 教育部建議大型校園活動應暫時避免
-- 臺北市教育局公告各校大型集會活動延後至 109 年 5 月 4 日後始得辦理
-- 參考中央疫情指揮中心之「COVID-19（武漢肺炎）因應指引：公眾集會」公告
-
-SITCON 籌備團隊共同決議將**活動延期至 8 月 8 日（六）同地點**（中研院人文社會科學館）舉行。
-再次感謝各位朋友的支持與關注，因為有你們 SITCON 才能持續運轉。
-造成諸多不便還請多見諒。
-
-SITCON 籌備團隊上
-2020/03/06
+# COSCUP 2020 籌備團隊公告
 
 ---
 
@@ -42,10 +16,10 @@ SITCON 籌備團隊上
 const content = `
 <script id="meta-content" type="application/json">
 {
-  "title": "SITCON 2020 籌備團隊公告",
+  "title": "COSCUP 2020 籌備團隊公告",
   "description": "年會活動延期至 8 月 8 日舉辦",
-  "url": "https://sitcon.org/2020/cfp?popUp=announcement",
-  "id": "9f7f1055-f3ab-4694-8f96-a0a0c47095a2"
+  "url": "https://coscup.org/2020/?popUp=announcement",
+  "id": "af7f1055-f3ab-4694-8f96-a0a0c47095a2"
 }
 </script>
 ${markdown.toHTML(RAWContent)}
