@@ -6,15 +6,15 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: $black;
+    background-color: #12344c;
     z-index: -1;
   }
-  @include container($black, $white);
-  @include navbar($black, $dark-1, $coscup-green, $dark-3);
+  @include container(#12344c, $white);
+  @include navbar(#12344c, $dark-1, $coscup-green, $dark-3);
   @include navbarDarkIcon;
 
-  @include footer($black, $dark-4);
-  @include agenda($black, $dark-1, $coscup-green, $dark-3, $coscup-green);
+  @include footer(#12344c, $dark-4);
+  @include agenda(#12344c, $dark-1, $coscup-green, $dark-3, $coscup-green);
 
   @include venueDarkImg;
 }

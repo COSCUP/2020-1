@@ -31,7 +31,7 @@
           <img
             class="staff-avatar"
             :src="
-              `https://www.gravatar.com/avatar/${member.emailHash}?s=320&d=https://sitcon.org/2020/img/sitcon-logo.png&r=g`
+              `https://www.gravatar.com/avatar/${member.emailHash}?s=320&d=identicon&r=g`
             "
             :alt="`${member.name}'s Avatar`"
           />

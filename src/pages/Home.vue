@@ -1,41 +1,49 @@
 <template>
   <div id="home" class="main-container">
-    <div class="info">
-      <div class="logo-container">
-        <img src="/2020/img/logo.png" />
+    <div class="info-container">
+      <div class="logo-wrapper">
+        <div class="logo-container">
+          <h2>#COSCUP 2020</h2>
+          <div class="logo-content">
+            <img src="/2020/img/banner-logo.svg" alt="COSCUP" />
+            <div><p>Conference for Open Source Coders, Users & Promoters</p></div>
+          </div>
+        </div>
       </div>
-      <div class="tabs-container">
-        <a
-          class="tab"
-          @click="
-            $router.push({ name: 'Home', query: { popUp: 'announcement' } })
-          "
-        >
-          <span>大會公告</span>
-        </a>
-        <a
-          class="tab"
-          href="https://sitcon.kktix.cc/events/sitcon2020"
-          target="_blank"
-          rel="noopener"
-        >
-          <span>免費報名</span>
-        </a>
-        <a
-          class="tab"
-          href="https://bit.ly/donatesitcon2020"
-          target="_blank"
-          rel="noopener"
-        >
-          <span>贊助取票</span>
-        </a>
-      </div>
+      <!-- <div class="tabs-wrapper">
+        <div class="tabs-container">
+          <a
+            class="tab"
+            @click="
+              $router.push({ name: 'Home', query: { popUp: 'announcement' } })
+            "
+          >
+            <span>大會公告</span>
+          </a>
+          <a
+            class="tab"
+            href="https://sitcon.kktix.cc/events/sitcon2020"
+            target="_blank"
+            rel="noopener"
+          >
+            <span>免費報名</span>
+          </a>
+          <a
+            class="tab"
+            href="https://bit.ly/donatesitcon2020"
+            target="_blank"
+            rel="noopener"
+          >
+            <span>贊助取票</span>
+          </a>
+        </div>
+      </div> -->
     </div>
     <div class="spotlight-container">
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
-          <img class="prefix-icon" src="/2020/img/logo-200.png" />
-          <span class="inner font-black">{{languagePack.about.title}}</span>
+          <img class="prefix-icon" src="/2020/img/logo.svg" />
+          <span class="inner font-black">{{ languagePack.about.title }}</span>
         </h1>
         <div v-html="markdownParser(languagePack.about.content)"></div>
       </div>

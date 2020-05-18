@@ -2,7 +2,7 @@
   <nav id="nav" class="navbar">
     <div class="navbar-container">
       <router-link class="logo" :to="{ name: 'Home', params: { language } }">
-        <img class="logo-icon" src="/2020/img/logo-200.png" />
+        <img class="logo-icon" src="/2020/img/logo.svg" />
         <div class="logo-text">
           <div class="logo-text__conf font-bold">
             <span class="font-black">COSCUP</span>
@@ -17,7 +17,7 @@
         <div class="menu-container">
           <header>
             <router-link class="define-logo" :to="{ name: 'Home', params: { language } }">
-              <img class="define-icon" src="/2020/img/logo-200.png" />
+              <img class="define-icon" src="/2020/img/logo.svg" />
               <div class="define-text">
                 <div class="logo-text-container">
                   <span class="logo-text__conf">COSCUP</span>
