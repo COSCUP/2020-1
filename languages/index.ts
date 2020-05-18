@@ -16,9 +16,19 @@ export interface Language {
     coc: string;
   };
 
-  about: {
-    title: string;
-    content: string;
+  home: {
+    info: {
+      venue: string;
+      tabs: {
+        announcement: string;
+        registration: string;
+        donate: string;
+      };
+    };
+    about: {
+      title: string;
+      content: string;
+    };
   };
 
   footer: {

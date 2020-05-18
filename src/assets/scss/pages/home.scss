@@ -1,3 +1,54 @@
+html[lang="en"] {
+  #app.main #home.main-container .info-container {
+    max-width: 700px;
+    flex-direction: row;
+    .info {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      span {
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        &:last-of-type {
+          font-size: 5rem;
+        }
+      }
+    }
+    .tabs-wrapper {
+      margin-top: 0;
+      .tabs-container {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+
+    @include mobile {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 750px) {
+      flex-direction: column;
+      .info {
+        span {
+          font-size: 1.5rem;
+          font-weight: 500;
+  
+          &:last-of-type {
+            font-size: 5rem;
+          }
+        }
+      }
+      .tabs-wrapper {
+        margin-top: 3rem;
+        .tabs-container {
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
 #app.main {
   #home.main-container {
     overflow: hidden;
@@ -71,13 +122,19 @@
 
         @media screen and (max-width: 675px) {
           max-width: 80%;
-          height: 300px;
+          height: 400px;
 
           .logo-container {
             margin-left: 0;
+
+            h2 {
+              font-size: 2.9rem;
+              text-align: start;
+            }
+
             .logo-content {
               img {
-                width: 200px;
+                width: 120px;
                 max-width: 100%;
               }
               div {
@@ -86,7 +143,7 @@
 
                 p {
                   width: 200px;
-                  font-size: 0.9rem;
+                  font-size: 0.5rem;
                 }
               }
             }
@@ -105,10 +162,10 @@
         display: flex;
         align-items: center;
         color: $coscup-green;
-        font-size: 2.5rem;
 
         span {
-          margin: 0 3px;
+          margin: 0 10px;
+          font-size: 2rem;
         }
       }
 
@@ -125,33 +182,27 @@
             color: $coscup-green;
             margin-left: 1rem;
             cursor: pointer;
-            transition: all 0.1s;
+            transition: all 0.2s;
             font-size: 2rem;
 
             span {
               position: relative;
               padding: 0 0.25rem;
 
-              &::before {
+              &::before, &::after  {
                 content: "";
                 position: absolute;
-                left: 0;
+                left: 50%;
                 bottom: -5px;
-                width: 100%;
+                width: 90%;
                 height: 3px;
-                background-color: $coscup-green-darken;
+                background-color: currentColor;
+                transform: translate(-50%, 0);
                 transition: all 0.1s;
               }
 
               &::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: -5px;
                 width: 0;
-                height: 3px;
-                background-color: currentColor;
-                transition: all 0.1s;
               }
             }
 
@@ -173,6 +224,10 @@
         flex-direction: column;
         width: calc(100% - 100px * 2);
 
+        .info span {
+          font-size: 3rem;
+        }
+
         .tabs-wrapper {
           margin-top: 3rem;
         }
@@ -181,7 +236,7 @@
       @include mobile {
         align-items: center;
 
-        .info {
+        .info span {
           font-size: 1.75rem;
         }
 
@@ -209,6 +264,10 @@
 
           span {
             margin: 3px 0;
+
+            &:last-of-type {
+              font-size: 1.75rem;
+            }
           }
         }
 

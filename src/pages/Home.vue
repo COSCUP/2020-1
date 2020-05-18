@@ -3,18 +3,20 @@
     <div class="banner-container">
       <div class="logo-wrapper">
         <div class="logo-container">
-          <h2>#COSCUP 2020</h2>
+          <h2>COSCUP 2020</h2>
           <div class="logo-content">
             <img src="/2020/img/banner-logo.svg" alt="COSCUP" />
-            <div><p>Conference for Open Source Coders, Users & Promoters</p></div>
+            <div>
+              <p>Conference for Open Source Coders, Users & Promoters</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="info-container">
       <div class="info">
-        <span>8／1 ~ 8／2</span>
-        <span>國立臺灣科技大學</span>
+        <span>8 / 1 ~ 8 / 2</span>
+        <span>{{ languagePack.home.info.venue }}</span>
       </div>
       <div class="tabs-wrapper">
         <div class="tabs-container">
@@ -24,7 +26,7 @@
               $router.push({ name: 'Home', query: { popUp: 'announcement' } })
             "
           >
-            <span>公告</span>
+            <span>{{ languagePack.home.info.tabs.announcement }}</span>
           </a>
           <a
             class="tab"
@@ -32,7 +34,7 @@
             target="_blank"
             rel="noopener"
           >
-            <span>報名</span>
+            <span>{{ languagePack.home.info.tabs.registration }}</span>
           </a>
           <a
             class="tab"
@@ -40,7 +42,7 @@
             target="_blank"
             rel="noopener"
           >
-            <span>贊助取票</span>
+            <span>{{ languagePack.home.info.tabs.donate }}</span>
           </a>
         </div>
       </div>
@@ -49,9 +51,11 @@
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
           <img class="prefix-icon" src="/2020/img/logo.svg" />
-          <span class="inner font-black">{{ languagePack.about.title }}</span>
+          <span class="inner font-black">{{
+            languagePack.home.about.title
+          }}</span>
         </h1>
-        <div v-html="markdownParser(languagePack.about.content)"></div>
+        <div v-html="markdownParser(languagePack.home.about.content)"></div>
       </div>
     </div>
   </div>
