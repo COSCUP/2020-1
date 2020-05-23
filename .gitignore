@@ -23,5 +23,8 @@ yarn-error.log*
 # Auto-Generated OPass Session Json
 /public/json/session.json
 
+# Auto-Generated Sponsor Json
+/public/json/sponsor.json
+
 # Auto-Generated Mail
 /public/mail/*
