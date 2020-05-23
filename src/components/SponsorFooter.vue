@@ -2,13 +2,13 @@
   <section id="sponsor" class="sponsor-footer-container">
     <div
       v-for="sponsor in sponsors"
-      :key="`sponsor-${sponsor.slug}`"
+      :key="sponsor.id"
       class="sponsor"
       target="_blank"
       rel="noopener"
     >
-      <a :href="`${sponsor.url}`" target="_blank" rel="noopener">
-        <img :alt="sponsor.name" :src="sponsor.image" />
+      <a :href="`${sponsor.link}`" target="_blank" rel="noopener">
+        <img :alt="sponsor.name" :src="`/2020/img/sponsors/${sponsor.image}`" />
       </a>
     </div>
   </section>
@@ -29,13 +29,6 @@ export default class SponsorFooter extends Vue {
 
   private getSponsor (): void {
     this.sponsors = sponsorData
-      .filter((sponsor) => sponsor.level !== 'media' && sponsor.level !== 'thank')
-      .map((sponsor) => {
-        return {
-          ...sponsor,
-          image: `${process.env.BASE_URL}/img/sponsors/${sponsor.image}`
-        }
-      })
   }
 }
 </script>

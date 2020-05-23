@@ -50,7 +50,7 @@ export default class Footer extends Vue {
   @Getter('languagePack', { namespace: 'app' }) private languagePack!: Language;
 
   private get numOfPast () {
-    return new Date().getFullYear() - 2006
+    return new Date().getFullYear() - 2006 - 1
   }
 
   private communityMedia = [

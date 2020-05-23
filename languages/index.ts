@@ -31,6 +31,22 @@ export interface Language {
     };
   };
 
+  sponsor: {
+    callForSponsorship: {
+      title: string;
+      content: string;
+    };
+    level: {
+      titanium: string;
+      diamond: string;
+      gold: string;
+      silver: string;
+      bronze: string;
+      'co-organizer': string;
+      'special-thanks': string;
+    };
+  };
+
   footer: {
     websites: string;
     social: string;
