@@ -1,12 +1,17 @@
 <template>
   <div id="sitcon-map">
     <div :style="{ width: width, height: height }"></div>
-    <div class="sitetext">中央研究院人文社會科學館</div>
+    <div class="sitetext">
+      {{languagePack.venue.name}}<br/>
+      {{languagePack.venue.address}}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
+import { Language } from '../../languages'
 
 import Map from 'ol/Map'
 import Feature from 'ol/Feature'
@@ -25,7 +30,8 @@ import { Coordinate } from 'ol/coordinate'
 import 'ol/ol.css'
 
 @Component
-export default class SitconMap extends Vue {
+export default class VenueMap extends Vue {
+  @Getter('languagePack', { namespace: 'app' }) private languagePack!: Language;
   @Prop({
     required: false,
     default: '320px'
@@ -51,7 +57,7 @@ export default class SitconMap extends Vue {
     })
     const iconStyle = new Style({
       image: new Icon({
-        scale: 0.5,
+        scale: 3,
         anchor: [0.5, 1],
         anchorXUnits: IconAnchorUnits.FRACTION,
         anchorYUnits: IconAnchorUnits.FRACTION,
@@ -66,7 +72,8 @@ export default class SitconMap extends Vue {
   }
 
   private makeMap () {
-    const iconMain = this.mapMarkerLayer('main', '/2020/img/sitcon-logo.png', [121.6116, 25.0410])
+    const position = [121.540551, 25.01374]
+    const iconMain = this.mapMarkerLayer('main', '/2020/img/map-marker.svg', position)
     const osmMap = new Map({
       target: this.$el.firstChild as HTMLElement,
       interactions: Interaction.defaults({ mouseWheelZoom: false }),
@@ -78,8 +85,8 @@ export default class SitconMap extends Vue {
         iconMain
       ],
       view: new View({
-        center: Proj.fromLonLat([121.6116, 25.0410]),
-        zoom: 15
+        center: Proj.fromLonLat(position),
+        zoom: 16
       })
     })
     return osmMap
@@ -90,8 +97,9 @@ export default class SitconMap extends Vue {
 <style lang="scss" scoped>
 #sitcon-map {
   position: relative;
-  width: calc(100% - 140px * 2);
-  padding: 64px 140px;
+  // width: calc(100% - 140px * 2);
+  width: 100%;
+  // padding: 64px 140px;
 
   @media screen and (max-width: 900px) {
     width: 100%;

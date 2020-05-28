@@ -42,6 +42,15 @@ const language: Language = {
       'special-thanks': 'Special Thanks'
     }
   },
+  venue: {
+    title: 'Venue',
+    name: 'NTUST',
+    address: 'No. 43 Keelung Road, Section 4, Taipei 106, Taiwan',
+    plans: {
+      'Taipei Metro': 'Take Songshan–Xindian line (Green Line) to Gongguan station (G07). Leave Gonguan station via Exit 2, and turn left. Follow Roosevelt Road and head to Keelung Road. Cross Keelung Road, turn left on Keelung Road, and walk for 4 mins. You will see National Taiwan University of Science and Technology Campus on the right hand side.',
+      'Taoyuan Airport': 'Taoyuan Metro:\n\nTake Commuter or Express train to Taipei Main Station (A1) from the Airport B1. And follow the "Taipei Metro" guide.\n\nTaiwan High Speed Rail:\n\nTake Taoyuan Metro to THSR Taoyuan Station (A18) via Commuter or Express train, then take THSR to Taipei Station, and follow the "Taipei Metro" guide.'
+    }
+  },
   footer: {
     websites: 'Websites',
     social: 'Social Media'

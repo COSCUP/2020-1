@@ -15,6 +15,4 @@
 
   @include footer(#12344c, $dark-4);
   @include agenda(#12344c, $dark-1, $coscup-green, $dark-3, $coscup-green);
-
-  @include venueDarkImg;
 }

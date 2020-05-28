@@ -1,64 +1,57 @@
 .venue {
   &.main-container {
-    padding-left: 200px;
-    padding-right: 200px;
-
-    @media screen and (max-width: 1280px) {
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-    @media screen and (max-width: 900px) {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
+    padding: 0 !important;
   }
 
-  &-flow {
-    position: relative;
-    width: 100%;
-    padding: 64px 140px;
-    box-sizing: border-box;
+  .plan-container {
+    padding: 2rem 0;
+    max-width: 80%;
+    column-count: 2;
 
-    @media screen and (max-width: 1600px) {
-      padding: 64px 0;
-    }
-  
-    @media screen and (max-width: 1200px) {
-      overflow-x: scroll;
-    }
+    .plan {
+      display: inline-block;
+      padding: 2rem;
+      margin: 1rem 0.5rem;
+      background-color: $white;
+      color: $black;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-    > img {
-      width: 100%;
-
-      @media screen and (max-width: 1200px) {
-        height: 320px;
-        width: auto;
+      h3 {
+        font-size: 1.5rem;
       }
-    }
-  }
 
-  .hint {
-    display: none;
-    margin: 1rem auto;
-    
-    p {
-      text-align: center;
-      font-size: 16px;
-      color: $dark-2;
+      * {
+        line-height: 2;
+      }
 
-      span {
-        margin: 0 1rem;
+      ul,
+      ol {
+        padding-inline-start: 1.5rem;
+
+        li {
+          line-height: 2;
+        }
+      }
+
+      ul {
+        list-style-type: disc;
+        ul {
+          list-style-type: circle;
+          ul {
+            list-style-type: square;
+          }
+        }
       }
     }
 
-    @media screen and (max-width: 1200px) {
-      display: block;
-    }
-  }
-}
+    @include mobile {
+      column-count: 1;
+      max-width: 100%;
 
-@mixin venueDarkImg {
-  .venue-flow > img {
-    filter: invert(85%);
+      .plan {
+        padding: 1.5rem;
+      }
+    }
   }
 }

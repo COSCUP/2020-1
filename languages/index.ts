@@ -47,6 +47,15 @@ export interface Language {
     };
   };
 
+  venue: {
+    title: string;
+    name: string;
+    address: string;
+    plans: {
+      [name: string]: string;
+    };
+  };
+
   footer: {
     websites: string;
     social: string;
