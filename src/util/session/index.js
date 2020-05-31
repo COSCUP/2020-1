@@ -84,12 +84,12 @@ function genResult (talks, rooms, speakers) {
       language: s.content_locale === 'zh-tw' ? '漢語' : 'English',
       zh: {
         title: s.title,
-        description: s.abstract + '\n\n' + s.description
+        description: s.abstract + '\n\n---\n\n' + s.description
       },
       en: {
         title: (s.answers.find(a => a.question.id === 465) || {}).answer || s.title,
         description: ((s.answers.find(a => a.question.id === 466) || {}).answer || s.abstract) +
-        '\n\n' + ((s.answers.find(a => a.question.id === 467) || {}).answer || s.description)
+        '\n\n---\n\n' + ((s.answers.find(a => a.question.id === 467) || {}).answer || s.description)
       },
       speakers: s.speakers.map(ss => ss.code),
       tags: s.answers.find(a => a.question.id === 413) !== undefined ? [s.answers.find(a => a.question.id === 413).options[0].answer.en] : []
