@@ -1,132 +1,115 @@
-/* eslint-disable @typescript-eslint/camelcase */
-const { extractSheets } = require('spreadsheet-to-json')
-const config = require('./config')
+const axios = require('axios')
+const token = process.env.PRETALX_TOKEN
 
-function nullCoalesce (value) {
-  return value == null ? '' : value
+const pretalxOptions = { headers: { Authorization: 'Token ' + token } }
+
+function genResult (talks, rooms, speakers) {
+  const resRooms = rooms.results.map(r => {
+    return {
+      id: r.name.en.split(' ')[0],
+      zh: {
+        name: r.name['zh-tw']
+      },
+      en: {
+        name: r.name.en
+      }
+    }
+  })
+
+  const resSpeakers = speakers.results.map(s => {
+    return {
+      id: s.code,
+      avatar: s.avatar || 'https://coscup.org/2020/img/speaker/avatar/default.png',
+      zh: {
+        name: s.name,
+        bio: s.biography || ''
+      },
+      en: {
+        name: (s.answers.find(a => a.question.id === 468) || {}).answer || s.name,
+        bio: (s.answers.find(a => a.question.id === 469) || {}).answer || s.biography || ''
+      }
+    }
+  })
+
+  const tracks = talks.results.map(s => s.track).filter((t, i, s) => i === s.findIndex(tt => tt['zh-tw'] === t['zh-tw'] && tt.en === t.en))
+  const resSessionTypes = tracks.map(t => {
+    return {
+      id: Math.random().toString(36).substring(2, 8),
+      zh: {
+        name: t['zh-tw'] || t.en
+      },
+      en: {
+        name: t.en || t['zh-tw']
+      }
+    }
+  })
+
+  const resTags = [
+    {
+      id: 'Beginer',
+      zh: {
+        name: '入門'
+      },
+      en: {
+        name: 'Beginner'
+      }
+    },
+    {
+      id: 'Skilled',
+      zh: {
+        name: '中階'
+      },
+      en: {
+        name: 'Skilled'
+      }
+    },
+    {
+      id: 'Advance',
+      zh: {
+        name: '進階'
+      },
+      en: {
+        name: 'Advance'
+      }
+    }
+  ]
+
+  const resSessions = talks.results.map(s => {
+    return {
+      id: s.code,
+      type: resSessionTypes.find(t => s.track['zh-tw'] === t.zh.name || s.track.en === t.en.name).id,
+      room: s.slot.room.en.split(' ')[0],
+      start: s.slot.start,
+      end: s.slot.end,
+      language: s.content_locale === 'zh-tw' ? '漢語' : 'English',
+      zh: {
+        title: s.title,
+        description: s.abstract + '\n\n' + s.description
+      },
+      en: {
+        title: (s.answers.find(a => a.question.id === 465) || {}).answer || s.title,
+        description: ((s.answers.find(a => a.question.id === 466) || {}).answer || s.abstract) +
+        '\n\n' + ((s.answers.find(a => a.question.id === 467) || {}).answer || s.description)
+      },
+      speakers: s.speakers.map(ss => ss.code),
+      tags: s.answers.find(a => a.question.id === 413) !== undefined ? [s.answers.find(a => a.question.id === 413).options[0].answer.en] : []
+    }
+  })
+
+  console.log(JSON.stringify({
+    sessions: resSessions,
+    speakers: resSpeakers,
+    session_types: resSessionTypes, // eslint-disable-line
+    rooms: resRooms,
+    tags: resTags
+  }))
 }
 
-extractSheets(
-  {
-    spreadsheetKey: config.spreadsheetKey
-  },
-  function (err, data) {
-    if (err) { console.log(err) }
-    data.Session.shift()
-    data.Speaker.shift()
-
-    data.Session.forEach((session) => {
-      // title & description
-      session.zh = {}
-      session.zh.title = nullCoalesce(session.title_zh)
-      session.zh.description = nullCoalesce(session.description_zh)
-
-      session.en = {}
-      session.en.title = nullCoalesce(session.title_en)
-      session.en.description = nullCoalesce(session.description_en)
-
-      delete session.title_zh
-      delete session.description_zh
-      delete session.title_en
-      delete session.description_en
-
-      // speaker
-      session.speakers = []
-
-      for (let i = 1; i <= 5; i++) {
-        if (session['speaker' + i + 'id'] != null) {
-          session.speakers.push(session['speaker' + i + 'id'])
-        }
-
-        delete session['speaker' + i]
-        delete session['speaker' + i + 'id']
-      }
-
-      // broadcast
-      if (session.broadcast != null) {
-        session.broadcast = session.broadcast.split(',')
-      }
-
-      // tag
-      session.tags = []
-
-      for (let i = 1; i <= 3; i++) {
-        if (session['tag' + i] != null) {
-          session.tags.push(session['tag' + i])
-        }
-
-        delete session['tag' + i]
-      }
-    })
-
-    data.Speaker.forEach((speaker) => {
-      speaker.avatar = speaker.avatar === undefined ? config.default_avatar : config.avatar_base_url + speaker.avatar
-
-      speaker.zh = {}
-      speaker.zh.name = nullCoalesce(speaker.name_zh)
-      speaker.zh.bio = nullCoalesce(speaker.bio_zh)
-
-      speaker.en = {}
-      speaker.en.name = nullCoalesce(speaker.name_en)
-      speaker.en.bio = nullCoalesce(speaker.bio_en)
-
-      delete speaker.name_zh
-      delete speaker.bio_zh
-      delete speaker.name_en
-      delete speaker.bio_en
-    })
-
-    data.SessionType.forEach((type) => {
-      type.zh = {}
-      type.zh.name = nullCoalesce(type.name_zh)
-      type.zh.description = nullCoalesce(type.description_zh)
-
-      type.en = {}
-      type.en.name = nullCoalesce(type.name_en)
-      type.en.description = nullCoalesce(type.description_en)
-
-      delete type.name_zh
-      delete type.name_en
-      delete type.description_zh
-      delete type.description_en
-    })
-
-    data.Room.forEach((room) => {
-      room.zh = {}
-      room.zh.name = nullCoalesce(room.name_zh)
-      room.zh.description = nullCoalesce(room.description_zh)
-
-      room.en = {}
-      room.en.name = nullCoalesce(room.name_en)
-      room.en.description = nullCoalesce(room.description_en)
-
-      delete room.name_zh
-      delete room.name_en
-      delete room.description_zh
-      delete room.description_en
-    })
-
-    data.Tag.forEach((tag) => {
-      tag.zh = {}
-      tag.zh.name = nullCoalesce(tag.name_zh)
-      tag.zh.description = nullCoalesce(tag.description_zh)
-
-      tag.en = {}
-      tag.en.name = nullCoalesce(tag.name_en)
-      tag.en.description = nullCoalesce(tag.description_en)
-
-      delete tag.name_zh
-      delete tag.name_en
-      delete tag.description_zh
-      delete tag.description_en
-    })
-
-    console.log(JSON.stringify({
-      sessions: data.Session,
-      speakers: data.Speaker,
-      session_types: data.SessionType,
-      rooms: data.Room,
-      tags: data.Tag
-    }))
-  }
-)
+Promise.all([
+  axios.get('https://pretalx.com/api/events/coscup2020/talks/?limit=1000', pretalxOptions),
+  axios.get('https://pretalx.com/api/events/coscup2020/rooms/?limit=1000', pretalxOptions),
+  axios.get('https://pretalx.com/api/events/coscup2020/speakers/?limit=1000', pretalxOptions)
+])
+  .then((results) => {
+    genResult(results[0].data, results[1].data, results[2].data)
+  })
