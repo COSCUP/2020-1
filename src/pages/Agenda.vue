@@ -11,10 +11,13 @@
         {{ `Day ${index + 1} (${day})` }}
       </div>
     </nav>
-    <div class="schedule" :style="{
-      '--length': rooms.length,
-      '--cell-width': isMobile ? '100%' : '200px'
-    }">
+    <div
+      class="schedule"
+      :style="{
+        '--length': rooms.length,
+        '--cell-width': isMobile ? '100%' : '200px'
+      }"
+    >
       <div id="rooms" class="rooms-container" @scroll="onScroll">
         <ul class="rooms">
           <li class="room" v-for="room in rooms" :key="`room-${room.id}`">
@@ -35,13 +38,14 @@
             :key="`time-cell-${formatTimeString(time)}`"
             :style="getTimeCellStyle(time)"
           >
-            <span>{{ formatTimeString(time, '：') }}</span>
+            <span>{{ formatTimeString(time, "：") }}</span>
           </div>
           <div
-            class="schedule-cell"
             v-for="session in sessions"
             :key="session.id"
             :style="getSessionCellStyle(session)"
+            class="schedule-cell"
+            @click="onClickSession(session)"
           >
             <section class="schedule-cell-content">
               <p v-show="!isMobile" class="period">
@@ -52,11 +56,9 @@
                   )} ~ ${formatTimeString(session.end, "：")}`
                 }}
               </p>
-              <p
-                class="track"
-                v-if="session.tags.length && session.tags[1]"
-                >{{ `${session.tags[1][language].name}` }}</p
-              >
+              <p class="track" v-if="session.tags.length && session.tags[1]">
+                {{ `${session.tags[1][language].name}` }}
+              </p>
               <header>
                 <h4 class="title">{{ session[language].title }}</h4>
                 <ul class="speakers" v-if="session.speakers">
@@ -68,10 +70,12 @@
                   </li>
                 </ul>
               </header>
-              <p v-show="isMobile" class="room">{{ session.room[language].name }}</p>
-              <p v-show="isMobile" class="length">{{
-                `${getSessionPeriod(session)} mins`
-              }}</p>
+              <p v-show="isMobile" class="room">
+                {{ session.room[language].name }}
+              </p>
+              <p v-show="isMobile" class="length">
+                {{ `${getSessionPeriod(session)} mins` }}
+              </p>
 
               <p
                 class="language"
@@ -196,7 +200,7 @@ export default class Agenda extends Vue {
   @Watch('isPopup')
   public async onChangePopup (isPopup: boolean) {
     if (isPopup && this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'AgendaView', params: { sid: (this.popUpSession as any).id } })
+      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: (this.popUpSession as any).id } })
     } else if (this.$route.name!.includes('Agenda')) {
       this.$router.push({ name: 'Agenda' })
     }
@@ -205,7 +209,7 @@ export default class Agenda extends Vue {
   @Watch('$route')
   public onChangeRoute (route: Route) {
     if (route.name === 'AgendaView') {
-      // this.processPopup()
+      this.processPopup()
       this.togglePopup(true)
     } else if (route.name === 'Agenda') {
       this.popUp = false
@@ -222,7 +226,7 @@ export default class Agenda extends Vue {
 
   public mounted () {
     this.currentDay = this.days[0]
-    // this.handleSessionPopup()
+    this.handleSessionPopup()
   }
 
   private formatDateString (date: Date, joinChar = '') {
@@ -280,28 +284,27 @@ export default class Agenda extends Vue {
     this.syncScrollLeft = element.scrollLeft
   }
 
-  // private processPopup (): void {
-  //   const targetSessionId = this.$route.params.sid as string
-  //   const targetSession = sessionData.sessions.filter((session) => session.id === targetSessionId)[0]
-  //   const result = this.deepCopy(targetSession)
-  //   result.speakers = result.speakers.map((id: string) => this.deepCopy(this.getSpeaker(id)))
-  //   this.togglePopupContent(sessionDOMString(result))
-  //   this.togglePopup(true)
-  // }
+  private onClickSession (session: Session) {
+    this.popUpSession = session
+    this.togglePopup(true)
+  }
 
-  // private getSpeaker (id: string): any {
-  //   return this.sessionData.speakers.find((speaker) => (speaker.id === id))
-  // }
+  private processPopup (): void {
+    const targetSessionId = this.$route.params.sid as string
+    const targetSession = this._sessions.filter((session) => session.id === targetSessionId)[0]
+    this.togglePopupContent(sessionDOMString(targetSession))
+    this.togglePopup(true)
+  }
 
-  // private handleSessionPopup (): void {
-  //   if (this.$route.params.sid) {
-  //     this.popUpSession = this.sessionData.sessions.filter((session) => (session.id === this.$route.params.sid))[0]
-  //     this.processPopup()
-  //   }
-  // }
+  private handleSessionPopup (): void {
+    if (this.$route.params.sid) {
+      this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0]
+      this.processPopup()
+    }
+  }
 
-  // private deepCopy (obj: any): any {
-  //   return JSON.parse(JSON.stringify(obj))
-  // }
+  private deepCopy (obj: any): any {
+    return JSON.parse(JSON.stringify(obj))
+  }
 }
 </script>
