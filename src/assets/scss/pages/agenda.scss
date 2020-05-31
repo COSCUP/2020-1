@@ -71,7 +71,7 @@
           background-color: rgba($backgroundColor, 0.7);
           backdrop-filter: blur(20px);
           z-index: 9;
-          
+
           &::-webkit-scrollbar {
             display: none;
           }
@@ -132,7 +132,7 @@
 
           @include mobile {
             display: block;
-            grid-column: 1/span 2;
+            grid-column: 1 / span 2;
           }
         }
       }
@@ -145,10 +145,81 @@
           height: calc(100% - 2rem);
           padding: 1rem;
           border-radius: 5px;
+          color: $fontColorLevel2;
+          * {
+            line-height: 1.25;
+          }
+
+          > *:not(:first-child) {
+            margin-top: 0.5rem;
+          }
+
+          .track {
+            color: $fontColor;
+          }
+
+          .title {
+            font-size: 1.15rem;
+            font-weight: 500;
+          }
+
+          .speakers {
+            color: $fontColor;
+            font-size: 0.8rem;
+            font-weight: 900;
+
+            li {
+              display: inline;
+              font-weight: 600;
+
+              &:first-child::before {
+                margin-top: 0.75rem;
+                content: "by ";
+                display: inline-block;
+                font-weight: 400;
+              }
+
+              &:not(:first-child)::before {
+                content: "、";
+                font-weight: 400;
+              }
+            }
+
+          }
+
+          .difficulty__tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 25px;
+            font-size: 0.5rem;
+            color: $white;
+
+            &.beginner {
+              background-color: lighten($coscup-green, 20);
+            }
+
+            &.skilled {
+              background-color: lighten($coscup-green, 5);
+            }
+
+            &.advanced {
+              background-color: darken($coscup-green, 10);
+            }
+          }
+          
+          .room, .length, .language, .difficulty {
+            @include mobile {
+              display: inline-block;
+
+              &:not(.room)::before {
+                content: "－";
+              }
+            }
+          }
         }
 
         @include mobile {
-          grid-column: 1/span 2;
+          grid-column: 1 / span 2;
         }
       }
     }

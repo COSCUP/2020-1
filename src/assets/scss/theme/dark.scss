@@ -14,5 +14,5 @@
   @include navbarDarkIcon;
 
   @include footer(#12344c, $dark-4);
-  @include agenda(#12344c, $dark-1, $coscup-green, $dark-3, $coscup-green);
+  @include agenda(#12344c, $dark-1, $coscup-green-lighten, $dark-4, $dark-1);
 }

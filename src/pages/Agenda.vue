@@ -44,22 +44,22 @@
             :style="getSessionCellStyle(session)"
           >
             <section class="schedule-cell-content">
-              <span class="period">
+              <p v-show="!isMobile" class="period">
                 {{
                   `${formatTimeString(
                     session.start,
                     "："
                   )} ~ ${formatTimeString(session.end, "：")}`
                 }}
-              </span>
-              <span
+              </p>
+              <p
                 class="track"
                 v-if="session.tags.length && session.tags[1]"
-                >{{ `${session.tags[1][language].name}` }}</span
+                >{{ `${session.tags[1][language].name}` }}</p
               >
               <header>
-                <h4>{{ session[language].title }}</h4>
-                <ul class="speakers">
+                <h4 class="title">{{ session[language].title }}</h4>
+                <ul class="speakers" v-if="session.speakers">
                   <li
                     v-for="(speaker, index) in session.speakers"
                     :key="`${session.id}-speaker-${index}`"
@@ -68,13 +68,14 @@
                   </li>
                 </ul>
               </header>
-              <span class="room">{{ session.room[language].name }}</span>
-              <span class="length">{{
+              <p v-show="isMobile" class="room">{{ session.room[language].name }}</p>
+              <p v-show="isMobile" class="length">{{
                 `${getSessionPeriod(session)} mins`
-              }}</span>
+              }}</p>
 
-              <span
+              <p
                 class="language"
+                v-show="isMobile"
                 v-if="
                   session.tags.length &&
                     session.tags[0] &&
@@ -83,18 +84,20 @@
                 "
               >
                 {{ `${session.tags[0][language].name.trim()}` }}
-              </span>
+              </p>
 
-              <span
-                :class="`difficulity ${session.tags[2].id}`"
+              <div
+                class="difficulty"
                 v-if="
                   session.tags.length &&
                     session.tags[2] &&
                     session.tags[2][language].name.trim().length
                 "
               >
-                {{ `${session.tags[2][language].name}` }}
-              </span>
+                <p :class="`difficulty__tag ${session.tags[2].id}`">
+                  {{ `${session.tags[2][language].name}` }}
+                </p>
+              </div>
             </section>
           </div>
         </div>
