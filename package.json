@@ -7,7 +7,7 @@
     "build": "npm run generate:session && npm run generate:mail && npm run generate:sponsor && vue-cli-service build && mv ./dist/2020/* ./dist && rm -rf ./dist/2020 && rm ./dist/index.html && cp -R ./dist/zh-TW/* ./dist/",
     "lint": "vue-cli-service lint",
     "generate:mail": "heml build template/mail/SITCON-2020.heml --output public/mail/SITCON-2020.html && cp -R template/mail/assets public/mail/",
-    "generate:session": "node src/util/session/index.js > public/json/session.json",
+    "generate:session": "[ -n \"$PRETALX_TOKEN\" ] && node src/util/session/index.js > public/json/session.json || curl -o public/json/session.json https://coscup.org/2020/json/session.json",
     "generate:sponsor": "node src/util/sponsor/index.js > public/json/sponsor.json",
     "serve:mail": "heml develop template/mail/SITCON-2020.heml"
   },
