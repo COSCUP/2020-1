@@ -22,7 +22,7 @@
         <ul class="rooms">
           <li class="room" v-for="room in rooms" :key="`room-${room.id}`">
             <div>Room</div>
-            <div class="font-bold">{{ room[language].name }}</div>
+            <div>{{ room[language].name.split(' / ')[0] }}</div>
           </li>
         </ul>
       </div>
@@ -56,8 +56,8 @@
                   )} ~ ${formatTimeString(session.end, "：")}`
                 }}
               </p>
-              <p class="track" v-if="session.tags.length && session.tags[1]">
-                {{ `${session.tags[1][language].name}` }}
+              <p class="track" v-if="session.type">
+                {{ `${session.type[language].name}` }}
               </p>
               <header>
                 <h4 class="title">{{ session[language].title }}</h4>

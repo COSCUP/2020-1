@@ -3,7 +3,7 @@ import { ActionTree, GetterTree, MutationTree, Module } from 'vuex'
 import { AgendaState, Session, SessionData, SpeakerData, TagData, SessionTypeData, RoomData } from '../types/agenda'
 import { RootState } from '../types/root'
 // import * as mutationTypes from '../mutation-types'
-import agendaData from '@/../public/json/test-session.json'
+import agendaData from '@/../public/json/session.json'
 
 const { sessions, rooms } = (() => {
   const sessionsData: SessionData[] = agendaData.sessions

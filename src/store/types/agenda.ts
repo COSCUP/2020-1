@@ -28,12 +28,6 @@ export interface SessionData {
   room: string;
   start: string;
   end: string;
-  broadcast: string | null;
-  qa: string | null;
-  slide: string | null;
-  live: string | null;
-  record: string | null;
-  pad: string | null;
   en: { title: string; description: string };
   zh: { title: string; description: string };
   speakers: string[];
@@ -46,12 +40,6 @@ export interface Session {
   room: RoomData;
   start: Date;
   end: Date;
-  broadcast: string | null;
-  qa: string | null;
-  slide: string | null;
-  live: string | null;
-  record: string | null;
-  pad: string | null;
   en: { title: string; description: string };
   zh: { title: string; description: string };
   speakers: SpeakerData[];
