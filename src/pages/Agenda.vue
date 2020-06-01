@@ -236,7 +236,6 @@ export default class Agenda extends Vue {
   public mounted () {
     this.currentDay = this.days[0]
     this.handleSessionPopup()
-    // console.log(this.device)
   }
 
   private formatDateString (date: Date, joinChar = '') {
