@@ -18,7 +18,7 @@
         '--cell-width': isMobile ? '100%' : '200px'
       }"
     >
-      <div id="rooms" class="rooms-container" @scroll="onScroll">
+      <div id="rooms" class="rooms-container">
         <ul class="rooms">
           <li class="room" v-for="room in rooms" :key="`room-${room.id}`">
             <div>Room</div>
@@ -29,7 +29,6 @@
       <div
         id="schedule-body"
         class="schedule-body-container"
-        @scroll="onScroll"
       >
         <div class="schedule-body" :style="scheduleStyle">
           <div
@@ -47,62 +46,64 @@
             class="schedule-cell"
             @click="onClickSession(session)"
           >
-            <section class="schedule-cell-content">
-              <p v-show="!isMobile" class="period">
-                {{
-                  `${formatTimeString(
-                    session.start,
-                    "："
-                  )} ~ ${formatTimeString(session.end, "：")}`
-                }}
-              </p>
-              <p class="track" v-if="session.type">
-                {{ `${session.type[language].name}` }}
-              </p>
-              <header>
-                <h4 class="title">{{ session[language].title }}</h4>
-                <ul class="speakers" v-if="session.speakers">
-                  <li
-                    v-for="(speaker, index) in session.speakers"
-                    :key="`${session.id}-speaker-${index}`"
-                  >
-                    {{ speaker[language].name }}
-                  </li>
-                </ul>
-              </header>
-              <p v-show="isMobile" class="room">
-                {{ session.room[language].name }}
-              </p>
-              <p v-show="isMobile" class="length">
-                {{ `${getSessionPeriod(session)} mins` }}
-              </p>
-
-              <p
-                class="language"
-                v-show="isMobile"
-                v-if="
-                  session.tags.length &&
-                    session.tags[0] &&
-                    session.tags[0][language].name &&
-                    session.tags[0][language].name.trim().length
-                "
-              >
-                {{ `${session.tags[0][language].name.trim()}` }}
-              </p>
-
-              <div
-                class="difficulty"
-                v-if="
-                  session.tags.length &&
-                    session.tags[2] &&
-                    session.tags[2][language].name.trim().length
-                "
-              >
-                <p :class="`difficulty__tag ${session.tags[2].id}`">
-                  {{ `${session.tags[2][language].name}` }}
+            <div class="schedule-cell-content-container">
+              <section class="schedule-cell-content">
+                <p v-show="!isMobile" class="period">
+                  {{
+                    `${formatTimeString(
+                      session.start,
+                      "："
+                    )} ~ ${formatTimeString(session.end, "：")}`
+                  }}
                 </p>
-              </div>
-            </section>
+                <p class="track" v-if="session.type">
+                  {{ `${session.type[language].name}` }}
+                </p>
+                <header>
+                  <h4 class="title">{{ session[language].title }}</h4>
+                  <ul class="speakers" v-if="session.speakers">
+                    <li
+                      v-for="(speaker, index) in session.speakers"
+                      :key="`${session.id}-speaker-${index}`"
+                    >
+                      {{ speaker[language].name }}
+                    </li>
+                  </ul>
+                </header>
+                <p v-show="isMobile" class="room">
+                  {{ session.room[language].name }}
+                </p>
+                <p v-show="isMobile" class="length">
+                  {{ `${getSessionPeriod(session)} mins` }}
+                </p>
+
+                <p
+                  class="language"
+                  v-show="isMobile"
+                  v-if="
+                    session.tags.length &&
+                      session.tags[0] &&
+                      session.tags[0][language].name &&
+                      session.tags[0][language].name.trim().length
+                  "
+                >
+                  {{ `${session.tags[0][language].name.trim()}` }}
+                </p>
+
+                <div
+                  class="difficulty"
+                  v-if="
+                    session.tags.length &&
+                      session.tags[2] &&
+                      session.tags[2][language].name.trim().length
+                  "
+                >
+                  <p :class="`difficulty__tag ${session.tags[2].id}`">
+                    {{ `${session.tags[2][language].name}` }}
+                  </p>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
       </div>
@@ -117,7 +118,6 @@ import { Route } from 'vue-router'
 import { Component, Watch, Vue } from 'vue-property-decorator'
 import { Action, Getter } from 'vuex-class'
 
-// import sessionData from '@/../public/json/session.json'
 import sessionDOMString from '@/../template/session.mod'
 
 import { DeviceType } from '@/store/types/app'
@@ -138,7 +138,6 @@ export default class Agenda extends Vue {
   private popUp = false;
   private popUpSession = {};
   private currentDay = ''
-  private syncScrollLeft = 0
 
   private get language () {
     if (this._language === 'zh-TW') {
@@ -154,6 +153,7 @@ export default class Agenda extends Vue {
 
   private get days () {
     return Object.keys(groupBy(this._sessions, (session) => this.formatDateString(session.start)))
+      .sort((a, b) => parseInt(a) - parseInt(b))
   }
 
   private get startTimes () {
@@ -218,12 +218,6 @@ export default class Agenda extends Vue {
     }
   }
 
-  @Watch('syncScrollLeft')
-  private onSyncScrollLeftChanged (scrollLeft: number) {
-    document.getElementById('rooms')!.scrollLeft = scrollLeft
-    document.getElementById('schedule-body')!.scrollLeft = scrollLeft
-  }
-
   public mounted () {
     this.currentDay = this.days[0]
     this.handleSessionPopup()
@@ -277,11 +271,6 @@ export default class Agenda extends Vue {
       'grid-row-start': `t${this.formatTimeString(session.start)}`,
       'grid-row-end': `span t${this.formatTimeString(session.end)}`
     }
-  }
-
-  private onScroll (event: Event) {
-    const element = event.target! as HTMLElement
-    this.syncScrollLeft = element.scrollLeft
   }
 
   private onClickSession (session: Session) {

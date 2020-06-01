@@ -76,7 +76,6 @@ html[lang="en"] {
         padding: 1rem 2rem;
         transform: translateY(-50%);
         background-color: rgba($dark-1, 0.95);
-        box-sizing: border-box;
 
         .logo-container {
           display: flex;
@@ -97,7 +96,6 @@ html[lang="en"] {
             width: 100%;
 
             & > * {
-              box-sizing: border-box;
               display: inline-block;
               width: 50%;
               height: auto;

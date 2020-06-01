@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
     width: 100%;
   }
 
@@ -14,7 +13,6 @@
       display: flex;
       flex-direction: column;
       padding: 3em 200px;
-      box-sizing: border-box;
 
       @media screen and (max-width: 960px) {
         padding: 2rem;

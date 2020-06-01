@@ -66,10 +66,9 @@
         &-container {
           position: sticky;
           top: $navbar-height;
-          max-width: 100%;
-          overflow-x: auto;
           background-color: rgba($backgroundColor, 0.7);
           backdrop-filter: blur(20px);
+          width: $schedule-width;
           z-index: 9;
 
           &::-webkit-scrollbar {
@@ -82,7 +81,6 @@
         }
 
         display: flex;
-        width: $schedule-width;
 
         .room {
           display: inline-flex;
@@ -106,8 +104,6 @@
       &-body {
         &-container {
           margin-top: 1rem;
-          max-width: 100%;
-          overflow-x: auto;
         }
 
         width: $schedule-width;
@@ -116,7 +112,6 @@
         @include mobile {
           &-container {
             margin-top: 0;
-            overflow-x: visible;
           }
 
           width: 100%;
@@ -142,11 +137,20 @@
         padding: 2px;
 
         &-content {
-          background-color: $scheduleCellBackgroundColor;
-          height: calc(100% - 2rem);
-          padding: 1rem;
-          border-radius: 5px;
+          &-container {
+            background-color: $scheduleCellBackgroundColor;
+            height: 100%;
+            padding: 1rem;
+            border-radius: 5px;
+          }
+
+          position: sticky;
+          top: $navbar-height + 120px;
           color: $fontColorLevel2;
+          @include mobile {
+            position: static;
+          }
+
           * {
             line-height: 1.25;
           }

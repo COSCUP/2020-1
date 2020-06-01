@@ -1,5 +1,6 @@
 $black: #1c1c1c;
-$dark-1: lighten(#12344c, 5%);
+$dark: #12344c;
+$dark-1: lighten($dark, 5%);
 $dark-2: lighten($dark-1, 30%);
 $dark-3: lighten($dark-1, 60%);
 $dark-4: lighten($dark-1, 90%);

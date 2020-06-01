@@ -19,7 +19,7 @@
       @include mobile {
         position: relative;
         padding: 64px $m-i8-banner-inner-gap;
-        width: calc(100% - #{$m-i8-banner-inner-gap * 2});
+        width: 100%;
       }
     }
 

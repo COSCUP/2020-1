@@ -68,7 +68,7 @@
 
     &-content {
       &-box {
-        width: calc(100% - #{$main-padding} * 2);
+        width: 100%;
         display: block;
         padding: $main-padding;
         margin-bottom: 0;
@@ -87,7 +87,7 @@
         }
       }
 
-      width: calc(100% - #{$main-padding} * 2);
+      width: 100%;
       display: flex;
       flex-direction: column;
       padding: $main-padding;
@@ -100,7 +100,6 @@
       animation-fill-mode: forwards;
 
       @include mobile {
-        width: calc(100% - #{$m-i8-banner-gap} * 2);
         margin: 0;
         padding: $m-i8-banner-gap * 2 $m-i8-banner-gap;
         min-height: calc(100vh - 32px * 2);

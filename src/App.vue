@@ -15,8 +15,8 @@
         <router-view class="transition-group" />
       </keep-alive>
     </transition>
-    <SponsorFooter />
-    <Footer />
+    <SponsorFooter v-show="!['Agenda', 'AgendaView'].includes($route.name)" />
+    <Footer v-show="!['Agenda', 'AgendaView'].includes($route.name)" />
   </div>
 </template>
 
