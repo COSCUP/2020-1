@@ -1,5 +1,5 @@
 <template>
-  <div id="agenda" class="main-container">
+  <div v-if="agendaAvailable" id="agenda" class="main-container">
     <nav class="days">
       <div
         class="day"
@@ -109,6 +109,17 @@
       </div>
     </div>
   </div>
+  <div v-else  id="agenda" :style="{
+    height: '100vh',
+    display: 'flex',
+    'justify-content': 'center',
+    'align-items': 'center',
+    color: '#3b9838',
+    'font-size': '5rem',
+    'text-align': 'center'
+  }">
+    Coming Soon!
+  </div>
 </template>
 
 <script lang="ts">
@@ -189,6 +200,10 @@ export default class Agenda extends Vue {
     return this.device === DeviceType.MOBILE
   }
 
+  private get agendaAvailable (): boolean {
+    return process.env.NODE_ENV === 'development'
+  }
+
   @Watch('popUp')
   public async onChangeInnerPopup (popuped: boolean) {
     if (popuped) {
@@ -221,6 +236,7 @@ export default class Agenda extends Vue {
   public mounted () {
     this.currentDay = this.days[0]
     this.handleSessionPopup()
+    // console.log(this.device)
   }
 
   private formatDateString (date: Date, joinChar = '') {
