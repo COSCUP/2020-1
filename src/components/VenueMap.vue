@@ -1,5 +1,5 @@
 <template>
-  <div id="sitcon-map">
+  <div id="venue-map">
     <div :style="{ width: width, height: height }"></div>
     <div class="sitetext">
       {{languagePack.venue.name}}<br/>
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
 import { Language } from '../../languages'
 
@@ -45,6 +45,13 @@ export default class VenueMap extends Vue {
   private height!: string;
 
   private osmMap!: Map;
+
+  @Watch('height')
+  private async onHeightChanged () {
+    this.osmMap.dispose()
+    await this.$nextTick()
+    this.osmMap = this.makeMap()
+  }
 
   public mounted () {
     this.osmMap = this.makeMap()
@@ -93,33 +100,3 @@ export default class VenueMap extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-#sitcon-map {
-  position: relative;
-  // width: calc(100% - 140px * 2);
-  width: 100%;
-  // padding: 64px 140px;
-
-  @media screen and (max-width: 900px) {
-    width: 100%;
-    padding: 0;
-    padding-top: 4rem;
-  }
-
-  .sitetext {
-    text-align: center;
-    position: absolute;
-    bottom: 20%;
-    border: 1px solid black;
-    left: 50%;
-    transform: translate(-50%);
-    color: black;
-    padding: 12px;
-    font-size: 16px;
-    background-color: rgba(255, 255, 255, 0.7);
-    line-height: 1.4;
-    font-family: 'Noto Sans CTK TC', sans-serif;
-  }
-}
-</style>

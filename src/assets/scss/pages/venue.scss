@@ -1,56 +1,89 @@
-.venue {
-  &.main-container {
-    padding: 0 !important;
-  }
+@mixin venue(
+  $cardBackgroundColor,
+  $cardTitleFontColor,
+  $cardContentFontColor
+) {
+  .venue {
+    &.main-container {
+      padding: 0 !important;
+    }
 
-  .plan-container {
-    padding: 2rem 0;
-    max-width: 80%;
-    column-count: 2;
+    #venue-map {
+      position: relative;
+      width: 100%;
+    
+      .sitetext {
+        text-align: center;
+        position: absolute;
+        bottom: 20%;
+        border: 1px solid black;
+        left: 50%;
+        transform: translate(-50%);
+        color: black;
+        padding: 0.75rem;
+        font-size: 1rem;
+        background-color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+        font-family: 'Noto Sans CTK TC', sans-serif;
 
-    .plan {
-      display: inline-block;
-      padding: 2rem;
-      margin: 1rem 0.5rem;
-      background-color: $white;
-      color: $black;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-      h3 {
-        font-size: 1.5rem;
-      }
-
-      * {
-        line-height: 2;
-      }
-
-      ul,
-      ol {
-        padding-inline-start: 1.5rem;
-
-        li {
-          line-height: 2;
-        }
-      }
-
-      ul {
-        list-style-type: disc;
-        ul {
-          list-style-type: circle;
-          ul {
-            list-style-type: square;
-          }
+        @include mobile {
+          font-size: 0.75rem;
+          padding: 0.25rem;
         }
       }
     }
 
-    @include mobile {
-      column-count: 1;
-      max-width: 100%;
+    .plan-container {
+      padding: 2rem 0;
+      max-width: 80%;
+      column-count: 2;
 
       .plan {
-        padding: 1.5rem;
+        display: inline-block;
+        padding: 2rem;
+        margin: 1rem 0.5rem;
+        background-color: $cardBackgroundColor;
+        color: $cardContentFontColor;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        h3 {
+          color: $cardTitleFontColor;
+          font-size: 1.5rem;
+        }
+
+        * {
+          line-height: 2;
+        }
+
+        ul,
+        ol {
+          padding-inline-start: 1.5rem;
+
+          li {
+            line-height: 2;
+          }
+        }
+
+        ul {
+          list-style-type: disc;
+          ul {
+            list-style-type: circle;
+            ul {
+              list-style-type: square;
+            }
+          }
+        }
+      }
+
+      @include mobile {
+        column-count: 1;
+        max-width: 100%;
+        padding: 1rem 0;
+
+        .plan {
+          padding: 1.5rem;
+        }
       }
     }
   }
