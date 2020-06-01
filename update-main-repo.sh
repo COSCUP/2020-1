@@ -12,6 +12,7 @@ git submodule foreach --recursive git reset --hard origin/master
 git add .
 
 if [[ $(git commit -m "Update submodules" | grep 'nothing to commit') ]]; then
+  curl -d '{"request":"master"}' -H "Content-Type: application/json" -H "Travis-API-Version: 3" -H "User-Agent: API Explorer" -H "Authorization: token $TRAVIS_TOKEN" -X POST https://api.travis-ci.org/repo/COSCUP%2F2020/requests
   exit 0
 fi
 
