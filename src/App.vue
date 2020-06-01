@@ -173,7 +173,7 @@ export default class App extends Vue {
 
   private detectDeviceType (): void {
     const mobileMaxWidth = getComputedStyle(document.documentElement).getPropertyValue('--mobile-max-width')
-    const isMobile: boolean = window.matchMedia(`(max-width: ${mobileMaxWidth}`).matches
+    const isMobile: boolean = window.matchMedia(`(max-width: ${mobileMaxWidth})`).matches
 
     if (isMobile) {
       this.toggleDevice(DeviceType.MOBILE)
