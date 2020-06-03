@@ -1,98 +1,100 @@
-#sponsor {
-  &.main-container {
-    padding: 100px 0;
+@mixin sponsor ($backgroundColor, $fontColor) {
+  #sponsor {
+    &.main-container {
+      padding: 100px 0;
 
-    a {
-      color: $coscup-green;
-      transition: all 0.2s;
-
-      &:hover {
-        color: $coscup-green-lighten;
+      a {
+        color: $coscup-green;
         transition: all 0.2s;
-      }
-    }
-
-    .card {
-      padding: 2rem;
-      background-color: $white;
-      color: $black;
-      box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-    }
-
-    .outer-container {
-      width: 100%;
-      max-width: 760px;
-
-      &:not(:last-child) {
-        margin-bottom: 2rem;
-      }
-
-      & > h2 {
-        margin-bottom: 1.5rem;
-      }
-    }
-
-    .sponsor-container {
-      &.card {
-        box-shadow: none;
-        transition: all 0.3s;
 
         &:hover {
-          box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s;
+          color: $coscup-green-lighten;
+          transition: all 0.2s;
         }
       }
-
-      .img-container {
-        display: inline-block;
-        width: 200px;
-        vertical-align: top;
-        img {
-          display: inline-block;
-          width: 100%;
-          height: auto;
-        }
-      }
-
-      .content-container {
-        display: inline-block;
-        width: calc(100% - 200px);
-        padding-left: 1rem;
-        h2 {
-          display: inline-block;
-        }
-
-        .intro-partial {
-          &:not(:first-child) {
-            padding-top: 0.5rem;
-          }
-          p {
-            line-height: 1.5;
-          }
-        }
-      }
-    }
-
-    @media screen and (max-width: 760px) {
-      padding: 50px 1rem !important;
 
       .card {
-        padding: 1.25rem;
+        padding: 2rem;
+        background-color: $backgroundColor;
+        color: $fontColor;
+        box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
       }
 
-      .outer-container.card {
-        box-shadow: none;
+      .outer-container {
+        width: 100%;
+        max-width: 760px;
+
+        &:not(:last-child) {
+          margin-bottom: 2rem;
+        }
+
+        & > h2 {
+          margin-bottom: 1.5rem;
+        }
       }
 
       .sponsor-container {
+        &.card {
+          box-shadow: none;
+          transition: all 0.3s;
+
+          &:hover {
+            box-shadow: 0 4px 48px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+          }
+        }
+
         .img-container {
-          width: 100%;
+          display: inline-block;
+          width: 200px;
+          vertical-align: top;
+          img {
+            display: inline-block;
+            width: 100%;
+            height: auto;
+          }
         }
 
         .content-container {
-          width: 100%;
-          padding-left: 0;
+          display: inline-block;
+          width: calc(100% - 200px);
+          padding-left: 1rem;
+          h2 {
+            display: inline-block;
+          }
+
+          .intro-partial {
+            &:not(:first-child) {
+              padding-top: 0.5rem;
+            }
+            p {
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 760px) {
+        padding: 50px 1rem !important;
+
+        .card {
+          padding: 1.25rem;
+        }
+
+        .outer-container.card {
+          box-shadow: none;
+        }
+
+        .sponsor-container {
+          .img-container {
+            width: 100%;
+          }
+
+          .content-container {
+            width: 100%;
+            padding-left: 0;
+          }
         }
       }
     }

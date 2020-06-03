@@ -5,4 +5,5 @@
   @include footer($coscup-secondary, $dark-1);
   @include agenda($white, $dark-4, $coscup-green, $dark-1, lighten($coscup-green, 55));
   @include venue($white, $coscup-green, $black);
+  @include sponsor($white, $black);
 }
