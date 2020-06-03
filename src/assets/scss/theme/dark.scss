@@ -17,4 +17,5 @@
   @include agenda($dark, $dark-1, $coscup-green-lighten, $dark-4, $dark-1);
   @include venue($dark-1, $white, $white);
   @include sponsor($dark-1, $white);
+  @include staff($dark-1, $white, $dark-2);
 }
