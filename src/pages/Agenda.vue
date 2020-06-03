@@ -71,7 +71,7 @@
                   </ul>
                 </header>
                 <p v-show="isMobile" class="room">
-                  {{ session.room[language].name }}
+                  {{ session.room[language].name.split(' / ')[0] }}
                 </p>
                 <p v-show="isMobile" class="length">
                   {{ `${getSessionPeriod(session)} mins` }}
@@ -81,25 +81,21 @@
                   class="language"
                   v-show="isMobile"
                   v-if="
-                    session.tags.length &&
-                      session.tags[0] &&
-                      session.tags[0][language].name &&
-                      session.tags[0][language].name.trim().length
+                    session.language
                   "
                 >
-                  {{ `${session.tags[0][language].name.trim()}` }}
+                  {{ `${session.language.trim()}` }}
                 </p>
 
                 <div
                   class="difficulty"
                   v-if="
-                    session.tags.length &&
-                      session.tags[2] &&
-                      session.tags[2][language].name.trim().length
+                      session.tags[0] &&
+                      ['Beginner', 'Skilled', 'Advance'].includes(session.tags[0].id)
                   "
                 >
-                  <p :class="`difficulty__tag ${session.tags[2].id}`">
-                    {{ `${session.tags[2][language].name}` }}
+                  <p :class="`difficulty__tag ${session.tags[0].id.toLowerCase()}`">
+                    {{ `${session.tags[0][language].name}` }}
                   </p>
                 </div>
               </section>
@@ -208,7 +204,7 @@ export default class Agenda extends Vue {
   public async onChangeInnerPopup (popuped: boolean) {
     if (popuped) {
       await this.setPopupOffsetTop(document.documentElement.offsetTop)
-      this.$router.push({ name: 'AgendaView', params: { sid: (this.popUpSession as any).id } })
+      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: (this.popUpSession as any).id } })
     }
   }
 
@@ -265,7 +261,7 @@ export default class Agenda extends Vue {
       }
     }
     return {
-      'grid-template-areas': `"${this.rooms.map((room) => room.id).join(' ')}"`,
+      'grid-template-areas': `"${this.rooms.map((room) => `r-${room.id}`).join(' ')}"`,
       'grid-template-rows': this.times
         .map((time) => `[t${this.formatTimeString(time)}] minmax(1em, auto)`)
         .join(' '),
@@ -282,7 +278,7 @@ export default class Agenda extends Vue {
   private getSessionCellStyle (session: Session) {
     if (this.isMobile) return {}
     return {
-      'grid-column': `${session.room.id}`,
+      'grid-column': `r-${session.room.id}`,
       'grid-row-start': `t${this.formatTimeString(session.start)}`,
       'grid-row-end': `span t${this.formatTimeString(session.end)}`
     }
