@@ -46,7 +46,7 @@ function genResult (talks, rooms, speakers) {
 
   const resTags = [
     {
-      id: 'Beginer',
+      id: 'Beginner',
       zh: {
         name: '入門'
       },
