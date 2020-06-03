@@ -8,8 +8,8 @@
   #agenda {
     &.main-container {
       padding-top: 0;
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
       background-color: $backgroundColor;
     }
 
@@ -48,6 +48,7 @@
         padding: 0;
         justify-content: space-around;
         z-index: 999;
+        border-top: solid 1px $backgroundColorHover;
 
         .day {
           width: 100%;
@@ -61,6 +62,7 @@
     .schedule {
       $schedule-width: calc(var(--length) * var(--cell-width));
       width: 100%;
+      padding-bottom: 5rem;
 
       .rooms {
         &-container {
@@ -144,6 +146,7 @@
             border-radius: 5px;
           }
 
+          overflow: scroll hidden;
           position: sticky;
           top: $navbar-height + 120px;
           color: $fontColorLevel2;
@@ -207,17 +210,20 @@
               background-color: lighten($coscup-green, 5);
             }
 
-            &.advanced {
+            &.advance {
               background-color: darken($coscup-green, 10);
             }
           }
           
           .room, .length, .language, .difficulty {
             @include mobile {
+              vertical-align: middle;
               display: inline-block;
 
-              &:not(.room)::before {
-                content: "－";
+              &:not(.difficulty)::after {
+                content: "";
+                display: inline-block;
+                width: 0.75rem;
               }
             }
           }
