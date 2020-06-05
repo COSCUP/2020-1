@@ -145,6 +145,7 @@ export default class Agenda extends Vue {
   private popUp = false;
   private popUpSession = {};
   private currentDay = ''
+  private isForceOpen = false
 
   private get language () {
     if (this._language === 'zh-TW') {
@@ -197,7 +198,7 @@ export default class Agenda extends Vue {
   }
 
   private get agendaAvailable (): boolean {
-    return process.env.NODE_ENV === 'development'
+    return process.env.NODE_ENV === 'development' || this.isForceOpen
   }
 
   @Watch('popUp')
@@ -232,6 +233,11 @@ export default class Agenda extends Vue {
   public mounted () {
     this.currentDay = this.days[0]
     this.handleSessionPopup()
+
+    const win = (window as any)
+    win.forceOpen = () => {
+      this.isForceOpen = true
+    }
   }
 
   private formatDateString (date: Date, joinChar = '') {
