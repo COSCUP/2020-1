@@ -6,5 +6,5 @@
   @include agenda($white, $dark-4, $coscup-green, $dark-1, lighten($coscup-green, 55));
   @include venue($white, $coscup-green, $black);
   @include sponsor($white, $black);
-  @include staff(lighten($coscup-green, 55), $black, $coscup-green);
+  @include staff(lighten($coscup-green, 55), lighten($black, 25), $coscup-green);
 }

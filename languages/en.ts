@@ -51,6 +51,20 @@ const language: Language = {
       'Taoyuan Airport': 'Taoyuan Metro:\n\nTake Commuter or Express train to Taipei Main Station (A1) from the Airport B1. And follow the "Taipei Metro" guide.\n\nTaiwan High Speed Rail:\n\nTake Taoyuan Metro to THSR Taoyuan Station (A18) via Commuter or Express train, then take THSR to Taipei Station, and follow the "Taipei Metro" guide.'
     }
   },
+  staff: {
+    groups: {
+      secretary: 'Administrative Staff',
+      coordinator: 'General Coordinator',
+      program: 'Program Staff',
+      field: 'Field Staff',
+      streaming: 'Recordings Staff',
+      finance: 'Finance Staff',
+      marketing: 'Marketing Staff',
+      it: 'IT Staff',
+      photo: 'Photo Staff',
+      sponsor: 'Sponsor Staff'
+    }
+  },
   footer: {
     websites: 'Websites',
     social: 'Social Media'

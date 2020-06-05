@@ -56,6 +56,21 @@ export interface Language {
     };
   };
 
+  staff: {
+    groups: {
+      secretary: string;
+      coordinator: string;
+      program: string;
+      field: string;
+      streaming: string;
+      finance: string;
+      marketing: string;
+      it: string;
+      photo: string;
+      sponsor: string;
+    };
+  };
+
   footer: {
     websites: string;
     social: string;

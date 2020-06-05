@@ -1,37 +1,35 @@
 <template>
   <div id="staff" class="main-container staff-container">
-    <div class="staff-spotlight full-width-banner">
-      <p class="paragraph">
-        SITCON 年會每年皆是許多志工奉獻與時間精神所舉辦；若你對參與 SITCON
-        年會的籌備有興趣，歡迎填寫表單，我們將在明年活動開始籌備時通知您！
-      </p>
-      <p class="paragraph">
-        <a
-          href="https://forms.gle/1J9fxQP2ux55PJXC9"
-          class="tone-trans form-link font-bold"
-          target="_blank"
-          rel="noopener"
-          >表單連結</a
-        >
-      </p>
-    </div>
     <div
       v-for="group in staffs"
-      :key="`staff-group-${group.name}`"
-      class="staff-spotlight staff-group"
+      :key="`staff-group-${group.tid}`"
+      class="group-box"
     >
-      <h2 class="staff-group-name font-bold">{{ group.name }}</h2>
-      <p class="paragraph staff-group-intro">{{ group.description }}</p>
+      <h2 class="group-name">{{ languagePack.staff.groups[group.tid] }}</h2>
       <div class="staff-wrapper">
         <div
+          v-for="chief in group.chiefs"
+          :key="`${group.tid}-${chief.name}`"
+          class="staff chief"
+        >
+          <img
+            class="staff-avatar"
+            :src="
+              `https://www.gravatar.com/avatar/${chief.email_hash}?s=320&d=identicon&r=g`
+            "
+            :alt="`${chief.name}'s Avatar`"
+          />
+          <p>{{ chief.name }}</p>
+        </div>
+        <div
           v-for="member in group.members"
-          :key="`${group.name}-${member.name}`"
+          :key="`${group.tid}-${member.name}`"
           class="staff"
         >
           <img
             class="staff-avatar"
             :src="
-              `https://www.gravatar.com/avatar/${member.emailHash}?s=320&d=identicon&r=g`
+              `https://www.gravatar.com/avatar/${member.email_hash}?s=320&d=identicon&r=g`
             "
             :alt="`${member.name}'s Avatar`"
           />
@@ -44,11 +42,17 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
+import { Language } from '../../languages'
 
 import staffData from '@/../public/json/staff.json'
 
 @Component
 export default class Staff extends Vue {
-  private staffs = staffData;
+  @Getter('languagePack', { namespace: 'app' }) private languagePack!: Language;
+  private get staffs () {
+    const sequence = ['coordinator', 'secretary', 'program', 'field', 'finance', 'it', 'marketing', 'photo', 'sponsor', 'streaming']
+    return staffData.sort((a, b) => sequence.indexOf(a.tid) - sequence.indexOf(b.tid))
+  }
 }
 </script>
