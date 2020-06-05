@@ -17,7 +17,7 @@ const content = `
 <script id="meta-content" type="application/json">
 {
   "title": "COSCUP 2020 籌備團隊公告",
-  "description": "年會活動延期至 8 月 8 日舉辦",
+  "description": "COSCUP 2020 籌備團隊公告",
   "url": "https://coscup.org/2020/?popUp=announcement",
   "id": "af7f1055-f3ab-4694-8f96-a0a0c47095a2"
 }
