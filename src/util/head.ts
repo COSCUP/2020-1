@@ -16,7 +16,8 @@ const defaultValue = {
   description: 'Conference for Open Source Coders, Users, and Promoters is a free annual conference providing a platform to connect FLOSS folks across Asia since 2006. It\'s a major force of free software movement advocacy in Taiwan.',
   url: 'https://coscup.org/2020',
   image: 'https://coscup.org/2020/img/og.png',
-  type: 'website'
+  type: 'website',
+  siteName: 'COSCUP 2020'
 }
 
 const head = {
@@ -27,7 +28,7 @@ const head = {
     headPayload['og:url'].setAttribute('content', defaultValue.url)
     headPayload['og:image'].setAttribute('content', defaultValue.image)
     headPayload['og:type'].setAttribute('content', defaultValue.type)
-    headPayload['og:site_name'].setAttribute('content', defaultValue.title)
+    headPayload['og:site_name'].setAttribute('content', defaultValue.siteName)
   },
   title (text: string) {
     headPayload.title.innerText = `${text} - ${defaultValue.title}`
@@ -43,6 +44,9 @@ const head = {
   },
   ogType (text: string) {
     headPayload['og:type'].setAttribute('content', text)
+  },
+  ogSiteName (text: string) {
+    headPayload['og:site_name'].setAttribute('content', text)
   },
   ogUrl (link: string) {
     headPayload['og:url'].setAttribute('content', link)
