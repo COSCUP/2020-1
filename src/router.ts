@@ -16,18 +16,12 @@ export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
-    meta: {
-      index: 0
-    }
+    component: Home
   },
   {
     path: '/agenda',
     name: 'Agenda',
-    component: Agenda,
-    meta: {
-      index: 1
-    }
+    component: Agenda
   },
   {
     path: '/agenda/:sid',
@@ -37,34 +31,22 @@ export const routes = [
   {
     path: '/map',
     name: 'Map',
-    component: Map,
-    meta: {
-      index: 2
-    }
+    component: Map
   },
   {
     path: '/venue',
     name: 'Venue',
-    component: Venue,
-    meta: {
-      index: 3
-    }
+    component: Venue
   },
   {
     path: '/sponsor',
     name: 'Sponsor',
-    component: Sponsor,
-    meta: {
-      index: 4
-    }
+    component: Sponsor
   },
   {
     path: '/staff',
     name: 'Staff',
-    component: Staff,
-    meta: {
-      index: 5
-    }
+    component: Staff
   }
 ]
 
