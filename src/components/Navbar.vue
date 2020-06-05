@@ -112,13 +112,13 @@ export default class Navbar extends Vue {
         name: 'Agenda'
       }
     },
-    {
-      name: 'map',
-      isExternal: false,
-      location: {
-        name: 'Map'
-      }
-    },
+    // {
+    //   name: 'map',
+    //   isExternal: false,
+    //   location: {
+    //     name: 'Map'
+    //   }
+    // },
     {
       name: 'venue',
       isExternal: false,
