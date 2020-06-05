@@ -292,7 +292,7 @@ export default class Agenda extends Vue {
   private processPopup (): void {
     const targetSessionId = this.$route.params.sid as string
     const targetSession = this._sessions.filter((session) => session.id === targetSessionId)[0]
-    this.togglePopupContent(sessionDOMString(targetSession))
+    this.togglePopupContent(sessionDOMString(targetSession, this.language as 'zh' | 'en'))
     this.togglePopup(true)
   }
 

@@ -19,22 +19,22 @@ export interface ISpeaker {
   };
 }
 
-const content = (data: any): string => `
+const content = (data: any, language: 'zh' | 'en'): string => data ? `
 <script id="meta-content" type="application/json">
 {
-  "title": "${data.zh.title}",
-  "description": "${data.zh.description.replace(/\n/gm, '')}",
-  "url": "https://sitcon.org/2020/agenda/${data.id}"
+  "title": "${data[language].title}",
+  "description": "${data[language].description.replace(/\n/gm, '')}",
+  "url": "https://coscup.org/2020/agenda/${data.id}"
 }
 </script>
-<h1 class="title font-black">${data.zh.title}</h1>
-<p class="paragraph">${contentParser(data.zh.description)}</p>
-${data.speakers.map((speaker: ISpeaker) => (speakerContent(speaker))).join('')}
-`
+<h1 class="title font-black">${data[language].title}</h1>
+<p class="paragraph">${contentParser(data[language].description)}</p>
+${data.speakers.map((speaker: ISpeaker) => (speakerContent(speaker, language))).join('')}
+` : ''
 
-const speakerContent = (speaker: ISpeaker): string => `
-<h1 class="title font-black">About ${speaker.zh.name}</h1>
-${speaker.zh.bio ? contentParser(`![Speaker ${speaker.zh.name}'s avatar](${speaker.avatar})` + speaker.zh.bio) : ''}
+const speakerContent = (speaker: ISpeaker, language: 'zh' | 'en'): string => `
+<h1 class="title font-black">About ${speaker[language].name}</h1>
+${speaker[language].bio ? contentParser(`![Speaker ${speaker[language].name}'s avatar](${speaker.avatar})` + speaker[language].bio) : ''}
 `
 
 const contentParser = (content: string): string => (
