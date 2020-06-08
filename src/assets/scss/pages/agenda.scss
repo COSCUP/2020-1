@@ -154,6 +154,10 @@
             position: static;
           }
 
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
           * {
             line-height: 1.25;
           }

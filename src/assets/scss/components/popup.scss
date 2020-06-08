@@ -92,6 +92,7 @@
       flex-direction: column;
       padding: $main-padding;
       margin-bottom: $main-padding;
+      overflow-wrap: break-word;
       position: relative;
       background-color: $white;
       box-shadow: 0 2px 26px rgba($black, 0.35);
@@ -128,6 +129,7 @@
       h2.subtitle,
       h2,
       ul,
+      ol,
       iframe {
         margin-bottom: 2rem;
         line-height: 1.4;
@@ -136,6 +138,23 @@
       ul {
         list-style: disc;
         margin-left: 16px;
+      }
+
+      ol {
+        list-style: decimal;
+        margin-left: 16px;
+      }
+
+      li {
+        line-height: 1.5;
+      }
+
+      blockquote {
+        padding: 2rem;
+        color: $coscup-green-darken;
+        p {
+          font-style: italic;
+        }
       }
 
       h1.title,
