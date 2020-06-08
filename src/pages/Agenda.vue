@@ -42,6 +42,7 @@
           <div
             v-for="session in sessions"
             :key="session.id"
+            :id="session.id"
             :style="getSessionCellStyle(session)"
             class="schedule-cell"
             @click="onClickSession(session)"
@@ -145,6 +146,7 @@ export default class Agenda extends Vue {
   private get sessions () {
     return this._sessions
       .filter((session) => this.formatDateString(session.start) === this.currentDay)
+      .sort((a, b) => +this.formatTimeString(a.start) - +this.formatTimeString(b.start))
   }
 
   private get days () {
