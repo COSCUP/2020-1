@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="info-container">
+    <!-- <div class="info-container">
       <div class="info">
         <span>8 / 1 ~ 8 / 2</span>
         <span>{{ languagePack.home.info.venue }}</span>
@@ -46,7 +46,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="spotlight-container">
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">
