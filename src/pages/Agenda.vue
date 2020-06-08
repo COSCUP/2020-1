@@ -135,6 +135,7 @@ export default class Agenda extends Vue {
   private popUp = false;
   private popUpSession = {};
   private currentDay = ''
+  private tempScrollPosition = { x: 0, y: 0 }
 
   private get language () {
     if (this._language === 'zh-TW') {
@@ -190,7 +191,7 @@ export default class Agenda extends Vue {
   @Watch('popUp')
   public async onChangeInnerPopup (popuped: boolean) {
     if (popuped) {
-      await this.setPopupOffsetTop(document.documentElement.offsetTop)
+      await this.setPopupOffsetTop(window.scrollY)
       this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: (this.popUpSession as any).id } })
     }
   }
@@ -200,7 +201,8 @@ export default class Agenda extends Vue {
     if (isPopup && this.$route.name!.includes('Agenda')) {
       this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: (this.popUpSession as any).id } })
     } else if (this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'Agenda' })
+      this.$router.push({ name: 'Agenda', params: { language: this._language } })
+      window.scroll(this.tempScrollPosition.x, this.tempScrollPosition.y)
     }
   }
 
@@ -273,6 +275,8 @@ export default class Agenda extends Vue {
 
   private onClickSession (session: Session) {
     this.popUpSession = session
+
+    this.tempScrollPosition = { x: window.scrollX, y: window.scrollY }
     this.togglePopup(true)
   }
 

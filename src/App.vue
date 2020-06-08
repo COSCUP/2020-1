@@ -356,7 +356,7 @@ export default class App extends Vue {
     if (announcementId !== 'af7f1055-f3ab-469b-8f96-a0a0c47095a2') {
       setTimeout(() => {
         this.$router.push({
-          name: this.$route.name,
+          ...this.$route,
           query: { popUp: 'announcement' }
         })
       }, 1000)

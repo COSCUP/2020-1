@@ -58,9 +58,9 @@ export default class Popup extends Vue {
     this.togglePopupContent('')
 
     if (this.$route.query.popUp) {
-      this.$router.push({ name: this.$route.name, query: {} })
+      this.$router.push({ ...this.$route, query: {} })
     } else if (this.$route.name === 'AgendaView') {
-      this.$router.push({ name: 'Agenda' })
+      this.$router.push({ name: 'Agenda', params: { language: this.$route.params.language } })
     }
 
     this.togglePopup(false)
