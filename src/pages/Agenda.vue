@@ -130,7 +130,7 @@ export default class Agenda extends Vue {
   @Getter('popupOffsetTop', { namespace: 'app' }) private popupOffsetTop!: number;
   @Getter('language', { namespace: 'app' }) private _language!: string;
   @Getter('sessions', { namespace: 'agenda' }) private _sessions!: Session[]
-  @Getter('rooms', { namespace: 'agenda' }) private rooms!: RoomData[]
+  @Getter('rooms', { namespace: 'agenda' }) private _rooms!: RoomData[]
 
   private popUp = false;
   private popUpSession = {};
@@ -148,6 +148,15 @@ export default class Agenda extends Vue {
     return this._sessions
       .filter((session) => this.formatDateString(session.start) === this.currentDay)
       .sort((a, b) => +this.formatTimeString(a.start) - +this.formatTimeString(b.start))
+  }
+
+  private get rooms () {
+    const sequence = [
+      'AU', 'TR209', 'TR211', 'TR212', 'TR213', 'TR214',
+      'TR309', 'TR313',
+      'TR409-2', 'TR410', 'TR411', 'TR412-1', 'TR412-2', 'TR413-1', 'TR413-2', 'TR510'
+    ]
+    return this._rooms.sort((a, b) => sequence.indexOf(a.id) - sequence.indexOf(b.id))
   }
 
   private get days () {
