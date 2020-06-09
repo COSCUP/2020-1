@@ -2,7 +2,7 @@
   .spotlight {
     background-color: $black;
     color: $white;
-    padding: 64px;
+    padding: 64px 128px;
     clip-path: polygon(20px 20px, 100% 0%, 100% 100%, 0% 100%);
     margin: 42px 200px;
     min-height: 500px;
@@ -13,6 +13,7 @@
 
     @media screen and (max-width: 1280px) {
       margin: 42px 100px;
+      padding: 64px;
     }
 
     @media screen and (max-width: 675px) {
@@ -20,7 +21,7 @@
       min-height: auto;
       margin: 0;
       margin-bottom: 32px;
-      padding: 32px;
+      padding: 32px 64px;
       clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
 
@@ -73,8 +74,24 @@
       line-height: 2;
     }
 
-    p {
-      text-indent: 2em;
+    a {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: solid 1px $white;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: $coscup-green-lighten;
+        transform: scale(1.1);
+        border-color: $coscup-green-lighten;
+        transition: all 0.3s;
+      }
     }
 
     p,

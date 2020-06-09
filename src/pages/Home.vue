@@ -13,40 +13,34 @@
         </div>
       </div>
     </div>
-    <!-- <div class="info-container">
+    <div class="info-container">
       <div class="info">
         <span>8 / 1 ~ 8 / 2</span>
         <span>{{ languagePack.home.info.venue }}</span>
       </div>
       <div class="tabs-wrapper">
         <div class="tabs-container">
-          <a
+          <router-link
             class="tab"
-            @click="
-              $router.push({ name: 'Home', query: { popUp: 'announcement' } })
-            "
+            :to="{ ...$route, query: { popUp: 'announcement' } }"
           >
             <span>{{ languagePack.home.info.tabs.announcement }}</span>
-          </a>
-          <a
-            class="tab"
-            href="https://sitcon.kktix.cc/events/sitcon2020"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ languagePack.home.info.tabs.registration }}</span>
-          </a>
-          <a
-            class="tab"
-            href="https://bit.ly/donatesitcon2020"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ languagePack.home.info.tabs.donate }}</span>
-          </a>
+          </router-link>
         </div>
       </div>
-    </div> -->
+    </div>
+
+    <div class="spotlight-container">
+      <div class="spotlight sharp-back-taton">
+        <h1 class="title has-prefix-icon">
+          <img class="prefix-icon" src="/2020/img/logo.svg" />
+          <span class="inner font-black">{{
+            languagePack.home.notice.title
+          }}</span>
+        </h1>
+        <div v-html="markdownParser(languagePack.home.notice.content)"></div>
+      </div>
+    </div>
     <div class="spotlight-container">
       <div class="spotlight sharp-back-taton">
         <h1 class="title has-prefix-icon">

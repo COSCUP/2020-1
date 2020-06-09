@@ -21,9 +21,11 @@ export interface Language {
       venue: string;
       tabs: {
         announcement: string;
-        registration: string;
-        donate: string;
       };
+    };
+    notice: {
+      title: string;
+      content: string;
     };
     about: {
       title: string;

@@ -17,10 +17,12 @@ const language: Language = {
     info: {
       venue: 'NTUST',
       tabs: {
-        announcement: 'Announcement',
-        registration: 'Registration',
-        donate: 'Donate'
+        announcement: 'Announcement'
       }
+    },
+    notice: {
+      title: 'COSCUP 2020 Notice',
+      content: 'In this year COSCUP 2020, registrations are not required. Because of COVID-19, you have to fill out the form of Health Declaration Card before the day of 2020-08-01, and show it on the two days at COSCUP 2020.\n\nWe will open the form of Health Declaration Card for fill out on 2020-07-20(12 days before the conference)\n\nYou could subscribe the COSCUP news paper for reminding you to fill out the form or for informing more activities.\n\n[Subscribe Now！](https://forms.gle/efCXZ2JnNEFEne8e6)\n\nDon’t forget, **No Registration** + **Health Declaration Card** are the way to join COSCUP 2020.\n\nBy the way, the tickets of the COSCUP Welcome Party(7/31) will be sold on 2020-07-15, the more details will be announced on 2020-07-04.'
     },
     about: {
       title: 'About COSCUP',

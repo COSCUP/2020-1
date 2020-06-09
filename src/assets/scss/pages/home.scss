@@ -1,54 +1,3 @@
-html[lang="en"] {
-  #app.main #home.main-container .info-container {
-    max-width: 700px;
-    flex-direction: row;
-    .info {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      span {
-        font-size: 1.5rem;
-        font-weight: 500;
-
-        &:last-of-type {
-          font-size: 5rem;
-        }
-      }
-    }
-    .tabs-wrapper {
-      margin-top: 0;
-      .tabs-container {
-        flex-direction: column;
-        align-items: flex-end;
-      }
-    }
-
-    @include mobile {
-      justify-content: center;
-    }
-
-    @media screen and (max-width: 750px) {
-      flex-direction: column;
-      .info {
-        span {
-          font-size: 1.5rem;
-          font-weight: 500;
-  
-          &:last-of-type {
-            font-size: 5rem;
-          }
-        }
-      }
-      .tabs-wrapper {
-        margin-top: 3rem;
-        .tabs-container {
-          align-items: center;
-        }
-      }
-    }
-  }
-}
-
 #app.main {
   #home.main-container {
     overflow: hidden;
@@ -151,28 +100,36 @@ html[lang="en"] {
     }
 
     .info-container {
-      display: flex;
-      width: calc(100% - 200px * 2);
-      margin-top: 5rem;
-      margin-bottom: 2rem;
+      width: 100%;
+      padding: 3rem;
+      margin: 2rem 0;
 
       .info {
+        width: 100%;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         color: $coscup-green;
+        text-align: center;
 
-        span {
-          margin: 0 10px;
-          font-size: 2rem;
+        span:nth-of-type(1) {
+          margin: 10px 0;
+          font-size: 3rem;
+          font-weight: 500;
+        }
+
+        span:nth-of-type(2) {
+          font-size: 4rem;
+          font-weight: 700;
         }
       }
 
       .tabs-wrapper {
-        display: flex;
-        margin-left: auto;
-
+        margin: auto;
+        margin-top: 2rem;
+        max-width: 700px;
         .tabs-container {
           display: flex;
+          justify-content: flex-end;
 
           .tab {
             display: block;
@@ -187,20 +144,24 @@ html[lang="en"] {
               position: relative;
               padding: 0 0.25rem;
 
-              &::before, &::after  {
+              &::before,
+              &::after {
                 content: "";
                 position: absolute;
                 left: 50%;
                 bottom: -5px;
-                width: 90%;
-                height: 3px;
                 background-color: currentColor;
                 transform: translate(-50%, 0);
                 transition: all 0.1s;
               }
 
+              &::before {
+                width: 100%;
+              }
+
               &::after {
-                width: 0;
+                width: 50%;
+                height: 3px;
               }
             }
 
@@ -220,10 +181,18 @@ html[lang="en"] {
 
       @media screen and (max-width: 1280px) {
         flex-direction: column;
-        width: calc(100% - 100px * 2);
 
-        .info span {
-          font-size: 3rem;
+        .info {
+          span:nth-of-type(1) {
+            margin: 10px 0;
+            font-size: 3rem;
+            font-weight: 500;
+          }
+
+          span:nth-of-type(2) {
+            font-size: 4rem;
+            font-weight: 700;
+          }
         }
 
         .tabs-wrapper {
@@ -242,6 +211,7 @@ html[lang="en"] {
           margin-top: 2rem;
           margin-left: 0;
           .tabs-container {
+            justify-content: center;
             .tab {
               margin-left: 0;
               padding: 1rem 2rem;
@@ -252,20 +222,21 @@ html[lang="en"] {
       }
 
       @media screen and (max-width: 675px) {
-        width: calc(100% - 32px * 2);
         margin: 3rem 0;
       }
 
       @media screen and (max-width: 550px) {
         .info {
-          flex-direction: column;
-
-          span {
+          span:nth-of-type(1) {
             margin: 3px 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+          }
 
-            &:last-of-type {
-              font-size: 1.75rem;
-            }
+          span:nth-of-type(2) {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
           }
         }
 
@@ -273,6 +244,7 @@ html[lang="en"] {
           .tabs-container {
             .tab {
               font-size: 1.2rem;
+              font-weight: 500;
               padding: 0.5rem 0.5rem;
             }
           }
