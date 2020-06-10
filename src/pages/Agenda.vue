@@ -139,7 +139,7 @@ export default class Agenda extends Vue {
   private roomSequence = [
     'AU', 'TR209', 'TR211', 'TR212', 'TR213', 'TR214',
     'TR309', 'TR313',
-    'TR409-2', 'TR410', 'TR411', 'TR412-1', 'TR412-2', 'TR413-1', 'TR413-2', 'TR510'
+    'TR409-2', 'TR410', 'TR411', 'TR412-1', 'TR412-2', 'TR413-1', 'TR413-2', 'TR510', 'TR511'
   ]
 
   private get language () {
