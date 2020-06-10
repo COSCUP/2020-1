@@ -299,6 +299,15 @@ export default class Agenda extends Vue {
   private handleSessionPopup (): void {
     if (this.$route.params.sid) {
       this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0]
+      if (!this.popUpSession) {
+        this.$router.replace({
+          name: 'Redirect',
+          params: {
+            language: this.$route.params.language
+          }
+        })
+        return
+      }
       this.processPopup()
     }
   }

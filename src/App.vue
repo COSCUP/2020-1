@@ -34,6 +34,7 @@ import SponsorFooter from '@/components/SponsorFooter.vue'
 import { DeviceType, AppMode, ThemeType } from '@/store/types/app'
 
 import head from '@/util/head'
+import { languages, LanguageType } from '../languages'
 
 enum TransitionDirect {
   SLIDE_LEFT = 'slide-left',
@@ -148,6 +149,10 @@ export default class App extends Vue {
 
   private detectLanguage (): void {
     const language = this.$route.params.language
+    if (!Object.keys(languages).includes(language)) {
+      this.$router.replace(`/${LanguageType.default}`)
+      return
+    }
     this.setLanguage(language)
     document.documentElement.setAttribute('lang', this.language)
   }

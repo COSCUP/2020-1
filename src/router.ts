@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router, { RouteConfig } from 'vue-router'
 
 import Home from './pages/Home.vue'
 import Agenda from './pages/Agenda.vue'
@@ -12,7 +12,7 @@ import { LanguageType } from '@/../languages'
 
 Vue.use(Router)
 
-export const routes = [
+export const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'Home',
@@ -50,7 +50,7 @@ export const routes = [
   }
 ]
 
-const expandedRoutes = [
+const expandedRoutes: RouteConfig[] = [
   ...routes.map((route) => {
     return {
       path: route.path,
@@ -61,7 +61,12 @@ const expandedRoutes = [
     route = { ...route }
     route.path = `/:language${route.path}`
     return route
-  })
+  }),
+  {
+    path: '*',
+    name: 'Redirect',
+    redirect: 'Home'
+  }
 ]
 
 const router = new Router({

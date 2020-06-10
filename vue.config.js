@@ -27,6 +27,7 @@ const renderRoutes = (() => {
       routes.push(path.join(route, '/'))
     })
   })
+  routes.push('/404')
   return routes
 })()
 

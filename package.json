@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "npm run generate:session && npm run generate:sponsor && npm run generate:staff && vue-cli-service serve",
-    "build": "npm run generate:session && npm run generate:mail && npm run generate:sponsor && npm run generate:staff && vue-cli-service build && mv ./dist/2020/* ./dist && rm -rf ./dist/2020 && rm ./dist/index.html && cp -R ./dist/zh-TW/* ./dist/",
+    "build": "npm run generate:session && npm run generate:mail && npm run generate:sponsor && npm run generate:staff && vue-cli-service build && mv ./dist/2020/* ./dist && rm -rf ./dist/2020 && rm ./dist/index.html && cp -R ./dist/zh-TW/* ./dist/ && cp ./dist/index.html ./dist/404.html",
     "lint": "vue-cli-service lint",
     "generate:mail": "heml build template/mail/SITCON-2020.heml --output public/mail/SITCON-2020.html && cp -R template/mail/assets public/mail/",
     "generate:session": "[ -n \"$PRETALX_TOKEN\" ] && node src/util/session/index.js > public/json/session.json || curl -o public/json/session.json https://coscup.org/2020/json/session.json",
