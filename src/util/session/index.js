@@ -1,4 +1,5 @@
 const axios = require('axios')
+const md5 = require('js-md5')
 const token = process.env.PRETALX_TOKEN
 
 const pretalxOptions = { headers: { Authorization: 'Token ' + token } }
@@ -19,7 +20,7 @@ function genResult (talks, rooms, speakers) {
   const resSpeakers = speakers.results.map(s => {
     return {
       id: s.code,
-      avatar: s.avatar || 'https://coscup.org/2020/img/speaker/avatar/default.png',
+      avatar: s.avatar || `https://www.gravatar.com/avatar/${md5(s.email)}?s=1024&d=https://coscup.org/2020/img/speaker/avatar/default.png&r=g`,
       zh: {
         name: s.name,
         bio: s.biography || ''
