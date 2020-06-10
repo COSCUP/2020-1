@@ -136,6 +136,11 @@ export default class Agenda extends Vue {
   private popUpSession = {};
   private currentDay = ''
   private tempScrollPosition = { x: 0, y: 0 }
+  private roomSequence = [
+    'AU', 'TR209', 'TR211', 'TR212', 'TR213', 'TR214',
+    'TR309', 'TR313',
+    'TR409-2', 'TR410', 'TR411', 'TR412-1', 'TR412-2', 'TR413-1', 'TR413-2', 'TR510'
+  ]
 
   private get language () {
     if (this._language === 'zh-TW') {
@@ -147,16 +152,12 @@ export default class Agenda extends Vue {
   private get sessions () {
     return this._sessions
       .filter((session) => this.formatDateString(session.start) === this.currentDay)
+      .sort((a, b) => this.roomSequence.indexOf(a.room.id) - this.roomSequence.indexOf(b.room.id))
       .sort((a, b) => +this.formatTimeString(a.start) - +this.formatTimeString(b.start))
   }
 
   private get rooms () {
-    const sequence = [
-      'AU', 'TR209', 'TR211', 'TR212', 'TR213', 'TR214',
-      'TR309', 'TR313',
-      'TR409-2', 'TR410', 'TR411', 'TR412-1', 'TR412-2', 'TR413-1', 'TR413-2', 'TR510'
-    ]
-    return this._rooms.sort((a, b) => sequence.indexOf(a.id) - sequence.indexOf(b.id))
+    return this._rooms.sort((a, b) => this.roomSequence.indexOf(a.id) - this.roomSequence.indexOf(b.id))
   }
 
   private get days () {
