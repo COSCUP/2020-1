@@ -202,6 +202,19 @@
         }
       }
 
+      img.speaker-avatar {
+        width: 320px;
+        float: right;
+        margin: 0 0 1rem 1rem;
+
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          float: none;
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+      }
+
       a {
         color: $tone;
         text-decoration: none;

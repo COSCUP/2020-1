@@ -27,11 +27,14 @@ const content = (data: any, language: 'zh' | 'en'): string => data ? `
   "url": "https://coscup.org/2020/agenda/${data.id}"
 }
 </script>
-<h1 class="title font-black">${data[language].title}</h1>
-<h2 class="font-black" style="color: #3b9838; margin-bottom: 0;">${data.type[language].name}</h2>
-<div style="margin-bottom: 2rem;">
-  <span class="font-black">${data.room[language].name.split(' / ')[0]}</span>
-  <span style="margin-left: 1rem;">${formatTimeString(data.start, '：')} ~ ${formatTimeString(data.end, '：')}</span>
+<div>
+  <h1 class="title font-black">${data[language].title}</h1>
+  <h2 class="font-black" style="color: #3b9838; margin-bottom: 0;">${data.type[language].name}</h2>
+  <div style="margin-bottom: 2rem;">
+    <span class="font-black">${data.room[language].name.split(' / ')[0]}</span>
+    <span style="margin-left: 1rem;">${formatTimeString(data.start, '：')} ~ ${formatTimeString(data.end, '：')}</span>
+  </div>
+  <hr />
 </div>
 <p class="paragraph">${contentParser(data[language].description)}</p>
 ${data.speakers.map((speaker: ISpeaker) => (speakerContent(speaker, language))).join('')}
@@ -39,7 +42,10 @@ ${data.speakers.map((speaker: ISpeaker) => (speakerContent(speaker, language))).
 
 const speakerContent = (speaker: ISpeaker, language: 'zh' | 'en'): string => `
 <h1 class="title font-black">About ${speaker[language].name}</h1>
-${speaker[language].bio ? contentParser(`![Speaker ${speaker[language].name}'s avatar](${speaker.avatar})` + speaker[language].bio) : ''}
+<div>
+  <img class="speaker-avatar" src="${speaker.avatar}" alt="Speaker ${speaker[language].name}'s avatar">
+  ${speaker[language].bio ? contentParser(speaker[language].bio!) : ''}
+</div>
 `
 
 const contentParser = (content: string): string => (
