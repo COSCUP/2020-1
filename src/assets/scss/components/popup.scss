@@ -20,7 +20,6 @@
     &-placeholder {
       height: 100%;
       width: 100%;
-      padding: 0;
       display: flex;
       animation: popupFillIn 0.3s ease-in-out;
       animation-fill-mode: forwards;
@@ -36,8 +35,8 @@
       width: 64px;
       margin-bottom: -64px;
       position: fixed;
-      top: $main-padding;
-      right: $main-padding;
+      top:  calc(#{$main-padding} + 1rem);
+      right:  calc((100% - 900px) / 2 + 1rem);
       font-size: 36px;
       cursor: pointer;
       z-index: 9999;
@@ -68,10 +67,9 @@
 
     &-content {
       &-box {
-        width: 100%;
         display: block;
-        padding: $main-padding;
-        margin-bottom: 0;
+        padding: $main-padding calc((100% - 900px) / 2);
+        margin: 0 auto;
         position: relative;
         z-index: 9999;
         animation: popupJumpOut 0.3s cubic-bezier(0.8, -0.9, 0.2, 1.2);

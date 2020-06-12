@@ -4,17 +4,17 @@
     class="popup-container"
   >
     <main class="popup-placeholder">
-      <div
-        class="popup-close"
-        @click="closePopup()"
-      />
-      <div
-        class="popup-close"
-        @click="closePopup()"
-      >
-        <font-awesome-icon :icon="['fas', 'times']"/>
-      </div>
       <div class="popup-content-box">
+        <div
+          class="popup-close"
+          @click="closePopup()"
+        />
+        <div
+          class="popup-close"
+          @click="closePopup()"
+        >
+          <font-awesome-icon :icon="['fas', 'times']"/>
+        </div>
         <article
           v-html="content"
           class="popup-content"
