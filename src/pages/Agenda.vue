@@ -1,5 +1,8 @@
 <template>
   <div id="agenda" class="main-container">
+    <div v-show="false">
+      <a v-for="(session, index) in _sessions" :key="`session-link-seo-${index}-${session.id}`" :href="`https://coscup.org/2020/${_language}/agenda/${session.id}`"></a>
+    </div>
     <nav class="days">
       <div
         class="day"
@@ -40,8 +43,8 @@
             <span>{{ formatTimeString(time, "：") }}</span>
           </div>
           <div
-            v-for="session in sessions"
-            :key="session.id"
+            v-for="(session, index) in sessions"
+            :key="`s-${index}-${session.id}`"
             :id="session.id"
             :style="getSessionCellStyle(session)"
             class="schedule-cell"
@@ -119,6 +122,7 @@ import sessionDOMString from '@/../template/session.mod'
 
 import { DeviceType } from '@/store/types/app'
 import { Session, RoomData } from '../store/types/agenda'
+import head from '../util/head'
 
 @Component
 export default class Agenda extends Vue {
@@ -133,7 +137,7 @@ export default class Agenda extends Vue {
   @Getter('rooms', { namespace: 'agenda' }) private _rooms!: RoomData[]
 
   private popUp = false;
-  private popUpSession = {};
+  private popUpSession: Session | null = null;
   private currentDay = ''
   private tempScrollPosition = { x: 0, y: 0 }
   private roomSequence = [
@@ -202,14 +206,14 @@ export default class Agenda extends Vue {
   public async onChangeInnerPopup (popuped: boolean) {
     if (popuped) {
       await this.setPopupOffsetTop(window.scrollY)
-      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: (this.popUpSession as any).id } })
+      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: this.popUpSession === null ? '' : this.popUpSession.id } })
     }
   }
 
   @Watch('isPopup')
   public async onChangePopup (isPopup: boolean) {
     if (isPopup && this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: (this.popUpSession as any).id } })
+      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: this.popUpSession === null ? '' : this.popUpSession.id } })
     } else if (this.$route.name!.includes('Agenda')) {
       this.$router.push({ name: 'Agenda', params: { language: this._language } })
       window.scroll(this.tempScrollPosition.x, this.tempScrollPosition.y)
@@ -221,7 +225,11 @@ export default class Agenda extends Vue {
     if (route.name === 'AgendaView') {
       this.processPopup()
       this.togglePopup(true)
+      if (this.popUpSession === null) return
+      head.title(this.popUpSession[this.language as 'en' | 'zh'].title)
+      head.ogTitle(this.popUpSession[this.language as 'en' | 'zh'].title)
     } else if (route.name === 'Agenda') {
+      this.popUpSession = null
       this.popUp = false
       this.togglePopup(false)
       this.togglePopupContent('')
@@ -299,10 +307,10 @@ export default class Agenda extends Vue {
 
   private handleSessionPopup (): void {
     if (this.$route.params.sid) {
-      this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0]
+      this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0] || null
       if (!this.popUpSession) {
         this.$router.replace({
-          name: 'Redirect',
+          name: 'Agenda',
           params: {
             language: this.$route.params.language
           }
