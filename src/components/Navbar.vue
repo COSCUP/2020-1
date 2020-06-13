@@ -64,11 +64,11 @@
           </template>
         </div>
       </div>
-      <a class="language-switch menu-item font-bold" @click="switchLanguage">
+      <router-link class="language-switch menu-item font-bold" :to="languageSwitchLocation">
         <span>
           {{ languagePack.languageSwitch }}
         </span>
-      </a>
+      </router-link>
       <img
         src="@/assets/images/toggle-button.svg"
         class="toggle-button"
@@ -80,7 +80,7 @@
 
 <script lang="ts">
 import { Component, Watch, Vue } from 'vue-property-decorator'
-import { Action, Getter } from 'vuex-class'
+import { Getter } from 'vuex-class'
 import { Language, LanguageType } from '../../languages'
 import { Location } from 'vue-router'
 
@@ -99,7 +99,6 @@ interface MenuLinkItemInternal extends MenuLinkItem {
 
 @Component
 export default class Navbar extends Vue {
-  @Action('setLanguage', { namespace: 'app' }) private setLanguage!: (language: string) => void
   @Getter('language', { namespace: 'app' }) private language!: string;
   @Getter('languagePack', { namespace: 'app' }) private languagePack!: Language;
 
@@ -166,11 +165,12 @@ export default class Navbar extends Vue {
     this.toggleMenu(false)
   }
 
-  private switchLanguage () {
-    if (this.language === LanguageType.en) {
-      this.setLanguage(LanguageType['zh-TW'])
-    } else {
-      this.setLanguage(LanguageType.en)
+  private get languageSwitchLocation (): Location {
+    return {
+      ...this.$route,
+      params: {
+        language: this.language === LanguageType.en ? LanguageType['zh-TW'] : LanguageType.en
+      }
     }
   }
 }
