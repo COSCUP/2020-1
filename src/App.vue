@@ -339,7 +339,7 @@ export default class App extends Vue {
   private setAnnouncementCookie (): void {
     this.$cookies.set(
       'announcement',
-      'af7f1055-f3ab-469b-8f96-a0a0c47095a2',
+      'af7f1055-f3ab-469b-8f96-a0a0b47095a2',
       Infinity,
       '*',
       'coscup.org'
@@ -348,7 +348,7 @@ export default class App extends Vue {
     // Fix Safari
     this.$cookies.set(
       'announcement',
-      'af7f1055-f3ab-469b-8f96-a0a0c47095a2',
+      'af7f1055-f3ab-469b-8f96-a0a0b47095a2',
       Infinity,
       '',
       'coscup.org'
@@ -358,7 +358,7 @@ export default class App extends Vue {
   private announcementCookieHook (): void {
     const announcementId: string = this.$cookies.get('announcement')
 
-    if (announcementId !== 'af7f1055-f3ab-469b-8f96-a0a0c47095a2') {
+    if (announcementId !== 'af7f1055-f3ab-469b-8f96-a0a0b47095a2') {
       setTimeout(() => {
         this.$router.push({
           ...this.$route,

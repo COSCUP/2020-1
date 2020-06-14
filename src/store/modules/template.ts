@@ -1,7 +1,7 @@
 import { ActionTree, GetterTree, MutationTree, Module } from 'vuex'
 
 import { TemplateState } from '../types/template'
-import { RootState } from '../types/root'
+import { RootState, RootStateWithModules } from '../types/root'
 
 import announcementDOMString from '@/../template/announcement.mod'
 import submitInfoDOMString from '@/../template/submitInfo.mod'
@@ -18,7 +18,7 @@ const state: TemplateState = {
 }
 
 const getters: GetterTree<TemplateState, RootState> = {
-  announcement: (state): TemplateState['announcement'] => state.announcement,
+  announcement: (state, getters, rootState): string => state.announcement((rootState as RootStateWithModules).app.language as 'en' | 'zh-TW'),
   submitInfo: (state): TemplateState['submitInfo'] => state.submitInfo,
   openSubmit: (state): TemplateState['openSubmit'] => state.openSubmit,
   loudly: (state): TemplateState['loudly'] => state.loudly
