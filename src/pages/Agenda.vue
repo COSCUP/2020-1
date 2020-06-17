@@ -136,8 +136,6 @@ export default class Agenda extends Vue {
   @Getter('sessions', { namespace: 'agenda' }) private _sessions!: Session[]
   @Getter('rooms', { namespace: 'agenda' }) private _rooms!: RoomData[]
 
-  private popUp = false;
-  private popUpSession: Session | null = null;
   private currentDay = ''
   private tempScrollPosition = { x: 0, y: 0 }
   private roomSequence = [
@@ -202,45 +200,6 @@ export default class Agenda extends Vue {
     return this.device === DeviceType.MOBILE
   }
 
-  @Watch('popUp')
-  public async onChangeInnerPopup (popuped: boolean) {
-    if (popuped) {
-      await this.setPopupOffsetTop(window.scrollY)
-      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: this.popUpSession === null ? '' : this.popUpSession.id } })
-    }
-  }
-
-  @Watch('isPopup')
-  public async onChangePopup (isPopup: boolean) {
-    if (isPopup && this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'AgendaView', params: { language: this._language, sid: this.popUpSession === null ? '' : this.popUpSession.id } })
-    } else if (this.$route.name!.includes('Agenda')) {
-      this.$router.push({ name: 'Agenda', params: { language: this._language } })
-      window.scroll(this.tempScrollPosition.x, this.tempScrollPosition.y)
-    }
-  }
-
-  @Watch('$route')
-  public onChangeRoute (route: Route) {
-    if (route.name === 'AgendaView') {
-      this.processPopup()
-      this.togglePopup(true)
-      if (this.popUpSession === null) return
-      head.title(this.popUpSession[this.language as 'en' | 'zh'].title)
-      head.ogTitle(this.popUpSession[this.language as 'en' | 'zh'].title)
-    } else if (route.name === 'Agenda') {
-      this.popUpSession = null
-      this.popUp = false
-      this.togglePopup(false)
-      this.togglePopupContent('')
-    }
-  }
-
-  public mounted () {
-    this.currentDay = this.days[0]
-    this.handleSessionPopup()
-  }
-
   private formatDateString (date: Date, joinChar = '') {
     return [date.getMonth() + 1, date.getDate()]
       .map((digit) => digit.toString().padStart(2, '0')).join(joinChar)
@@ -292,34 +251,79 @@ export default class Agenda extends Vue {
   }
 
   private onClickSession (session: Session) {
-    this.popUpSession = session
-
     this.tempScrollPosition = { x: window.scrollX, y: window.scrollY }
-    this.togglePopup(true)
+    this.$router.push({
+      name: 'AgendaView',
+      params: {
+        sid: session.id,
+        language: this._language
+      }
+    })
+  }
+
+  @Watch('isPopup')
+  public onChangePopup (isPopup: boolean) {
+    if (!isPopup) {
+      this.$router.push({
+        name: 'Agenda',
+        params: { language: this._language },
+        query: {
+          ...this.$route.query
+        }
+      })
+      window.scroll(this.tempScrollPosition.x, this.tempScrollPosition.y)
+    }
+  }
+
+  @Watch('$route')
+  public onChangeRoute (route: Route) {
+    if (route.name === 'AgendaView') {
+      this.processPopup()
+    } else if (route.name === 'Agenda') {
+      this.clearPopup()
+    }
+  }
+
+  public mounted () {
+    this.currentDay = this.days[0]
+    this.processPopup()
   }
 
   private processPopup (): void {
     const targetSessionId = this.$route.params.sid as string
     const targetSession = this._sessions.filter((session) => session.id === targetSessionId)[0]
-    this.togglePopupContent(sessionDOMString(targetSession, this.language as 'zh' | 'en'))
+    const language = {
+      en: 'en',
+      'zh-TW': 'zh'
+    }[this.$route.params.language as 'en' | 'zh-TW']
+    if (!targetSessionId || !targetSession) {
+      this.clearPopup()
+      return
+    }
+    this.togglePopupContent(sessionDOMString(targetSession, language as 'zh' | 'en'))
     this.togglePopup(true)
   }
 
-  private handleSessionPopup (): void {
-    if (this.$route.params.sid) {
-      this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0] || null
-      if (!this.popUpSession) {
-        this.$router.replace({
-          name: 'Agenda',
-          params: {
-            language: this.$route.params.language
-          }
-        })
-        return
-      }
-      this.processPopup()
-    }
+  private clearPopup (): void {
+    this.togglePopup(false)
+    this.togglePopupContent('')
   }
+
+  // private handleSessionPopup (): void {
+  //   if (this.$route.params.sid) {
+  //     this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0] || null
+  //     if (!this.popUpSession) {
+  //       this.$router.replace({
+  //         name: 'Agenda',
+  //         params: {
+  //           language: this.$route.params.language
+  //         }
+  //       })
+  //       return
+  //     }
+  //     this.processPopup()
+  //   }
+  // }
 
   private deepCopy (obj: any): any {
     return JSON.parse(JSON.stringify(obj))

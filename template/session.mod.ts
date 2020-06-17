@@ -19,14 +19,18 @@ export interface ISpeaker {
   };
 }
 
-const content = (data: any, language: 'zh' | 'en'): string => data ? `
-<script id="meta-content" type="application/json">
+const content = (data: any, language: 'zh' | 'en'): string => {
+  if (!data) return ''
+  const description = `${data[language].description.split('\n')[0]}...`
+  console.log(description)
+  return `
+${`<script id="meta-content" type="application/json">
 {
   "title": "${data[language].title}",
-  "description": "${data[language].description.replace(/\n/gm, '')}",
+  "description": "${description}",
   "url": "https://coscup.org/2020/agenda/${data.id}"
 }
-</script>
+</script>`.replace('\n', '')}
 <div>
   <span style="color: #3b9838; font-size: 1.25rem;">${getDay(data.start)}</span>
   <h1 class="title" style="margin-top: 8px; margin-bottom: 12px;"><span class="font-black" style="display: inline-block; margin-right: 1rem; line-height: 1.25;">${data[language].title}</span>${data.tags[0] ? `<span style="margin: 8px 0; display: inline-block; vertical-align: top; font-size: 0.8rem; padding: 8px 1rem; color: #fff; background-color: #3b9838; border-radius: 25px;">${data.tags[0][language].name}</span>` : ''}</h1>
@@ -39,7 +43,8 @@ const content = (data: any, language: 'zh' | 'en'): string => data ? `
 </div>
 <p class="paragraph">${contentParser(data[language].description)}</p>
 ${data.speakers.map((speaker: ISpeaker) => (speakerContent(speaker, language))).join('')}
-` : ''
+`
+}
 
 const speakerContent = (speaker: ISpeaker, language: 'zh' | 'en'): string => `
 <h1 class="title font-black">About ${speaker[language].name}</h1>
