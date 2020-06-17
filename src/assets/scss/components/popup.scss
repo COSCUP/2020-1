@@ -68,6 +68,7 @@
     &-content {
       &-box {
         display: block;
+        width: 100%;
         padding: $main-padding calc((100% - 900px) / 2);
         margin: 0 auto;
         position: relative;

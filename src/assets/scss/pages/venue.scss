@@ -40,6 +40,7 @@
 
       .plan {
         display: inline-block;
+        width: calc(100% - 1rem);
         padding: 2rem;
         margin: 1rem 0.5rem;
         background-color: $cardBackgroundColor;

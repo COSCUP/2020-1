@@ -12,6 +12,11 @@ const { sessions, rooms } = (() => {
   const sessionTypesData: SessionTypeData[] = agendaData.session_types
   const speakersData: SpeakerData[] = agendaData.speakers
 
+  function fixedTaiwanHour (date: Date): Date {
+    date.setHours(date.getHours() + 8 + (date.getTimezoneOffset() / 60))
+    return date
+  }
+
   return {
     rooms: roomsData,
     sessions: sessionsData
@@ -23,8 +28,8 @@ const { sessions, rooms } = (() => {
           room: roomsData.find((roomData) => sessionData.room === roomData.id)!,
           tags: tagsData.filter((tagData) => sessionData.tags.includes(tagData.id)) || null,
           speakers: speakersData.filter((speakerData) => sessionData.speakers.includes(speakerData.id)) || null,
-          start: new Date(Date.parse(sessionData.start)),
-          end: new Date(Date.parse(sessionData.end))
+          start: fixedTaiwanHour(new Date(Date.parse(sessionData.start))),
+          end: fixedTaiwanHour(new Date(Date.parse(sessionData.end)))
         }
       })
   }
