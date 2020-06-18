@@ -220,16 +220,17 @@
           }
           
           .room, .length, .language, .difficulty {
-            @include mobile {
               vertical-align: middle;
               display: inline-block;
 
-              &:not(.difficulty)::after {
+              &:not(.difficulty)::before {
                 content: "";
                 display: inline-block;
-                width: 0.75rem;
+                width: 0.35rem;
+                @include mobile {
+                  width: 0.75rem;
+                }
               }
-            }
           }
         }
 

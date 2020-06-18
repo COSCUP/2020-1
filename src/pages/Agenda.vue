@@ -74,22 +74,6 @@
                     </li>
                   </ul>
                 </header>
-                <p v-show="isMobile" class="room">
-                  {{ session.room[language].name.split(' / ')[0] }}
-                </p>
-                <p v-show="isMobile" class="length">
-                  {{ `${getSessionPeriod(session)} mins` }}
-                </p>
-
-                <p
-                  class="language"
-                  v-show="isMobile"
-                  v-if="
-                    session.language
-                  "
-                >
-                  {{ `${session.language.trim()}` }}
-                </p>
 
                 <div
                   class="difficulty"
@@ -102,6 +86,21 @@
                     {{ `${session.tags[0][language].name}` }}
                   </p>
                 </div>
+                <p v-show="isMobile" class="room">
+                  {{ session.room[language].name.split(' / ')[0] }}
+                </p>
+                <p v-show="isMobile" class="length">
+                  {{ `${getSessionPeriod(session)} mins` }}
+                </p>
+
+                <p
+                  class="language"
+                  v-if="
+                    session.language
+                  "
+                >
+                  {{ `${session.language.trim()}` }}
+                </p>
               </section>
             </div>
           </div>
@@ -122,7 +121,6 @@ import sessionDOMString from '@/../template/session.mod'
 
 import { DeviceType } from '@/store/types/app'
 import { Session, RoomData } from '../store/types/agenda'
-import head from '../util/head'
 
 @Component
 export default class Agenda extends Vue {
@@ -308,22 +306,6 @@ export default class Agenda extends Vue {
     this.togglePopup(false)
     this.togglePopupContent('')
   }
-
-  // private handleSessionPopup (): void {
-  //   if (this.$route.params.sid) {
-  //     this.popUpSession = this._sessions.filter((session) => (session.id === this.$route.params.sid))[0] || null
-  //     if (!this.popUpSession) {
-  //       this.$router.replace({
-  //         name: 'Agenda',
-  //         params: {
-  //           language: this.$route.params.language
-  //         }
-  //       })
-  //       return
-  //     }
-  //     this.processPopup()
-  //   }
-  // }
 
   private deepCopy (obj: any): any {
     return JSON.parse(JSON.stringify(obj))

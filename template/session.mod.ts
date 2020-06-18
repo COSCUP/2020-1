@@ -22,7 +22,6 @@ export interface ISpeaker {
 const content = (data: any, language: 'zh' | 'en'): string => {
   if (!data) return ''
   const description = `${data[language].description.split('\n')[0]}...`
-  console.log(description)
   return `
 ${`<script id="meta-content" type="application/json">
 {
